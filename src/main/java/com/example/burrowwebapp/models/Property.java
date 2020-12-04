@@ -1,31 +1,19 @@
 package com.example.burrowwebapp.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Property
-{
-    @Id
-    @GeneratedValue
-    private int id;
+@Entity
+public class Property extends AbstractEntity {
 
-    @NotBlank
-    private String name;
+    private final List<Room> rooms = new ArrayList<>();
 
-    public int getId(){
-        return id;
+    public Property(@NotBlank String name){
+        this.setName(name);
     }
 
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
+    public Property(){}
 
 }
