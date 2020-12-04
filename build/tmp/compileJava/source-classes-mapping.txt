@@ -1,3 +1,5 @@
+com/example/burrowwebapp/models/Property.java
+ com.example.burrowwebapp.models.Property
 com/example/burrowwebapp/BurrowWebAppApplication.java
  com.example.burrowwebapp.BurrowWebAppApplication
 com/example/burrowwebapp/controller/HelloController.java
