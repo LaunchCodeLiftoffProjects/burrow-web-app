@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="com.example.burrow-web-app.main" target="13" />
+      <module name="com.example.burrow-web-app.test" target="13" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
