@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.springframework.data:spring-data-commons:2.2.3.RELEASE">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/2.2.3.RELEASE/574349bf76bb4a85033e526efa0315ca9933fa83/spring-data-commons-2.2.3.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/2.2.3.RELEASE/820700adddb9d2f126b466f99917167f68e151e9/spring-data-commons-2.2.3.RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

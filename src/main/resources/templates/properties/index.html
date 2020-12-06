@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<p th:unless="${properties} and ${properties.size()}">No properties!</p>
+
+<div class="container body-content">
+    <h2>Properties</h2>
+    <ul>
+        <li th:each="property : ${properties}">
+            <a th:href="@{'/properties/view/' + ${property.id}}" th:text="${property.name}"></a>
+        </li>
+    </ul>
+    <a th:href="@{'/properties/add'}">Add Properties</a>
+
+</div>
+
+</body>
+</html>

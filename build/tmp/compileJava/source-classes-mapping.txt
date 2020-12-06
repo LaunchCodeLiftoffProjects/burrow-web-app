@@ -1,5 +1,7 @@
 com/example/burrowwebapp/data/PropertyRepository.java
  com.example.burrowwebapp.data.PropertyRepository
+com/example/burrowwebapp/controller/HelloController.java
+ com.example.burrowwebapp.controller.HelloController
 com/example/burrowwebapp/models/Property.java
  com.example.burrowwebapp.models.Property
 com/example/burrowwebapp/BurrowWebAppApplication.java
@@ -10,5 +12,5 @@ com/example/burrowwebapp/models/Room.java
  com.example.burrowwebapp.models.Room
 com/example/burrowwebapp/data/RoomRepository.java
  com.example.burrowwebapp.data.RoomRepository
-com/example/burrowwebapp/controller/HelloController.java
- com.example.burrowwebapp.controller.HelloController
+com/example/burrowwebapp/controller/PropertyController.java
+ com.example.burrowwebapp.controller.PropertyController
