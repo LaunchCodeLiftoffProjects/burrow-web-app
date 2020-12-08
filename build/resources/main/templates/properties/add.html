@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<h1>Add Property</h1>
+
+<form method="post" style="max-width:600px;">
+    <div class="form-group">
+        <label th:for="name">Property Name</label>
+        <input class="form-control" th:field="${property.name}" />
+        <span th:errors="${property.name}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="location">Property Location</label>
+        <input class="form-control" th:field="${property.location}" />
+        <span th:errors="${property.location}" class="error"></span>
+    </div>
+
+    <input type="submit" value="Add Property" />
+</form>
+</body>
+</html>
