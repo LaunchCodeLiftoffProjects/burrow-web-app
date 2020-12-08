@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.launchcode.burrowwebapp.BurrowWebAppApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-11-27T16:12:57" hostname="JOHN-WAZ" time="0.003">
+  <properties/>
+  <testcase name="contextLoads()" classname="org.launchcode.burrowwebapp.BurrowWebAppApplicationTests" time="0.003"/>
+  <system-out><![CDATA[2020-11-27 10:12:56.813  INFO 15960 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [org.launchcode.burrowwebapp.BurrowWebAppApplicationTests], using SpringBootContextLoader
+2020-11-27 10:12:56.814  INFO 15960 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [org.launchcode.burrowwebapp.BurrowWebAppApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2020-11-27 10:12:56.814  INFO 15960 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.launchcode.burrowwebapp.BurrowWebAppApplicationTests]: BurrowWebAppApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2020-11-27 10:12:56.820  INFO 15960 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.launchcode.burrowwebapp.BurrowWebAppApplication for test class org.launchcode.burrowwebapp.BurrowWebAppApplicationTests
+2020-11-27 10:12:56.823  INFO 15960 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2020-11-27 10:12:56.824  INFO 15960 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@669d0899, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@3dc4d77, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6d30f234, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@1640abd2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1817a043, org.springframework.test.context.event.EventPublishingTestExecutionListener@7941e1c3, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@130a0d8d, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@872a05, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@253797ee, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@538e2572, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@10ab3ceb, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@29c5fbf9]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.4.0)
+
+2020-11-27 10:12:56.850  INFO 15960 --- [    Test worker] o.l.b.BurrowWebAppApplicationTests       : Starting BurrowWebAppApplicationTests using Java 14.0.1 on John-Waz with PID 15960 (started by wazjo in C:\Users\wazjo\Capstone-Project\burrow-web-app)
+2020-11-27 10:12:56.851  INFO 15960 --- [    Test worker] o.l.b.BurrowWebAppApplicationTests       : No active profile set, falling back to default profiles: default
+2020-11-27 10:12:57.136  INFO 15960 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-27 10:12:57.286  INFO 15960 --- [    Test worker] o.l.b.BurrowWebAppApplicationTests       : Started BurrowWebAppApplicationTests in 0.46 seconds (JVM running for 3.453)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
