@@ -2,6 +2,32 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
+<th:block th:unless = "${property}">
+    <p>The property you are trying to edit does not exist.</p>
+</th:block>
+<th:block th:if="${property}">
+    <form method="post" th:action="@{/properties/edit}">
+        <div class="form-group">
+            <label>Name
+                <input type="text" name="name" class="form-control" th:value="${property.name}">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Location
+                <input type="text" name="location" class="form-control" th:value="${property.location}">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>Description
+                <input type="text" name="description" class="form-control" th:value="${property.description}">
+            </label>
+        </div>
+        <input type="hidden" th:value="${property.id}" name="propertyId" />
+        <div class="form-group">
+            <input type="submit" value="Edit Property" class="btn btn-success">
+        </div>
+    </form>
+</th:block>
 
 </body>
 </html>

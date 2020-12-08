@@ -55,4 +55,21 @@ public class PropertyController {
         }
     }
 
+    @GetMapping("edit/{propertyId}")
+    public String displayEditForm(Model model, @PathVariable int propertyId) {
+        Property property = propertyRepository.findById(propertyId).get();
+        model.addAttribute("property", property);
+        return "properties/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditForm(int propertyId, String name, String location, String description) {
+        Property property = propertyRepository.findById(propertyId).get();
+        property.setName(name);
+        property.setLocation(location);
+        property.setDescription(description);
+        propertyRepository.save(property);
+        return "redirect:";
+    }
+
 }
