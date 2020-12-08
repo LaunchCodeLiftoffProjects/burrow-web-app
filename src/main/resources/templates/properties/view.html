@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Properties</title>
+</head>
+<body>
+<h1 th:text="${'Property: ' + property.name}">Default Title</h1>
+
+<div>
+    <p th:text="${'Name: ' + property.name}"></p>
+    <p th:text="${'Location: ' + property.location}"></p>
+    <p th:text="${'Description: ' + property.description}"></p>
+</div>
+
+</body>
+</html>

@@ -42,17 +42,17 @@ public class PropertyController {
         return "redirect:";
     }
 
-//    @GetMapping("view/{propertyId}")
-//    public String displayViewProperty(Model model, @PathVariable int propertyId) {
-//
-//        Optional optProperty = PropertyRepository.findById(propertyId);
-//        if (optProperty.isPresent()) {
-//            Property property = (Property) optProperty.get();
-//            model.addAttribute("property", property);
-//            return "properties/view";
-//        } else {
-//            return "redirect:../";
-//        }
-//    }
+    @GetMapping("view/{propertyId}")
+    public String displayViewProperty(Model model, @PathVariable int propertyId) {
+
+        Optional optProperty = propertyRepository.findById(propertyId);
+        if (optProperty.isPresent()) {
+            Property property = (Property) optProperty.get();
+            model.addAttribute("property", property);
+            return "properties/view";
+        } else {
+            return "redirect:../";
+        }
+    }
 
 }
