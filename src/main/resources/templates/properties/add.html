@@ -17,6 +17,12 @@
         <span th:errors="${property.location}" class="error"></span>
     </div>
 
+    <div class="form-group">
+        <label th:for="description">Property Description</label>
+        <input class="form-control" th:field="${property.description}" />
+        <span th:errors="${property.description}" class="error"></span>
+    </div>
+
     <input type="submit" value="Add Property" />
 </form>
 </body>
