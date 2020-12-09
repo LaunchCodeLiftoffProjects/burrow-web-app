@@ -4,7 +4,7 @@
 <body class="container">
 <h2>Edit Property</h2>
 
-<th:block th:unless = "${property}">
+<th:block th:unless="${property}">
     <p>The property you are trying to edit does not exist.</p>
 </th:block>
 <th:block th:if="${property}">

@@ -3,18 +3,21 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <h2>Delete Properties</h2>
+<p th:unless="${properties} and ${properties.size()}">No properties!</p>
 
-<form method="post">
-    <th:block th:each="property : ${properties}">
-        <div class="form-group">
-            <label>
-                <span th:text="${property.name}"></span>
-                <input type="checkbox" name="propertyIds" th:value="${property.id}" class="form-control">
-            </label>
-        </div>
-    </th:block>
-    <input type="submit" value="Delete Property" class="btn btn-danger">
-</form>
+<th:block th:if="${properties}">
+    <form method="post">
+        <th:block th:each="property : ${properties}">
+            <div class="form-group">
+                <label>
+                    <span th:text="${property.name}"></span>
+                    <input type="checkbox" name="propertyIds" th:value="${property.id}" class="form-control">
+                </label>
+            </div>
+        </th:block>
+        <input type="submit" value="Delete Property" class="btn btn-danger">
+    </form>
+</th:block>
 
 </body>
 </html>
