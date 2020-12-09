@@ -1,7 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
+<body class="container">
+<h2>Delete Properties</h2>
+
+<form method="post">
+    <th:block th:each="property : ${properties}">
+        <div class="form-group">
+            <label>
+                <span th:text="${property.name}"></span>
+                <input type="checkbox" name="propertyIds" th:value="${property.id}" class="form-control">
+            </label>
+        </div>
+    </th:block>
+    <input type="submit" value="Delete Property" class="btn btn-danger">
+</form>
 
 </body>
 </html>

@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Properties</title>
-</head>
-<body>
-<h1 th:text="${'Property: ' + property.name}">Default Title</h1>
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
+<h2 th:text="${'Property: ' + property.name}">Default Title</h2>
 
 <div>
     <p th:text="${'Name: ' + property.name}"></p>
