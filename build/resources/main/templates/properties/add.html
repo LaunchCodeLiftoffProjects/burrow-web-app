@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
-<h1>Add Property</h1>
+<body class="container">
+<h2>Add Property</h2>
 
 <form method="post" style="max-width:600px;">
     <div class="form-group">
@@ -15,6 +15,12 @@
         <label th:for="location">Property Location</label>
         <input class="form-control" th:field="${property.location}" />
         <span th:errors="${property.location}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="description">Property Description</label>
+        <input class="form-control" th:field="${property.description}" />
+        <span th:errors="${property.description}" class="error"></span>
     </div>
 
     <input type="submit" value="Add Property" />

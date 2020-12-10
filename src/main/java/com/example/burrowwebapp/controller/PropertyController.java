@@ -42,17 +42,51 @@ public class PropertyController {
         return "redirect:";
     }
 
-//    @GetMapping("view/{propertyId}")
-//    public String displayViewProperty(Model model, @PathVariable int propertyId) {
-//
-//        Optional optProperty = PropertyRepository.findById(propertyId);
-//        if (optProperty.isPresent()) {
-//            Property property = (Property) optProperty.get();
-//            model.addAttribute("property", property);
-//            return "properties/view";
-//        } else {
-//            return "redirect:../";
-//        }
-//    }
+    @GetMapping("view/{propertyId}")
+    public String displayViewProperty(Model model, @PathVariable int propertyId) {
+
+        Optional optProperty = propertyRepository.findById(propertyId);
+        if (optProperty.isPresent()) {
+            Property property = (Property) optProperty.get();
+            model.addAttribute("property", property);
+            return "properties/view";
+        } else {
+            return "redirect:../";
+        }
+    }
+
+    @GetMapping("edit/{propertyId}")
+    public String displayEditForm(Model model, @PathVariable int propertyId) {
+        Property property = propertyRepository.findById(propertyId).get();
+        model.addAttribute("property", property);
+        return "properties/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditForm(int propertyId, String name, String location, String description) {
+        Property property = propertyRepository.findById(propertyId).get();
+        property.setName(name);
+        property.setLocation(location);
+        property.setDescription(description);
+        propertyRepository.save(property);
+        return "redirect:";
+    }
+
+    @GetMapping("delete")
+    public String displayDeleteForm(Model model) {
+        model.addAttribute("title", "Delete Properties");
+        model.addAttribute("properties", propertyRepository.findAll());
+        return "properties/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteForm(@RequestParam(required = false) int[] propertyIds) {
+        if (propertyIds != null) {
+            for (int id : propertyIds) {
+                propertyRepository.deleteById(id);
+            }
+        }
+        return "redirect:";
+    }
 
 }
