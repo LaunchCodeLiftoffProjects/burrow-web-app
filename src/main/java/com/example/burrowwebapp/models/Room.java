@@ -3,6 +3,7 @@ package com.example.burrowwebapp.models;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class Room extends AbstractEntity {
     @NotNull
     private Property property;
 
-    @ManyToMany
+    @OneToMany (mappedBy = "room")
     private List<Device> devices = new ArrayList<>();
 
     public Room(){ }

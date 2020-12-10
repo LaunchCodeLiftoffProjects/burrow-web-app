@@ -29,8 +29,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12f46be0-777e-48d5-8548-1190fbfb91eb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="12f46be0-777e-48d5-8548-1190fbfb91eb" name="Default Changelist" comment="testing dan's theory">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/burrowwebapp/models/Device.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/burrowwebapp/models/Device.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/burrowwebapp/models/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/burrowwebapp/models/Room.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607476322098</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="testing dan's theory">
+      <created>1607560340288</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1607560340288</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -142,7 +150,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="room model &amp; repository" />
-    <option name="LAST_COMMIT_MESSAGE" value="room model &amp; repository" />
+    <MESSAGE value="testing dan's theory" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing dan's theory" />
   </component>
   <component name="WindowStateProjectService">
     <state x="261" y="228" key="#com.intellij.ide.util.MemberChooser" timestamp="1607475994784">
