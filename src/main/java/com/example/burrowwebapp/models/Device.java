@@ -1,17 +1,19 @@
 package com.example.burrowwebapp.models;
 
 
+import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Device extends AbstractEntity {
 
     private String description;
 
     @ManyToOne
-    private List<Room> rooms = new ArrayList<>();
+    private Room room;
 
     public Device() {}
 
@@ -23,11 +25,11 @@ public class Device extends AbstractEntity {
         this.description = description;
     }
 
-    public List<Room> getRooms() {
-        return rooms;
+    public Room getRooms() {
+        return room;
     }
 
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }
