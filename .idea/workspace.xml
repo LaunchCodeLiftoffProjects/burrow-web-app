@@ -19,13 +19,19 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/room-model" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12f46be0-777e-48d5-8548-1190fbfb91eb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="12f46be0-777e-48d5-8548-1190fbfb91eb" name="Default Changelist" comment="testing dan's theory">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/burrowwebapp/models/Device.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/burrowwebapp/models/Device.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/burrowwebapp/models/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/burrowwebapp/models/Room.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +74,14 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -93,6 +107,21 @@
       <option name="presentableId" value="Default" />
       <updated>1606960822576</updated>
     </task>
+    <task id="LOCAL-00001" summary="room model &amp; repository">
+      <created>1607476322098</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1607476322098</updated>
+    </task>
+    <task id="LOCAL-00002" summary="testing dan's theory">
+      <created>1607560340288</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1607560340288</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -100,14 +129,35 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/room-model" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="room model &amp; repository" />
+    <MESSAGE value="testing dan's theory" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing dan's theory" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="261" y="228" key="#com.intellij.ide.util.MemberChooser" timestamp="1607475994784">
+      <screen x="0" y="0" width="1707" height="1027" />
+    </state>
+    <state x="261" y="228" key="#com.intellij.ide.util.MemberChooser/0.0.1707.1027@0.0.1707.1027" timestamp="1607475994784" />
     <state width="1982" height="274" key="GridCell.Tab.0.bottom" timestamp="1607394101820">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -124,5 +174,9 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state width="1982" height="274" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1607394101820" />
+    <state x="48" y="277" key="Vcs.Push.Dialog.v2" timestamp="1607476326322">
+      <screen x="0" y="0" width="1707" height="1027" />
+    </state>
+    <state x="48" y="277" key="Vcs.Push.Dialog.v2/0.0.1707.1027@0.0.1707.1027" timestamp="1607476326322" />
   </component>
 </project>
