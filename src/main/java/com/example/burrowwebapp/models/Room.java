@@ -40,4 +40,9 @@ public class Room extends AbstractEntity {
     public void setDevices(List<Device> devices) {
         this.devices = devices;
     }
+
+    //testing dan's theory
 }
+
+
+
