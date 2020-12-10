@@ -1,6 +1,7 @@
 package com.example.burrowwebapp.controller;
 import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.models.Device;
+import com.example.burrowwebapp.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,7 +53,7 @@ public class DeviceController {
         return "devices/edit";
     }
     @PostMapping("edit")
-    public String processEditDeviceForm(int deviceID, String name, String room, String description) {
+    public String processEditDeviceForm(int deviceID, String name, Room room, String description) {
         Device device = deviceRepository.findById(deviceID).get();
         device.setName(name);
         device.setRoom(room);
