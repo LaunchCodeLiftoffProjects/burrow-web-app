@@ -1,4 +1,7 @@
 package com.example.burrowwebapp.data;
 
-public interface DeviceRepository {
+import com.example.burrowwebapp.models.Device;
+import org.springframework.data.repository.CrudRepository;
+
+public interface DeviceRepository extends CrudRepository<Device, Integer> {
 }
