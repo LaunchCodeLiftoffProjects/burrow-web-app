@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h2>Add Device</h2>
+
+<form method="post" style="max-width:600px;">
+    <div class="form-group">
+        <label th:for="name">Device Name</label>
+        <input class="form-control" th:field="${device.name}" />
+        <span th:errors="${device.name}" class="error"></span>
+    </div>
+
+<!--    <div class="form-group">-->
+<!--        <label th:for="location">Device Location</label>-->
+<!--        <input class="form-control" th:field="${device.location}" />-->
+<!--        <span th:errors="${device.location}" class="error"></span>-->
+<!--    </div>-->
+
+    <div class="form-group">
+        <label th:for="description">Device Description</label>
+        <input class="form-control" th:field="${device.description}" />
+        <span th:errors="${device.description}" class="error"></span>
+    </div>
+
+    <input type="submit" value="Add Device" />
+</form>
+</body>
+</html>
