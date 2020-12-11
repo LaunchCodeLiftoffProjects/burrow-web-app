@@ -1,4 +1,18 @@
 package com.example.burrowwebapp.models;
 
-public class Device {
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
+@Entity
+public class Device extends AbstractEntity{
+
+    @ManyToOne
+    @NotNull
+    private Room room;
+
+    public Device() {
+
+    }
+
 }
