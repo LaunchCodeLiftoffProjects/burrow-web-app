@@ -8,7 +8,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12f46be0-777e-48d5-8548-1190fbfb91eb" name="Default Changelist" comment="" />
+    <list default="true" id="12f46be0-777e-48d5-8548-1190fbfb91eb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/burrowwebapp/BurrowWebAppApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/burrowwebapp/controller/HelloController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/burrowwebapp/controller/PropertyController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/burrowwebapp/data/PropertyRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/burrowwebapp/data/RoomRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/burrowwebapp/models/AbstractEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/burrowwebapp/models/Property.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/burrowwebapp/models/Room.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,6 +88,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RunManager">
     <configuration name="burrow-web-app [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -125,5 +138,27 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="812" height="148" key="GridCell.Tab.0.bottom" timestamp="1607819620790">
+      <screen x="0" y="0" width="1707" height="1027" />
+    </state>
+    <state width="812" height="148" key="GridCell.Tab.0.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1607819620790" />
+    <state width="812" height="148" key="GridCell.Tab.0.center" timestamp="1607819620790">
+      <screen x="0" y="0" width="1707" height="1027" />
+    </state>
+    <state width="812" height="148" key="GridCell.Tab.0.center/0.0.1707.1027@0.0.1707.1027" timestamp="1607819620790" />
+    <state width="812" height="148" key="GridCell.Tab.0.left" timestamp="1607819620790">
+      <screen x="0" y="0" width="1707" height="1027" />
+    </state>
+    <state width="812" height="148" key="GridCell.Tab.0.left/0.0.1707.1027@0.0.1707.1027" timestamp="1607819620790" />
+    <state width="812" height="148" key="GridCell.Tab.0.right" timestamp="1607819620790">
+      <screen x="0" y="0" width="1707" height="1027" />
+    </state>
+    <state width="812" height="148" key="GridCell.Tab.0.right/0.0.1707.1027@0.0.1707.1027" timestamp="1607819620790" />
+    <state x="355" y="159" key="SettingsEditor" timestamp="1607819428946">
+      <screen x="0" y="0" width="1707" height="1027" />
+    </state>
+    <state x="355" y="159" key="SettingsEditor/0.0.1707.1027@0.0.1707.1027" timestamp="1607819428946" />
   </component>
 </project>
