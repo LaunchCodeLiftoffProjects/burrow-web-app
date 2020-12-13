@@ -101,9 +101,7 @@ public class PropertyController {
         if (optProperty.isPresent()) {
             Property property = (Property) optProperty.get();
             model.addAttribute(new Room("", property));
-//            model.addAttribute("property", property);
-//            model.addAttribute("properties", propertyRepository.findAll());
-//            model.addAttribute("rooms",roomRepository.findAll());
+            model.addAttribute("property", property);
             return "properties/addRoom";
         } else {
             return "redirect:../";
@@ -119,7 +117,7 @@ public class PropertyController {
             if (errors.hasErrors())
             {
                 Property property = (Property) optProperty.get();
-                model.addAttribute(new Room());
+                model.addAttribute(new Room("", property));
                 model.addAttribute("property", property);
                 return "properties/addRoom";
             }else{

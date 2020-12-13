@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<h2>Add Room</h2>
+<h2 th:text="${'Add Room to: ' + property.name}"></h2>
 
 <form method="post" style="max-width:600px;">
     <div class="form-group">
