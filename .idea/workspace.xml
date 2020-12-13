@@ -10,9 +10,7 @@
   <component name="ChangeListManager">
     <list default="true" id="12f46be0-777e-48d5-8548-1190fbfb91eb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/burrowwebapp/controller/RoomController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/burrowwebapp/controller/RoomController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/templates/rooms/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/rooms/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/burrowwebapp/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/burrowwebapp/controller/RoomController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/rooms/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/rooms/add.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

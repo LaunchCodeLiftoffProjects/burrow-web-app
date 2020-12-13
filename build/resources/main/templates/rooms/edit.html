@@ -16,12 +16,7 @@
         </div>
 
         <div class="form-group">
-            <label th:for="devices">Devices</label>
-            <select name="deviceId">
-                <option th:each="device : ${devices}"
-                        th:text="${room.device}"
-                        th:value="${device.id}"></option>
-            </select>
+            <input type="submit" value="Devices" />
         </div>
 
         <input type="hidden" th:value="${room.id}" name="roomId" />
