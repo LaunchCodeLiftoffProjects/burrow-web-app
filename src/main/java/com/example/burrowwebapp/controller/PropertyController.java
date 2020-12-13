@@ -100,10 +100,10 @@ public class PropertyController {
         Optional optProperty = propertyRepository.findById(propertyId);
         if (optProperty.isPresent()) {
             Property property = (Property) optProperty.get();
-            model.addAttribute(new Room());
-            model.addAttribute("property", property);
-            model.addAttribute("properties", propertyRepository.findAll());
-            model.addAttribute("rooms",roomRepository.findAll());
+            model.addAttribute(new Room("", property));
+//            model.addAttribute("property", property);
+//            model.addAttribute("properties", propertyRepository.findAll());
+//            model.addAttribute("rooms",roomRepository.findAll());
             return "properties/addRoom";
         } else {
             return "redirect:../";
@@ -125,7 +125,7 @@ public class PropertyController {
             }else{
                 roomRepository.save(newRoom);
 
-                return "redirect:";
+                return "redirect:../view/"+propertyId;
             }
         }else{
             return "redirect:../";
