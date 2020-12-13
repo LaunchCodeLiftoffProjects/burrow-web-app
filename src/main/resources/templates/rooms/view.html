@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
+<h2 th:text="${'Room: ' + room.name}">Default Title</h2>
+
+<div>
+    <p th:text="${'Name: ' + room.name}"></p>
+    <p th:text="${'Property: ' + room.property}"></p>
+    <p th:text="${'Devices: ' + room.devices}"></p>
+</div>
+<div>
+    <a th:href="@{/rooms/edit/{id}(id=${room.id})}">
+        <input type="submit" value="Edit" class="btn btn-info">
+    </a>
+</div>
+
+</body>
+</html>

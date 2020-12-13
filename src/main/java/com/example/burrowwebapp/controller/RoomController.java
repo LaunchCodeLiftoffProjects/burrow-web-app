@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("room")
+@RequestMapping("rooms")
 public class RoomController {
 
     @Autowired
@@ -22,22 +22,22 @@ public class RoomController {
 
     @GetMapping
     public String displayAllRooms(Model model) {
-        model.addAttribute("room", roomRepository.findAll());
-        return "room/index";
+        model.addAttribute("rooms", roomRepository.findAll());
+        return "rooms/index";
     }
 
     @GetMapping("add")
     public String displayAddRoomForm(Model model) {
         model.addAttribute(new Room());
-        model.addAttribute("room", roomRepository.findAll());
-        return "room/add";
+        model.addAttribute("rooms", roomRepository.findAll());
+        return "rooms/add";
     }
 
     @PostMapping("add")
     public String processAddRoomForm(@Valid @ModelAttribute Room newRoom,
                                      Errors errors, Model model) {
         if (errors.hasErrors()) {
-            return "room/add";
+            return "rooms/add";
         }
         roomRepository.save(newRoom);
         return "redirect:";
@@ -50,7 +50,7 @@ public class RoomController {
         if (optRoom.isPresent()) {
             Room room = (Room) optRoom.get();
             model.addAttribute("room", room);
-            return "room/view";
+            return "rooms/view";
         } else {
             return "redirect:../";
         }
