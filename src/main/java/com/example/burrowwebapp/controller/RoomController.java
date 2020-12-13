@@ -1,6 +1,7 @@
 package com.example.burrowwebapp.controller;
 
 
+import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.RoomRepository;
 import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.Property;
@@ -22,6 +23,9 @@ public class RoomController {
     @Autowired
     private RoomRepository roomRepository;
 
+    @Autowired
+    private DeviceRepository deviceRepository;
+
 
     @GetMapping
     public String displayAllRooms(Model model) {
@@ -33,6 +37,7 @@ public class RoomController {
     public String displayAddRoomForm(Model model) {
         model.addAttribute(new Room());
         model.addAttribute("rooms", roomRepository.findAll());
+        model.addAttribute("devices", deviceRepository.findAll());
         return "rooms/add";
     }
 

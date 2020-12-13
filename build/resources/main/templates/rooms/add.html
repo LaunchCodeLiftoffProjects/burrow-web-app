@@ -18,8 +18,12 @@
     </div>
 
     <div class="form-group">
-        <label th:for="devices">Room Devices</label>
-        <input class="form-control" th:field="${room.devices}" />
+        <label th:for="devices">Devices</label>
+        <select name="deviceId">
+            <option th:each="device : ${devices}"
+                    th:text="${room.device}"
+                    th:value="${device.id}"></option>
+        </select>
     </div>
 
     <input type="submit" value="Add Room" />
