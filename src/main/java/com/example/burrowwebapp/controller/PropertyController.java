@@ -1,7 +1,9 @@
 package com.example.burrowwebapp.controller;
 
 import com.example.burrowwebapp.data.PropertyRepository;
+import com.example.burrowwebapp.data.RoomRepository;
 import com.example.burrowwebapp.models.Property;
+import com.example.burrowwebapp.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,9 @@ public class PropertyController {
 
     @Autowired
     private PropertyRepository propertyRepository;
+
+    @Autowired
+    private RoomRepository roomRepository;
 
 
     @GetMapping
@@ -69,7 +74,7 @@ public class PropertyController {
         property.setLocation(location);
         property.setDescription(description);
         propertyRepository.save(property);
-        return "redirect:";
+        return "redirect:view/" + propertyId;
     }
 
     @GetMapping("delete")
@@ -87,6 +92,46 @@ public class PropertyController {
             }
         }
         return "redirect:";
+    }
+
+    @GetMapping("addRoom/{propertyId}")
+    public String displayAddRoom(Model model, @PathVariable int propertyId) {
+
+        Optional optProperty = propertyRepository.findById(propertyId);
+        if (optProperty.isPresent()) {
+            Property property = (Property) optProperty.get();
+            model.addAttribute(new Room());
+            model.addAttribute("property", property);
+            model.addAttribute("properties", propertyRepository.findAll());
+            model.addAttribute("rooms",roomRepository.findAll());
+            return "properties/addRoom";
+        } else {
+            return "redirect:../";
+        }
+    }
+
+    @PostMapping("addRoom/{propertyId}")
+    public String processAddRoomForm(@Valid @ModelAttribute Room newRoom,
+                                         Errors errors, Model model, @PathVariable int propertyId) {
+        Optional optProperty = propertyRepository.findById(propertyId);
+        if (optProperty.isPresent())
+        {
+            if (errors.hasErrors())
+            {
+                Property property = (Property) optProperty.get();
+                model.addAttribute(new Room());
+                model.addAttribute("property", property);
+                return "properties/addRoom";
+            }else{
+                roomRepository.save(newRoom);
+
+                return "redirect:";
+            }
+        }else{
+            return "redirect:../";
+        }
+
+
     }
 
 }

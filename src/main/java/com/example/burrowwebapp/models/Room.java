@@ -20,10 +20,9 @@ public class Room extends AbstractEntity {
 
     public Room(){ }
 
-    public Room(Property aProperty, List<Device> someDevices) {
-        super();
-        this.property = aProperty;
-        this.devices = someDevices;
+    public Room(String name, Property property) {
+        this.setName(name);
+        this.property = property;
     }
 
     public Property getProperty() {
