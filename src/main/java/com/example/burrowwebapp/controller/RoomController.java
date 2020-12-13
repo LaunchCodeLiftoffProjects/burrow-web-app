@@ -2,6 +2,8 @@ package com.example.burrowwebapp.controller;
 
 
 import com.example.burrowwebapp.data.RoomRepository;
+import com.example.burrowwebapp.models.Device;
+import com.example.burrowwebapp.models.Property;
 import com.example.burrowwebapp.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -54,5 +57,37 @@ public class RoomController {
         } else {
             return "redirect:../";
         }
+    }
+
+    @GetMapping("edit/{roomId}")
+    public String displayEditForm(Model model, @PathVariable int roomId) {
+        Room room = roomRepository.findById(roomId).get();
+        model.addAttribute("room", room);
+        return "rooms/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditForm(int roomId, String name) {
+        Room room = roomRepository.findById(roomId).get();
+        room.setName(name);
+        roomRepository.save(room);
+        return "redirect:";
+    }
+
+    @GetMapping("delete")
+    public String displayDeleteForm(Model model) {
+        model.addAttribute("title", "Delete Rooms");
+        model.addAttribute("rooms", roomRepository.findAll());
+        return "rooms/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteForm(@RequestParam(required = false) int[] roomIds) {
+        if (roomIds != null) {
+            for (int id : roomIds) {
+                roomRepository.deleteById(id);
+            }
+        }
+        return "redirect:";
     }
 }

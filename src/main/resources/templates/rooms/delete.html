@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h2>Delete Properties</h2>
+<p th:unless="${rooms} and ${rooms.size()}">No rooms!</p>
+
+<th:block th:if="${rooms}">
+    <form method="post">
+        <th:block th:each="room : ${rooms}">
+            <div class="form-group">
+                <label>
+                    <span th:text="${room.name}"></span>
+                    <input type="checkbox" name="roomIds" th:value="${room.id}" class="form-control">
+                </label>
+            </div>
+        </th:block>
+        <input type="submit" value="Delete Room" class="btn btn-danger">
+    </form>
+</th:block>
+
+</body>
+</html>
