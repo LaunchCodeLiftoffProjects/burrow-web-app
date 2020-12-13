@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
+<h2 th:text="${'Device: ' + device.name}">Default Title</h2>
+
+<div>
+    <p th:text="${'Device Name: ' + device.name}"></p>
+    <p th:text="${'Location: ' + device.location}"></p>
+    <p th:text="${'Description: ' + device.description}"></p>
+</div>
+<div>
+    <a th:href="@{/devices/edit/{id}(id=${device.id})}">
+        <input type="submit" value="Edit" class="btn btn-info">
+    </a>
+</div>
+
+</body>
+</html>

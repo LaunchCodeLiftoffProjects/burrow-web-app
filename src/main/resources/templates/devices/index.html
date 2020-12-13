@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h2>Devices</h2>
+<p th:unless="${devices} and ${devices.size()}">No devices!</p>
+
+<div class="container body-content">
+    <ul>
+        <li th:each="device : ${devices}">
+            <a th:href="@{'/devices/view/' + ${device.id}}" th:text="${device.name}"></a>
+        </li>
+    </ul>
+    <a th:href="@{'/devices/add'}">Add Devices</a>
+</div>
+<div class="container body-content">
+    <a th:href="@{'/devices/delete'}">Delete Devices</a>
+</div>
+
+</body>
+</html>
