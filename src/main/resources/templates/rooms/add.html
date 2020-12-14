@@ -12,15 +12,22 @@
     </div>
 
     <div class="form-group">
-        <label th:for="property">Room Property</label>
-        <input class="form-control" th:field="${room.property}" />
-        <span th:errors="${room.property}" class="error"></span>
+        <label th:for="property">Property</label>
+        <select name="propertyId">
+            <option th:each="property : ${properties}"
+                    th:text="${property.name}"
+                    th:value="${property.id}"></option>
+        </select>
     </div>
 
     <div class="form-group">
-        <input type="submit" value="Add Devices" />
+        <label th:for="devices">Devices</label>
+        <select name="deviceId">
+            <option th:each="device : ${devices}"
+                    th:text="${device.name}"
+                    th:value="${device.id}"></option>
+        </select>
     </div>
-
 
     <input type="submit" value="Add Room" class="btn btn-success" />
 </form>

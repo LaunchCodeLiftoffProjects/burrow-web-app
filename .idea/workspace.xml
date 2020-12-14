@@ -10,8 +10,15 @@
   <component name="ChangeListManager">
     <list default="true" id="12f46be0-777e-48d5-8548-1190fbfb91eb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/burrowwebapp/controller/RoomController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/burrowwebapp/controller/RoomController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/example/burrowwebapp/models/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/example/burrowwebapp/models/Room.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/templates/rooms/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/rooms/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/rooms/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/rooms/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/burrowwebapp/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/burrowwebapp/controller/RoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/burrowwebapp/models/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/burrowwebapp/models/Room.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/rooms/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/rooms/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/rooms/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/rooms/edit.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +90,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../LC101/java-practice/java-web-dev-techjobs-persistent" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../LC101/java-practice/coding-events" />
   </component>
   <component name="RunManager">
     <configuration name="burrow-web-app [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">

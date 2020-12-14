@@ -12,7 +12,6 @@ import java.util.List;
 public class Room extends AbstractEntity {
 
     @ManyToOne
-    @NotNull
     private Property property;
 
     @OneToMany (mappedBy = "room")

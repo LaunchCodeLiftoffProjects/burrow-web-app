@@ -2,6 +2,7 @@ package com.example.burrowwebapp.controller;
 
 
 import com.example.burrowwebapp.data.DeviceRepository;
+import com.example.burrowwebapp.data.PropertyRepository;
 import com.example.burrowwebapp.data.RoomRepository;
 import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.Property;
@@ -26,6 +27,9 @@ public class RoomController {
     @Autowired
     private DeviceRepository deviceRepository;
 
+    @Autowired
+    private PropertyRepository propertyRepository;
+
 
     @GetMapping
     public String displayAllRooms(Model model) {
@@ -37,16 +41,20 @@ public class RoomController {
     public String displayAddRoomForm(Model model) {
         model.addAttribute(new Room());
         model.addAttribute("rooms", roomRepository.findAll());
+        model.addAttribute("properties", propertyRepository.findAll());
         model.addAttribute("devices", deviceRepository.findAll());
         return "rooms/add";
     }
 
     @PostMapping("add")
     public String processAddRoomForm(@Valid @ModelAttribute Room newRoom,
-                                     Errors errors, Model model) {
+                                     Errors errors, Model model, @RequestParam int propertyId) {
         if (errors.hasErrors()) {
+            model.addAttribute("properties", propertyRepository.findAll());
             return "rooms/add";
         }
+        Property property = propertyRepository.findById(propertyId).get();
+        newRoom.setProperty(property);
         roomRepository.save(newRoom);
         return "redirect:";
     }
@@ -68,13 +76,16 @@ public class RoomController {
     public String displayEditForm(Model model, @PathVariable int roomId) {
         Room room = roomRepository.findById(roomId).get();
         model.addAttribute("room", room);
+        model.addAttribute("properties", propertyRepository.findAll());
         return "rooms/edit";
     }
 
     @PostMapping("edit")
-    public String processEditForm(int roomId, String name) {
+    public String processEditForm(int roomId, String name, @RequestParam int propertyId) {
         Room room = roomRepository.findById(roomId).get();
+        Property property = propertyRepository.findById(propertyId).get();
         room.setName(name);
+        room.setProperty(property);
         roomRepository.save(room);
         return "redirect:";
     }
