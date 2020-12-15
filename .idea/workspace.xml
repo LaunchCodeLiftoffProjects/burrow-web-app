@@ -10,12 +10,6 @@
   <component name="ChangeListManager">
     <list default="true" id="12f46be0-777e-48d5-8548-1190fbfb91eb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/rooms/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/rooms/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/rooms/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/rooms/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/rooms/view.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/rooms/view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/rooms/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/rooms/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/rooms/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/rooms/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/rooms/view.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/rooms/view.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
