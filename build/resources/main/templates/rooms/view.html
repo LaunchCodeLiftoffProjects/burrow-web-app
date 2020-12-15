@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
+<h2 th:text="${'Room: ' + room.name}">Default Title</h2>
+
+<div>
+    <p th:text="${'Name: ' + room.name}"></p>
+    <p th:text="${'Property: ' + room.property.name}"></p>
+    <section th:text="${'Devices:'}">
+        <ul>
+            <li th:each="device : ${devices}">
+                <p th:text="${device.name}"></p>
+            </li>
+        </ul>
+    </section>
+    <p></p>
+</div>
+
+<div>
+    <a th:href="@{'/devices/add'}">Add Device</a>
+</div>
+<div>
+    <a th:href="@{'/devices/delete'}">Remove Device</a>
+</div>
+<p></p>
+
+<div>
+    <a th:href="@{/rooms/edit/{id}(id=${room.id})}">
+        <input type="submit" value="Edit" class="btn btn-info">
+    </a>
+</div>
+
+</body>
+</html>
