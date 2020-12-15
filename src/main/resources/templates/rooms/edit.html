@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h2>Edit Room</h2>
+
+<th:block th:unless="${room}">
+    <p>The Room you are trying to edit does not exist.</p>
+</th:block>
+<th:block th:if="${room}">
+    <form method="post" th:action="@{/rooms/edit}">
+        <div class="form-group">
+            <label>Name
+                <input type="text" name="name" class="form-control" th:value="${room.name}">
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label th:for="property">Property</label>
+            <select name="propertyId">
+                <option th:each="property : ${properties}"
+                        th:text="${property.name}"
+                        th:value="${property.id}"></option>
+            </select>
+        </div>
+
+        <div>
+            <section th:text="${'Devices:'}">
+                <ul>
+                    <li th:each="device : ${devices}">
+                        <p th:text="${device.name}"></p>
+                    </li>
+                </ul>
+            </section>
+            <p></p>
+        </div>
+
+        <div>
+            <a th:href="@{'/devices/add'}">Add Device</a>
+        </div>
+        <div>
+            <a th:href="@{'/devices/delete'}">Remove Device</a>
+        </div>
+        <p></p>
+
+        <input type="hidden" th:value="${room.id}" name="roomId" />
+        <div class="form-group">
+            <input type="submit" value="Save Changes" class="btn btn-success">
+        </div>
+    </form>
+</th:block>
+
+</body>
+</html>
