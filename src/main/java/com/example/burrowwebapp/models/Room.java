@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +21,9 @@ public class Room extends AbstractEntity {
 
     public Room(){ }
 
-    public Room(Property aProperty, List<Device> someDevices) {
-        super();
-        this.property = aProperty;
-        this.devices = someDevices;
+    public Room(@NotBlank String name, Property property) {
+        this.setName(name);
+        this.property = property;
     }
 
     public Property getProperty() {
