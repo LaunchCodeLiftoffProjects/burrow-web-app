@@ -11,7 +11,7 @@ import java.util.List;
 public class Property extends AbstractEntity {
 
     @OneToMany(mappedBy = "property")
-    private final List<Room> rooms = new ArrayList<>();
+    private List<Room> rooms = new ArrayList<>();
 
     @NotBlank
     private String location;
@@ -21,11 +21,12 @@ public class Property extends AbstractEntity {
     private String description;
 
     public Property(@NotBlank String name, @NotBlank String location,
-                    @NotBlank @Size(min = 1, max = 250, message = "Description must be between 1 and 250 characters") String description)
+                    @NotBlank @Size(min = 1, max = 250, message = "Description must be between 1 and 250 characters") String description, List<Room> rooms)
     {
         this.setName(name);
         this.location = location;
         this.description = description;
+        this.rooms = rooms;
     }
 
     public Property(){}
@@ -48,5 +49,14 @@ public class Property extends AbstractEntity {
     public void setDescription(String description)
     {
         this.description = description;
+    }
+
+    public List<Room> getRooms()
+    {
+        return rooms;
+    }
+
+    public void addRoom(Room newRoom){
+        this.rooms.add(newRoom);
     }
 }

@@ -1,10 +1,9 @@
 package com.example.burrowwebapp.data;
 
-import com.example.burrowwebapp.models.Room;
+import com.example.burrowwebapp.models.Device;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoomRepository extends CrudRepository<Room, Integer>
-{
+public interface DeviceRepository extends CrudRepository<Device, Integer> {
 }
