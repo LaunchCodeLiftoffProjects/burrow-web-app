@@ -14,11 +14,15 @@
                 <input type="text" name="name" class="form-control" th:value="${device.name}">
             </label>
         </div>
-<!--        <div class="form-group">-->
-<!--            <label>Location-->
-<!--                <input type="text" name="location" class="form-control" th:value="${device.location}">-->
-<!--            </label>-->
-<!--        </div>-->
+        <div class="form-group"></label>
+            <label th:for="room">Room
+                <select name="roomId">
+                    <option th:each="room : ${rooms}"
+                            th:value = "${room.id}"
+                            th:test="${room.name}">
+                    </option>
+                </select>
+        </div>
         <div class="form-group">
             <label>Description
                 <input type="text" name="description" class="form-control" th:value="${device.description}">
@@ -26,7 +30,7 @@
         </div>
         <input type="hidden" th:value="${device.id}" name="deviceId" />
         <div class="form-group">
-            <input type="submit" value="Edit Device" class="btn btn-success">
+            <input type="submit" value="Update Device" class="btn btn-success">
         </div>
     </form>
 </th:block>

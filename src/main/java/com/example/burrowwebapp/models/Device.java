@@ -2,21 +2,6 @@ package com.example.burrowwebapp.models;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-<<<<<<< HEAD
-import javax.validation.constraints.NotNull;
-
-@Entity
-public class Device extends AbstractEntity{
-
-    @ManyToOne
-    @NotNull
-    private Room room;
-
-    public Device() {
-
-    }
-
-=======
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -58,5 +43,5 @@ public class Device extends AbstractEntity {
     public void setDescription(String description) {
         this.description = description;
     }
->>>>>>> device-controller
+
 }

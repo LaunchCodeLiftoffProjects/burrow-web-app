@@ -1,5 +1,6 @@
 package com.example.burrowwebapp.controller;
 import com.example.burrowwebapp.data.DeviceRepository;
+import com.example.burrowwebapp.data.RoomRepository;
 import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,10 @@ public class DeviceController {
 
     @Autowired
     private DeviceRepository deviceRepository;
+
+    @Autowired
+    private RoomRepository roomRepository;
+
     @GetMapping
     public String displayAllDevices(Model model) {
         model.addAttribute("devices", deviceRepository.findAll());
@@ -24,6 +29,7 @@ public class DeviceController {
     public String displayAddDeviceForm(Model model) {
         model.addAttribute(new Device());
         model.addAttribute("devices", deviceRepository.findAll());
+        model.addAttribute("rooms", roomRepository.findAll());
         return "devices/add";
     }
     @PostMapping("add")
@@ -35,28 +41,36 @@ public class DeviceController {
         deviceRepository.save(newDevice);
         return "redirect:";
     }
-    @GetMapping("view/{deviceID}")
-    public String displayViewDevice(Model model, @PathVariable int deviceID) {
-        Optional optDevice = deviceRepository.findById(deviceID);
-        if (optDevice.isPresent()) {
-            Device device = (Device) optDevice.get();
-            model.addAttribute("device", device);
-            return "devices/view";
+
+    @GetMapping(path = {"view/{deviceID}", "view"})
+    public String displayViewDevice(Model model, @PathVariable (required = false) Integer deviceID) {
+        if (deviceID == null) {
+            model.addAttribute("devices", deviceRepository.findAll());
+            return "devices/index";
         } else {
-            return "redirect:../";
+            Optional<Device> result = deviceRepository.findById(deviceID);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Device device = result.get();
+                model.addAttribute("device", device);
+            }
         }
+        return "devices/view";
     }
-    @GetMapping("edit/{deviceID}")
-    public String displayEditDeviceForm(Model model, @PathVariable int deviceID) {
-        Device device = deviceRepository.findById(deviceID).get();
+
+    @GetMapping("edit/{deviceId}")
+    public String displayEditDeviceForm(Model model, @PathVariable int deviceId) {
+        Device device = deviceRepository.findById(deviceId).get();
         model.addAttribute("device", device);
+        model.addAttribute("rooms", roomRepository.findAll());
         return "devices/edit";
     }
     @PostMapping("edit")
-    public String processEditDeviceForm(int deviceID, String name, Room room, String description) {
-        Device device = deviceRepository.findById(deviceID).get();
+    public String processEditDeviceForm(int deviceId, String name, @RequestParam int roomId, String description) {
+        Device device = deviceRepository.findById(deviceId).get();
         device.setName(name);
-        device.setRoom(room);
+        Room room = roomRepository.findById(roomId).get();
         device.setDescription(description);
         deviceRepository.save(device);
         return "redirect:";

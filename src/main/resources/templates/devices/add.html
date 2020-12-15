@@ -11,11 +11,15 @@
         <span th:errors="${device.name}" class="error"></span>
     </div>
 
-<!--    <div class="form-group">-->
-<!--        <label th:for="location">Device Location</label>-->
-<!--        <input class="form-control" th:field="${device.location}" />-->
-<!--        <span th:errors="${device.location}" class="error"></span>-->
-<!--    </div>-->
+    <div class="form-group"></label>
+        <label th:for="room">Room
+            <select name="roomId">
+                <option th:each="room : ${rooms}"
+                        th:value = "${room.id}"
+                        th:test="${room.name}">
+                </option>
+            </select>
+    </div>
 
     <div class="form-group">
         <label th:for="description">Device Description</label>
