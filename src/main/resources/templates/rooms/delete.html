@@ -10,8 +10,8 @@
         <th:block th:each="room : ${rooms}">
             <div class="form-group">
                 <label>
-                    <span th:text="${'Are you sure?'}"></span>
-                    <input type="hidden" name="roomIds" th:value="${room.id}" class="form-control">
+                    <label th:text="${'Are you sure?'}"></label>
+                    <input type="checkbox" name="roomIds" th:value="${room.id}" class="form-control">
                 </label>
             </div>
         </th:block>
