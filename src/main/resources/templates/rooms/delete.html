@@ -2,20 +2,20 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<h2>Delete Rooms</h2>
-<p th:unless="${rooms} and ${rooms.size()}">No rooms!</p>
+<h2>Delete Room</h2>
+<p th:unless="${rooms}">No rooms!</p>
 
 <th:block th:if="${rooms}">
-    <form method="post">
+    <form method="post" th:action="@{/rooms/delete}">
         <th:block th:each="room : ${rooms}">
             <div class="form-group">
                 <label>
-                    <span th:text="${room.name}"></span>
-                    <input type="checkbox" name="roomIds" th:value="${room.id}" class="form-control">
+                    <span th:text="${'Are you sure?'}"></span>
+                    <input type="hidden" name="roomIds" th:value="${room.id}" class="form-control">
                 </label>
             </div>
         </th:block>
-        <input type="submit" value="Delete Room" class="btn btn-danger">
+        <input type="submit" value="Yes, Delete" class="btn btn-danger">
     </form>
 </th:block>
 

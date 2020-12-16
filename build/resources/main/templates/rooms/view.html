@@ -30,6 +30,13 @@
         <input type="submit" value="Edit" class="btn btn-info">
     </a>
 </div>
+<p></p>
+
+<div>
+    <a th:href="@{/rooms/delete/{id}(id=${room.id})}">
+        <input type="submit" value="Delete" class="btn btn-danger">
+    </a>
+</div>
 
 </body>
 </html>
