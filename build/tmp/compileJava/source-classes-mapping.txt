@@ -12,11 +12,11 @@ com/example/burrowwebapp/models/AbstractEntity.java
  com.example.burrowwebapp.models.AbstractEntity
 com/example/burrowwebapp/models/Room.java
  com.example.burrowwebapp.models.Room
-com/example/burrowwebapp/data/DeviceRepository.java
- com.example.burrowwebapp.data.DeviceRepository
+com/example/burrowwebapp/controller/RoomController.java
+ com.example.burrowwebapp.controller.RoomController
 com/example/burrowwebapp/data/RoomRepository.java
  com.example.burrowwebapp.data.RoomRepository
 com/example/burrowwebapp/controller/HelloController.java
  com.example.burrowwebapp.controller.HelloController
-com/example/burrowwebapp/controller/RoomController.java
- com.example.burrowwebapp.controller.RoomController
+com/example/burrowwebapp/data/DeviceRepository.java
+ com.example.burrowwebapp.data.DeviceRepository
