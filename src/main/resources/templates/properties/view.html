@@ -18,7 +18,7 @@
 <div>
     <ul>
         <li th:each="room : ${property.rooms}">
-            <p th:text="${room.name}"></p>
+            <a th:href="@{'/rooms/view/' + ${room.id}}" th:text="${room.name}"></a>
         </li>
     </ul>
 </div>
