@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h2>Add Room</h2>
+
+<form method="post" style="max-width:600px;">
+    <div class="form-group">
+        <label th:for="name">Room Name</label>
+        <input class="form-control" th:field="${room.name}" />
+        <span th:errors="${room.name}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="property">Property</label>
+        <select name="propertyId">
+            <option th:each="property : ${properties}"
+                    th:text="${property.name}"
+                    th:value="${property.id}"></option>
+        </select>
+    </div>
+
+    <input type="submit" value="Add Room" class="btn btn-success" />
+</form>
+</body>
+</html>

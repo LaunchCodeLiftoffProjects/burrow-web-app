@@ -1,6 +1,7 @@
 package com.example.burrowwebapp.controller;
 import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.RoomRepository;
+import com.example.burrowwebapp.data.PropertyRepository;
 import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class DeviceController {
     @Autowired
     private RoomRepository roomRepository;
 
+    @Autowired
+    private PropertyRepository propertyRepository;
+
     @GetMapping
     public String displayAllDevices(Model model) {
         model.addAttribute("devices", deviceRepository.findAll());
@@ -30,14 +34,18 @@ public class DeviceController {
         model.addAttribute(new Device());
         model.addAttribute("devices", deviceRepository.findAll());
         model.addAttribute("rooms", roomRepository.findAll());
+        model.addAttribute("properties", propertyRepository.findAll());
         return "devices/add";
     }
     @PostMapping("add")
     public String processAddDeviceForm(@Valid @ModelAttribute Device newDevice,
-                                       Errors errors, Model model) {
+                                       Errors errors, Model model, @RequestParam int roomId) {
         if (errors.hasErrors()) {
+            model.addAttribute("rooms", roomRepository.findAll());
             return "devices/add";
         }
+        Room room = roomRepository.findById(roomId).get();
+        newDevice.setRoom(room);
         deviceRepository.save(newDevice);
         return "redirect:";
     }
@@ -64,6 +72,7 @@ public class DeviceController {
         Device device = deviceRepository.findById(deviceId).get();
         model.addAttribute("device", device);
         model.addAttribute("rooms", roomRepository.findAll());
+        model.addAttribute("properties", propertyRepository.findAll());
         return "devices/edit";
     }
     @PostMapping("edit")
@@ -71,6 +80,7 @@ public class DeviceController {
         Device device = deviceRepository.findById(deviceId).get();
         device.setName(name);
         Room room = roomRepository.findById(roomId).get();
+        device.setRoom(room);
         device.setDescription(description);
         deviceRepository.save(device);
         return "redirect:";
@@ -79,6 +89,8 @@ public class DeviceController {
     public String displayDeleteDeviceForm(Model model) {
         model.addAttribute("title", "Delete Devices");
         model.addAttribute("devices", deviceRepository.findAll());
+        model.addAttribute("rooms", roomRepository.findAll());
+        model.addAttribute("properties", propertyRepository.findAll());
         return "devices/delete";
     }
     @PostMapping("delete")

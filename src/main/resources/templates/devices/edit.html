@@ -14,12 +14,13 @@
                 <input type="text" name="name" class="form-control" th:value="${device.name}">
             </label>
         </div>
-        <div class="form-group"></label>
-            <label th:for="room">Room
+        <div class="form-group">
+            <label th:for="room">Room</label>
                 <select name="roomId">
                     <option th:each="room : ${rooms}"
                             th:value = "${room.id}"
-                            th:test="${room.name}">
+                            th:text="${room.name}"
+                            th:selected="${room.name == device.room.name}">
                     </option>
                 </select>
         </div>

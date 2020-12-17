@@ -15,5 +15,20 @@
     </a>
 </div>
 
+<h3 th:text="${'Rooms:'}"></h3>
+<div>
+    <ul>
+        <li th:each="room : ${property.rooms}">
+            <a th:href="@{'/rooms/view/' + ${room.id}}" th:text="${room.name}"></a>
+        </li>
+    </ul>
+</div>
+
+<div>
+    <a th:href="@{/properties/addRoom/{id}(id=${property.id})}">
+        <input type="submit" value="Add room" class="btn btn-info">
+    </a>
+</div>
+
 </body>
 </html>

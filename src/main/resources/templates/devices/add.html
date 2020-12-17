@@ -10,13 +10,12 @@
         <input class="form-control" th:field="${device.name}" />
         <span th:errors="${device.name}" class="error"></span>
     </div>
-
-    <div class="form-group"></label>
-        <label th:for="room">Room
+    <div class="form-group">
+        <label th:for="room">Room</label>
             <select name="roomId">
                 <option th:each="room : ${rooms}"
                         th:value = "${room.id}"
-                        th:test="${room.name}">
+                        th:text="${room.name}">
                 </option>
             </select>
     </div>
