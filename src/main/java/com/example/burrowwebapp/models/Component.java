@@ -13,9 +13,11 @@ public class Component extends AbstractEntity {
     @ManyToOne
     private Device device;
 
-    public Component(String name, @Size(max = 250, message = "Description too long!") String description) {
+    public Component(String name, @Size(max = 250, message = "Description too long!") String description,
+                     Device device) {
         this.setName(name);
         this.description = description;
+        this.device = device;
     }
 
     public Component() {}
