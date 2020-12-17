@@ -13,7 +13,7 @@ public class Component extends AbstractEntity {
     private String description;
 
     @ManyToMany(mappedBy = "components")
-    private List<Device> devices = new ArrayList<>();
+    private final List<Device> devices = new ArrayList<>();
 
     public Component(String name, @Size(max = 250, message = "Description too long!") String description) {
         this.setName(name);
@@ -32,9 +32,5 @@ public class Component extends AbstractEntity {
 
     public List<Device> getDevices() {
         return devices;
-    }
-
-    public void setDevices(List<Device> devices) {
-        this.devices = devices;
     }
 }
