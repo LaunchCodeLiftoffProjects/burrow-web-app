@@ -3,8 +3,6 @@ package com.example.burrowwebapp.models;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Component extends AbstractEntity {
