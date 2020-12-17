@@ -34,6 +34,7 @@ public class RoomController {
     @GetMapping
     public String displayAllRooms(Model model) {
         model.addAttribute("rooms", roomRepository.findAll());
+        model.addAttribute("devices", deviceRepository.findAll());
         return "rooms/index";
     }
 
