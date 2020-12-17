@@ -1,9 +1,11 @@
 com/example/burrowwebapp/data/PropertyRepository.java
  com.example.burrowwebapp.data.PropertyRepository
-com/example/burrowwebapp/controller/PropertyController.java
- com.example.burrowwebapp.controller.PropertyController
+com/example/burrowwebapp/controller/HelloController.java
+ com.example.burrowwebapp.controller.HelloController
 com/example/burrowwebapp/models/Property.java
  com.example.burrowwebapp.models.Property
+com/example/burrowwebapp/controller/PropertyController.java
+ com.example.burrowwebapp.controller.PropertyController
 com/example/burrowwebapp/models/Device.java
  com.example.burrowwebapp.models.Device
 com/example/burrowwebapp/BurrowWebAppApplication.java
@@ -16,7 +18,7 @@ com/example/burrowwebapp/data/DeviceRepository.java
  com.example.burrowwebapp.data.DeviceRepository
 com/example/burrowwebapp/data/RoomRepository.java
  com.example.burrowwebapp.data.RoomRepository
-com/example/burrowwebapp/controller/HelloController.java
- com.example.burrowwebapp.controller.HelloController
 com/example/burrowwebapp/controller/RoomController.java
  com.example.burrowwebapp.controller.RoomController
+com/example/burrowwebapp/controller/DeviceController.java
+ com.example.burrowwebapp.controller.DeviceController

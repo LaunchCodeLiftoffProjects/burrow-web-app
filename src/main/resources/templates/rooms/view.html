@@ -7,16 +7,17 @@
 <div>
     <p th:text="${'Name: ' + room.name}"></p>
     <p th:text="${'Property: ' + room.property.name}"></p>
-    <section th:text="${'Devices:'}">
-        <ul>
-            <li th:each="device : ${devices}">
-                <p th:text="${device.name}"></p>
-            </li>
-        </ul>
-    </section>
-    <p></p>
 </div>
 
+<h3 th:text="${'Devices:'}"></h3>
+
+<div>
+    <ul>
+        <li th:each="device : ${room.devices}">
+            <a th:href="@{'/devices/view/' + ${device.id}}" th:text="${device.name}"></a>
+        </li>
+    </ul>
+</div>
 <div>
     <a th:href="@{'/devices/add'}">Add Device</a>
 </div>
@@ -28,6 +29,10 @@
 <div>
     <a th:href="@{/rooms/edit/{id}(id=${room.id})}">
         <input type="submit" value="Edit" class="btn btn-info">
+    </a>
+
+    <a th:href="@{/rooms}">
+        <input type="submit" value="Back" class="btn btn-info">
     </a>
 </div>
 <p></p>
