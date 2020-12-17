@@ -6,6 +6,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Device extends AbstractEntity {
@@ -13,8 +14,8 @@ public class Device extends AbstractEntity {
     @ManyToOne
     private Room room;
 
-//    @OneToMany(mappedBy = "device");
-//    private final List<Component> components = new ArrayList<>();
+    @OneToMany(mappedBy = "device")
+    private final List<Component> components = new ArrayList<>();
 
     @Size(max = 250, message = "Description must less than 250 characters")
     private String description;

@@ -1,4 +1,5 @@
 package com.example.burrowwebapp.controller;
+import com.example.burrowwebapp.data.ComponentRepository;
 import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.RoomRepository;
 import com.example.burrowwebapp.data.PropertyRepository;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Optional;
 @Controller
 @RequestMapping("devices")
@@ -23,6 +25,9 @@ public class DeviceController {
 
     @Autowired
     private PropertyRepository propertyRepository;
+
+    @Autowired
+    private ComponentRepository componentRepository;
 
     @GetMapping
     public String displayAllDevices(Model model) {
@@ -54,6 +59,7 @@ public class DeviceController {
     public String displayViewDevice(Model model, @PathVariable (required = false) Integer deviceID) {
         if (deviceID == null) {
             model.addAttribute("devices", deviceRepository.findAll());
+            model.addAttribute("components", componentRepository.findAll());
             return "devices/index";
         } else {
             Optional<Device> result = deviceRepository.findById(deviceID);
