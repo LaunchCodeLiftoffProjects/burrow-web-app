@@ -2,6 +2,7 @@ package com.example.burrowwebapp.models;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -14,11 +15,15 @@ public class Component extends AbstractEntity {
     @ManyToOne
     private Device device;
 
+    @Min(value=1)
+    private int quantity;
+
     public Component(@NotBlank String name, @Size(max = 250, message = "Description too long!") String description,
-                     Device device) {
+                     Device device, @Min(value=1) int quantity) {
         this.setName(name);
         this.description = description;
         this.device = device;
+        this.quantity = quantity;
     }
 
     public Component() {}
@@ -37,5 +42,15 @@ public class Component extends AbstractEntity {
 
     public void setDevice(Device device) {
         this.device = device;
+    }
+
+    public int getQuantity()
+    {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity)
+    {
+        this.quantity = quantity;
     }
 }

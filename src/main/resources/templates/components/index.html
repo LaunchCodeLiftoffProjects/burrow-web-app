@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h2>Components</h2>
+<p th:unless="${components} and ${components.size()}">No Components!</p>
+
+<div class="container body-content">
+    <ul>
+        <li th:each="component : ${components}">
+            <a th:href="@{'/components/view/' + ${component.id}}" th:text="${component.name + ' for ' + component.device.name + ' in ' + component.device.room.name}"></a>
+        </li>
+    </ul>
+    <a th:href="@{'/components/add'}">Add Components</a>
+</div>
+<div class="container body-content">
+    <a th:href="@{'/components/delete'}">Delete Components</a>
+</div>
+
+<div>
+    <a th:href="@{/devices}">
+        <input type="submit" value="View Devices" class="btn btn-info">
+    </a>
+</div>
+
+</body>
+</html>

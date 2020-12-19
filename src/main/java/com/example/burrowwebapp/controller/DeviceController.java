@@ -85,6 +85,7 @@ public class DeviceController {
         deviceRepository.save(device);
         return "redirect:";
     }
+
     @GetMapping("delete")
     public String displayDeleteDeviceForm(Model model) {
         model.addAttribute("title", "Delete Devices");
