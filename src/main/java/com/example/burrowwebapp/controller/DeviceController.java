@@ -24,9 +24,6 @@ public class DeviceController {
     @Autowired
     private PropertyRepository propertyRepository;
 
-    @Autowired
-    private ComponentRepository componentRepository;
-
     @GetMapping
     public String displayAllDevices(Model model) {
         model.addAttribute("devices", deviceRepository.findAll());
@@ -57,7 +54,6 @@ public class DeviceController {
     public String displayViewDevice(Model model, @PathVariable (required = false) Integer deviceID) {
         if (deviceID == null) {
             model.addAttribute("devices", deviceRepository.findAll());
-            model.addAttribute("components", componentRepository.findAll());
             return "devices/index";
         } else {
             Optional<Device> result = deviceRepository.findById(deviceID);
