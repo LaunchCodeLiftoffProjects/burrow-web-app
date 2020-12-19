@@ -31,12 +31,6 @@
         <input type="submit" value="Edit" class="btn btn-info">
     </a>
 
-    <a th:href="@{/rooms}">
-        <input type="submit" value="Back" class="btn btn-info">
-    </a>
-</div>
-
-<div>
     <a th:href="@{/properties/view/{id}(id=${room.property.id})}">
         <input type="submit" value="Go back to property" class="btn btn-info">
     </a>

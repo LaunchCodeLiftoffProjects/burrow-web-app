@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h2>Edit Component</h2>
+
+<th:block th:unless="${component}">
+    <p>The component you are trying to edit does not exist.</p>
+</th:block>
+
+<th:block th:if="${component}">
+    <form method="post" th:action="@{/components/edit}">
+        <div class="form-group">
+            <label th:for="device">Device</label>
+            <select name="deviceId">
+                <option th:each="device : ${devices}"
+                        th:value = "${device.Id}"
+                        th:text="${device.name}"
+                        th:selected="${device.name == component.device.name}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label th:for="name">Component</label>
+            <select name="name">
+                <option th:each="name : ${names}"
+                        th:value = "${name}"
+                        th:text="${name}"
+                        th:selected="${name == component.name}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label th:for="type">Type</label>
+            <input class="form-control" th:field="${component.type}" />
+            <span th:errors="${component.type}" class="error"></span>
+        </div>
+
+        <div class="form-group">
+            <label th:for="quantity">Quantity</label>
+            <input class="form-control" th:field="${component.quantity}" th:value="${component.quantity}"/>
+            <span th:errors="${component.quantity}" class="error"></span>
+        </div>
+
+        <div class="form-group">
+            <label th:for="description">Description</label>
+            <input class="form-control" th:field="${component.description}" th:value="${component.description}"/>
+            <span th:errors="${component.description}" class="error"></span>
+        </div>
+
+        <input type="hidden" th:value="${component.id}" name="componentId" />
+        <div class="form-group">
+            <input type="submit" value="Update Component" class="btn btn-success">
+        </div>
+    </form>
+</th:block>
+
+</body>
+</html>
