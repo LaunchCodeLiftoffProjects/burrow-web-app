@@ -1,46 +1,30 @@
-com/example/burrowwebapp/data/PropertyRepository.java
- com.example.burrowwebapp.data.PropertyRepository
 com/example/burrowwebapp/controller/DeviceController.java
  com.example.burrowwebapp.controller.DeviceController
-com/example/burrowwebapp/models/Property.java
- com.example.burrowwebapp.models.Property
-com/example/burrowwebapp/controller/PropertyController.java
- com.example.burrowwebapp.controller.PropertyController
-com/example/burrowwebapp/models/Device.java
- com.example.burrowwebapp.models.Device
+com/example/burrowwebapp/data/ComponentRepository.java
+ com.example.burrowwebapp.data.ComponentRepository
 com/example/burrowwebapp/BurrowWebAppApplication.java
  com.example.burrowwebapp.BurrowWebAppApplication
-com/example/burrowwebapp/models/AbstractEntity.java
- com.example.burrowwebapp.models.AbstractEntity
-com/example/burrowwebapp/BurrowWebAppApplication.java
- com.example.burrowwebapp.BurrowWebAppApplication
+com/example/burrowwebapp/controller/ComponentController.java
+ com.example.burrowwebapp.controller.ComponentController
 com/example/burrowwebapp/models/Room.java
  com.example.burrowwebapp.models.Room
-com/example/burrowwebapp/controller/RoomController.java
- com.example.burrowwebapp.controller.RoomController
 com/example/burrowwebapp/data/RoomRepository.java
  com.example.burrowwebapp.data.RoomRepository
+com/example/burrowwebapp/models/Component.java
+ com.example.burrowwebapp.models.Component
 com/example/burrowwebapp/data/DeviceRepository.java
  com.example.burrowwebapp.data.DeviceRepository
-com/example/burrowwebapp/controller/HelloController.java
- com.example.burrowwebapp.controller.HelloController
-com/example/burrowwebapp/data/RoomRepository.java
- com.example.burrowwebapp.data.RoomRepository
-com/example/burrowwebapp/data/DeviceRepository.java
- com.example.burrowwebapp.data.DeviceRepository
-com/example/burrowwebapp/controller/HelloController.java
- com.example.burrowwebapp.controller.HelloController
 com/example/burrowwebapp/data/PropertyRepository.java
  com.example.burrowwebapp.data.PropertyRepository
 com/example/burrowwebapp/models/Property.java
  com.example.burrowwebapp.models.Property
 com/example/burrowwebapp/controller/PropertyController.java
  com.example.burrowwebapp.controller.PropertyController
-com/example/burrowwebapp/controller/RoomController.java
- com.example.burrowwebapp.controller.RoomController
-com/example/burrowwebapp/controller/DeviceController.java
- com.example.burrowwebapp.controller.DeviceController
 com/example/burrowwebapp/models/Device.java
  com.example.burrowwebapp.models.Device
-com/example/burrowwebapp/models/Component.java
- com.example.burrowwebapp.models.Component
+com/example/burrowwebapp/models/AbstractEntity.java
+ com.example.burrowwebapp.models.AbstractEntity
+com/example/burrowwebapp/controller/RoomController.java
+ com.example.burrowwebapp.controller.RoomController
+com/example/burrowwebapp/controller/HelloController.java
+ com.example.burrowwebapp.controller.HelloController
