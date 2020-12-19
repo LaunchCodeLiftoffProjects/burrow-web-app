@@ -45,4 +45,8 @@ public class Device extends AbstractEntity {
         this.description = description;
     }
 
+    public List<Component> getComponents() {
+        return components;
+    }
+
 }
