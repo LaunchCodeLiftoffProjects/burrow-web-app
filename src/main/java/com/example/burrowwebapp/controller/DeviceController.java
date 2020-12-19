@@ -1,5 +1,4 @@
 package com.example.burrowwebapp.controller;
-import com.example.burrowwebapp.data.ComponentRepository;
 import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.RoomRepository;
 import com.example.burrowwebapp.data.PropertyRepository;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.Optional;
 @Controller
 @RequestMapping("devices")
