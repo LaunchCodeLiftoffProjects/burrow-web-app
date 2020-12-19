@@ -4,11 +4,20 @@
 <body class="container">
 <h2>Add Component to: </h2>
 
-<div class="form-group">
-    <p th:text="${'Device: '+ device.name}">Device</p>
-</div>
+<!--<div class="form-group">-->
+<!--    <p th:text="${'Device: '+ device.name}">Device</p>-->
+<!--</div>-->
 
 <form method="post" style="max-width:600px;">
+    <div class="form-group">
+        <label th:for="device">Device</label>
+        <select name="deviceId">
+            <option th:each="device : ${devices}"
+                    th:value = "${device.Id}"
+                    th:text="${device.name}">
+            </option>
+        </select>
+    </div>
     <div class="form-group">
         <label th:for="name">Component</label>
         <select name="name">
@@ -35,8 +44,6 @@
         <input class="form-control" th:field="${component.description}" />
         <span th:errors="${component.description}" class="error"></span>
     </div>
-
-
 
     <input type="submit" value="Add Component" />
 </form>

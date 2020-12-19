@@ -44,9 +44,9 @@ public class ComponentController {
     }
 
     @GetMapping("add")
-    public String displayAddComponentForm(Model model, @RequestParam int deviceId) {
+    public String displayAddComponentForm(Model model) {
         model.addAttribute(new Component());
-        model.addAttribute("device", deviceRepository.findById(deviceId));
+        model.addAttribute("devices", deviceRepository.findAll());
         model.addAttribute("rooms", roomRepository.findAll());
         model.addAttribute("properties", propertyRepository.findAll());
         model.addAttribute("components", componentRepository.findAll());
@@ -83,4 +83,46 @@ public class ComponentController {
         return "components/view";
     }
 
+    @GetMapping("edit/{componentId}")
+    public String displayEditComponent(Model model, @PathVariable int componentId) {
+        Component component = componentRepository.findById(componentId).get();
+        model.addAttribute("component", component);
+        model.addAttribute("devices", deviceRepository.findAll());
+        model.addAttribute("rooms", roomRepository.findAll());
+        model.addAttribute("properties", propertyRepository.findAll());
+        model.addAttribute("names", nameList);
+        return "components/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditComponent(int componentId, String name, @RequestParam int deviceId, String type, @RequestParam int quantity, String description) {
+        Component component = componentRepository.findById(componentId).get();
+        Device device = deviceRepository.findById(deviceId).get();
+        component.setName(name);
+        component.setDevice(device);
+        component.setType(type);
+        component.setQuantity(quantity);
+        component.setDescription(description);
+        componentRepository.save(component);
+        return "redirect:";
+    }
+
+
+
+    @GetMapping("delete")
+    public String displayDeleteComponent(Model model) {
+        model.addAttribute("title", "Delete Components");
+        model.addAttribute("components", componentRepository.findAll());
+        return "components/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteComponent(@RequestParam(required = false) int[] componentId) {
+        if (componentId != null) {
+            for (int id : componentId) {
+                componentRepository.deleteById(id);
+            }
+        }
+        return "redirect:";
+    }
 }
