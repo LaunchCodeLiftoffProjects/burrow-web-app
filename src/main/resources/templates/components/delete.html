@@ -11,7 +11,7 @@
             <div class="form-group">
                 <label>
                     <span th:text="${component.name + ' for ' + component.device.name + ' in ' + component.device.room.name}"></span>
-                    <input type="checkbox" name="componentId" th:value="${component.id}" class="form-control">
+                    <input type="checkbox" name="componentIds" th:value="${component.id}" class="form-control">
                 </label>
             </div>
         </th:block>

@@ -24,7 +24,7 @@ com/example/burrowwebapp/controller/RoomController.java
  com.example.burrowwebapp.controller.RoomController
 com/example/burrowwebapp/controller/HelloController.java
  com.example.burrowwebapp.controller.HelloController
-com/example/burrowwebapp/controller/ComponentController.java
- com.example.burrowwebapp.controller.ComponentController
 com/example/burrowwebapp/models/Component.java
  com.example.burrowwebapp.models.Component
+com/example/burrowwebapp/controller/ComponentController.java
+ com.example.burrowwebapp.controller.ComponentController

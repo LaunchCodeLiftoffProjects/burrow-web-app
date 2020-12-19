@@ -66,4 +66,40 @@ public class ComponentController
         }
         return "components/view";
     }
+
+    @GetMapping("edit/{componentId}")
+    public String displayEditComponentForm(Model model, @PathVariable int componentId) {
+        Component component = componentRepository.findById(componentId).get();
+        model.addAttribute("component", component);
+        model.addAttribute("devices", deviceRepository.findAll());
+        return "components/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditComponentForm(int componentId, String name, @RequestParam int deviceId, String description, int quantity) {
+        Component component = componentRepository.findById(componentId).get();
+        component.setName(name);
+        component.setDescription(description);
+        component.setQuantity(quantity);
+        Device device = deviceRepository.findById(deviceId).get();
+        component.setDevice(device);
+        componentRepository.save(component);
+        return "redirect:";
+    }
+
+    @GetMapping("delete")
+    public String displayDeleteComponentForm(Model model) {
+        model.addAttribute("components", componentRepository.findAll());
+        return "components/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteComponentForm(@RequestParam(required = false) int[] componentIds) {
+        if (componentIds != null) {
+            for (int id : componentIds) {
+                componentRepository.deleteById(id);
+            }
+        }
+        return "redirect:";
+    }
 }

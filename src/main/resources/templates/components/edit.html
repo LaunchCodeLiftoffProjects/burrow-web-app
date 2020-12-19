@@ -21,20 +21,15 @@
             </select>
         </div>
         <div class="form-group">
-            <label th:for="name">Component</label>
-            <select name="name">
-                <option th:each="name : ${names}"
-                        th:value = "${name}"
-                        th:text="${name}"
-                        th:selected="${name == component.name}">
-                </option>
-            </select>
+            <label>Name
+                <input type="text" name="name" class="form-control" th:value="${component.name}">
+            </label>
         </div>
-        <div class="form-group">
-            <label th:for="type">Type</label>
-            <input class="form-control" th:field="${component.type}" />
-            <span th:errors="${component.type}" class="error"></span>
-        </div>
+        <!--<div class="form-group">-->
+            <!--<label th:for="type">Type</label>-->
+            <!--<input class="form-control" th:field="${component.type}" />-->
+            <!--<span th:errors="${component.type}" class="error"></span>-->
+        <!--</div>-->
 
         <div class="form-group">
             <label th:for="quantity">Quantity</label>
