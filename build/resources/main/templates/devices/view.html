@@ -7,8 +7,8 @@
 <div>
     <h3 th:text="${'Components:'}"></h3>
     <ul>
-        <li th:each="component : ${components}">
-            <a th:href="@{'/components/view/' + ${component.id}}" th:text="${components.name}"></a>
+        <li th:each="component : ${device.components}">
+            <a th:href="@{'/components/view/' + ${component.id}}" th:text="${component.name}"></a>
         </li>
     </ul>
     <a th:href="@{/components/add}">

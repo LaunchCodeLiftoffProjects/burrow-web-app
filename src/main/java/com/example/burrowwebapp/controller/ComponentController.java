@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("components")
@@ -47,5 +48,22 @@ public class ComponentController
         componentRepository.save(newComponent);
 
         return "redirect:";
+    }
+
+    @GetMapping(path = {"view/{componentId}", "view"})
+    public String displayViewComponent(Model model, @PathVariable (required = false) Integer componentId) {
+        if (componentId == null) {
+            model.addAttribute("components", componentRepository.findAll());
+            return "components/index";
+        } else {
+            Optional<Component> result = componentRepository.findById(componentId);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Component component = result.get();
+                model.addAttribute("component", component);
+            }
+        }
+        return "components/view";
     }
 }
