@@ -25,9 +25,6 @@ public class DeviceController {
     @Autowired
     private PropertyRepository propertyRepository;
 
-    @Autowired
-    private ComponentRepository componentRepository;
-
     @GetMapping
     public String displayAllDevices(Model model) {
         model.addAttribute("devices", deviceRepository.findAll());
