@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -23,6 +24,14 @@ public class ComponentController
     @Autowired
     private DeviceRepository deviceRepository;
 
+    private ArrayList<String> nameList = new ArrayList<String>() {
+        {
+            add("Light Bulb");
+            add("Battery");
+            add("Filter");
+        }
+    };
+
     @GetMapping
     public String displayAllDevices(Model model){
         model.addAttribute("components", componentRepository.findAll());
@@ -33,6 +42,7 @@ public class ComponentController
     public String displayAddComponentForm(Model model){
         model.addAttribute(new Component());
         model.addAttribute("devices", deviceRepository.findAll());
+        model.addAttribute("names", nameList);
         return "components/add";
     }
 
@@ -72,6 +82,7 @@ public class ComponentController
         Component component = componentRepository.findById(componentId).get();
         model.addAttribute("component", component);
         model.addAttribute("devices", deviceRepository.findAll());
+        model.addAttribute("names", nameList);
         return "components/edit";
     }
 
