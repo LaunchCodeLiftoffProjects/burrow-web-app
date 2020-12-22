@@ -1,5 +1,6 @@
 package com.example.burrowwebapp.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -14,7 +15,7 @@ public class Device extends AbstractEntity {
     @ManyToOne
     private Room room;
 
-    @OneToMany(mappedBy = "device")
+    @OneToMany(mappedBy = "device", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Component> components = new ArrayList<>();
 
     @Size(max = 250, message = "Description must less than 250 characters")
