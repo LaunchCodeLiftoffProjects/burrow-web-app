@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<h2>Add Device</h2>
+<h2 th:text="${'Add Device To: ' + room.name}">Add Device</h2>
 
 <form method="post" style="max-width:600px;">
     <div class="form-group">
@@ -10,15 +10,15 @@
         <input class="form-control" th:field="${device.name}" />
         <span th:errors="${device.name}" class="error"></span>
     </div>
-    <div class="form-group">
-        <label th:for="room">Room</label>
-            <select name="roomId">
-                <option th:each="room : ${rooms}"
-                        th:value = "${room.id}"
-                        th:text="${room.name}">
-                </option>
-            </select>
-    </div>
+<!--    <div class="form-group">-->
+<!--        <label th:for="room">Room</label>-->
+<!--            <select name="roomId">-->
+<!--                <option th:each="room : ${rooms}"-->
+<!--                        th:value = "${room.id}"-->
+<!--                        th:text="${room.name}">-->
+<!--                </option>-->
+<!--            </select>-->
+<!--    </div>-->
 
     <div class="form-group">
         <label th:for="description">Device Description</label>

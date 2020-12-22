@@ -4,6 +4,8 @@ import com.example.burrowwebapp.data.ComponentRepository;
 import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.models.Component;
 import com.example.burrowwebapp.models.Device;
+import com.example.burrowwebapp.models.Property;
+import com.example.burrowwebapp.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,26 +40,44 @@ public class ComponentController
         return "components/index";
     }
 
-    @GetMapping("add")
-    public String displayAddComponentForm(Model model){
-        model.addAttribute(new Component());
-        model.addAttribute("devices", deviceRepository.findAll());
-        model.addAttribute("names", nameList);
-        return "components/add";
+    @GetMapping(path = {"add/{deviceId}", "add"})
+    public String displayAddComponent(Model model, @PathVariable (required = false) Integer deviceId){
+        if (deviceId == null) {
+            model.addAttribute("components", componentRepository.findAll());
+            return "redirect:../devices/";
+        } else {
+            Optional optDevice = deviceRepository.findById(deviceId);
+            if (optDevice.isPresent()) {
+                Device device = (Device) optDevice.get();
+                model.addAttribute(new Component());
+                model.addAttribute("device", device);
+                model.addAttribute("names", nameList);
+                return "components/add";
+            } else {
+                return "redirect:../";
+            }
+        }
     }
 
-    @PostMapping("add")
+//        model.addAttribute(new Component());
+//        model.addAttribute("devices", deviceRepository.findAll());
+//        model.addAttribute("names", nameList);
+//        return "components/add";
+//    }
+
+    @PostMapping("add/{deviceId}")
     public String processAddComponentForm(@Valid @ModelAttribute Component newComponent,
-                                          Errors errors, Model model, @RequestParam int deviceId){
+                                          Errors errors, Model model, @PathVariable int deviceId){
         if (errors.hasErrors()) {
-            model.addAttribute("devices", deviceRepository.findAll());
+            model.addAttribute("device", deviceRepository.findById(deviceId));
+            model.addAttribute("names", nameList);
             return "components/add";
         }
         Device device = deviceRepository.findById(deviceId).get();
         newComponent.setDevice(device);
         componentRepository.save(newComponent);
 
-        return "redirect:";
+        return "redirect:../";
     }
 
     @GetMapping(path = {"view/{componentId}", "view"})

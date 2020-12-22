@@ -19,10 +19,10 @@
     </ul>
 </div>
 <div>
-    <a th:href="@{'/devices/add'}">Add Device</a>
+    <a th:href="@{/devices/add/{id}(id=${room.id})}">Add Device</a>
 </div>
 <div>
-    <a th:href="@{'/devices/delete'}">Remove Device</a>
+    <a th:href="@{/devices/delete}">Remove Device</a>
 </div>
 <p></p>
 
