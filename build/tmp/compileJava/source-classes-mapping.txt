@@ -1,0 +1,44 @@
+com/example/burrowwebapp/dto/LoginFormDTO.java
+ com.example.burrowwebapp.dto.LoginFormDTO
+com/example/burrowwebapp/controller/DeviceController.java
+ com.example.burrowwebapp.controller.DeviceController
+com/example/burrowwebapp/data/ComponentRepository.java
+ com.example.burrowwebapp.data.ComponentRepository
+com/example/burrowwebapp/BurrowWebAppApplication.java
+ com.example.burrowwebapp.BurrowWebAppApplication
+com/example/burrowwebapp/dto/RegisterFormDTO.java
+ com.example.burrowwebapp.dto.RegisterFormDTO
+com/example/burrowwebapp/controller/ComponentController.java
+ com.example.burrowwebapp.controller.ComponentController
+com/example/burrowwebapp/models/Room.java
+ com.example.burrowwebapp.models.Room
+com/example/burrowwebapp/data/RoomRepository.java
+ com.example.burrowwebapp.data.RoomRepository
+com/example/burrowwebapp/models/Component.java
+ com.example.burrowwebapp.models.Component
+com/example/burrowwebapp/data/DeviceRepository.java
+ com.example.burrowwebapp.data.DeviceRepository
+com/example/burrowwebapp/AuthenticationFilter.java
+ com.example.burrowwebapp.AuthenticationFilter
+com/example/burrowwebapp/WebApplicationConfig.java
+ com.example.burrowwebapp.WebApplicationConfig
+com/example/burrowwebapp/data/PropertyRepository.java
+ com.example.burrowwebapp.data.PropertyRepository
+com/example/burrowwebapp/models/Property.java
+ com.example.burrowwebapp.models.Property
+com/example/burrowwebapp/controller/PropertyController.java
+ com.example.burrowwebapp.controller.PropertyController
+com/example/burrowwebapp/models/Device.java
+ com.example.burrowwebapp.models.Device
+com/example/burrowwebapp/models/User.java
+ com.example.burrowwebapp.models.User
+com/example/burrowwebapp/controller/AuthenticationController.java
+ com.example.burrowwebapp.controller.AuthenticationController
+com/example/burrowwebapp/models/AbstractEntity.java
+ com.example.burrowwebapp.models.AbstractEntity
+com/example/burrowwebapp/controller/RoomController.java
+ com.example.burrowwebapp.controller.RoomController
+com/example/burrowwebapp/data/UserRepository.java
+ com.example.burrowwebapp.data.UserRepository
+com/example/burrowwebapp/controller/HelloController.java
+ com.example.burrowwebapp.controller.HelloController
