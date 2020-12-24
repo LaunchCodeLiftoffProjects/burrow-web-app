@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
+<header th:replace="fragments :: header"></header>
 <h2>Delete Room</h2>
 <p th:unless="${rooms}">No rooms!</p>
 
@@ -10,12 +11,12 @@
         <th:block th:each="room : ${rooms}">
             <div class="form-group">
                 <label>
-                    <label th:text="${'Are you sure?'}"></label>
-                    <input type="checkbox" name="roomIds" th:value="${room.id}" class="form-control">
+                    <label th:text="${room.name}"></label>
+                    <input type="hidden" name="roomIds" th:value="${room.id}" class="form-control">
                 </label>
             </div>
         </th:block>
-        <input type="submit" value="Yes, if checked" class="btn btn-warning">
+        <input type="submit" value="Delete" class="btn btn-danger">
     </form>
 </th:block>
 
