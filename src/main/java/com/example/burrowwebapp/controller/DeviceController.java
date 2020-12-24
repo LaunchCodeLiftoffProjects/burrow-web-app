@@ -1,4 +1,5 @@
 package com.example.burrowwebapp.controller;
+import com.example.burrowwebapp.data.ComponentRepository;
 import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.RoomRepository;
 import com.example.burrowwebapp.data.PropertyRepository;
@@ -85,6 +86,7 @@ public class DeviceController {
         deviceRepository.save(device);
         return "redirect:";
     }
+
     @GetMapping("delete")
     public String displayDeleteDeviceForm(Model model) {
         model.addAttribute("title", "Delete Devices");

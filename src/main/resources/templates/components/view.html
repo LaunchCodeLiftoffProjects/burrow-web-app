@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
+<header th:replace="fragments :: header"></header>
+<h2 th:text="${component.device.room.name + ' ' + component.device.name + ' ' + component.name}">Default Title</h2>
+
+<div>
+    <!--<p th:text="${'Type: ' + component.type}"></p>-->
+    <p th:text="${'Quantity: ' + component.quantity}"></p>
+    <p th:text="${'Description: ' + component.description}"></p>
+    <p th:text="${'Room: ' + component.device.room.name}"></p>
+    <p th:text="${'House: ' + component.device.room.property.name}"></p>
+</div>
+
+<div>
+    <a th:href="@{/components/edit/{id}(id=${component.id})}">
+        <input type="submit" value="Edit" class="btn btn-info">
+    </a>
+
+    <a th:href="@{/devices/view/{id}(id=${component.device.id})}">
+        <input type="submit" value="Back" class="btn btn-info">
+    </a>
+
+    <a th:href="@{/devices}">
+        <input type="submit" value="View Devices" class="btn btn-info">
+    </a>
+</div>
+
+</body>
+</html>

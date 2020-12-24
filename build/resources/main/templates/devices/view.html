@@ -2,14 +2,34 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container body-content">
+<header th:replace="fragments :: header"></header>
 <h2 th:text="${'Device: ' + device.name}">Default Title</h2>
 
 <div>
-    <p th:text="${'Device Components: '}"></p>
+    <h3 th:text="${'Components:'}"></h3>
+    <ul>
+        <li th:each="component : ${device.components}">
+            <a th:href="@{'/components/view/' + ${component.id}}" th:text="${component.name}"></a>
+        </li>
+    </ul>
+    <a th:href="@{/components/add}">
+        <input type="submit" value="Add Components" class="btn btn-info">
+    </a>
+</div>
+<div>
+
     <p th:text="${'Description: ' + device.description}"></p>
     <p th:text="${'Room: ' + device.room.name}"></p>
     <p th:text="${'House: ' + device.room.property.name}"></p>
 </div>
+
+
+
+<!--<div>-->
+<!--    <a th:href="@{/properties/addRoom/{id}(id=${property.id})}">-->
+<!--        <input type="submit" value="Add room" class="btn btn-info">-->
+<!--    </a>-->
+<!--</div>-->
 <div>
     <a th:href="@{/devices/edit/{id}(id=${device.id})}">
         <input type="submit" value="Edit" class="btn btn-info">
