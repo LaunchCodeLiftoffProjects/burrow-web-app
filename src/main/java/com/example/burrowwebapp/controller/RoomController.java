@@ -98,9 +98,9 @@ public class RoomController {
     }
 
     @PostMapping("delete")
-    public ModelAndView processDeleteForm(int roomId) {
+    public String processDeleteForm(int roomId) {
         roomRepository.deleteById(roomId);
 
-        return new ModelAndView("redirect:/properties");
+        return "redirect:/properties";
     }
 }
