@@ -4,15 +4,15 @@
 <body class="container">
 <header th:replace="fragments :: header"></header>
 <h2>Delete Room</h2>
-<p th:unless="${rooms}">No rooms!</p>
+<p th:unless="${room}">No rooms!</p>
 
-<th:block th:if="${rooms}">
+<th:block th:if="${room}">
     <form method="post" th:action="@{/rooms/delete}" id="delete-room">
-        <th:block th:each="room : ${rooms}">
+        <th:block>
             <div class="form-group">
                 <label>
                     <label th:text="${room.name}"></label>
-                    <input type="hidden" name="roomIds" th:value="${room.id}" class="form-control">
+                    <input type="hidden" name="roomId" th:value="${room.id}" class="form-control">
                 </label>
             </div>
         </th:block>
