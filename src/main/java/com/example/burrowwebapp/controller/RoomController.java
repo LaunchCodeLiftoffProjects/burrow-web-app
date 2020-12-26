@@ -97,7 +97,7 @@ public class RoomController {
         return "rooms/delete";
     }
 
-    @PostMapping("delete")
+    @PostMapping("view")
     public String processDeleteForm(int roomId) {
         roomRepository.deleteById(roomId);
 
