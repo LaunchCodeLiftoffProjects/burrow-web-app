@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -98,8 +99,10 @@ public class RoomController {
     }
 
     @PostMapping("view")
-    public String processDeleteForm(int roomId) {
+    public String processDeleteForm(int roomId, int propertyId, RedirectAttributes redirectAttributes) {
+        Optional optProperty = propertyRepository.findById(propertyId);
+        redirectAttributes.addAttribute("id", optProperty.get());
         roomRepository.deleteById(roomId);
-        return "redirect:/properties";
+        return "redirect:/properties/view/{id}";
     }
 }
