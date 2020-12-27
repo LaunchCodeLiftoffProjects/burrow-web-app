@@ -94,7 +94,7 @@ public class RoomController {
     public String displayDeleteForm(Model model, @PathVariable int roomId) {
         Room room = roomRepository.findById(roomId).get();
         model.addAttribute("room", room);
-        return "rooms/delete";
+        return "redirect:";
     }
 
     @PostMapping("view")
