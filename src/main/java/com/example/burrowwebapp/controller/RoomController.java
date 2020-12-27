@@ -90,7 +90,7 @@ public class RoomController {
         return "redirect:";
     }
 
-    @GetMapping("delete/{roomId}")
+    @GetMapping("view")
     public String displayDeleteForm(Model model, @PathVariable int roomId) {
         Room room = roomRepository.findById(roomId).get();
         model.addAttribute("room", room);
@@ -100,7 +100,6 @@ public class RoomController {
     @PostMapping("view")
     public String processDeleteForm(int roomId) {
         roomRepository.deleteById(roomId);
-
         return "redirect:/properties";
     }
 }
