@@ -77,20 +77,16 @@ public class PropertyController {
         return "redirect:view/" + propertyId;
     }
 
-    @GetMapping("delete")
+    @GetMapping("view")
     public String displayDeleteForm(Model model) {
         model.addAttribute("title", "Delete Properties");
         model.addAttribute("properties", propertyRepository.findAll());
         return "properties/delete";
     }
 
-    @PostMapping("delete")
-    public String processDeleteForm(@RequestParam(required = false) int[] propertyIds) {
-        if (propertyIds != null) {
-            for (int id : propertyIds) {
-                propertyRepository.deleteById(id);
-            }
-        }
+    @PostMapping("view")
+    public String processDeleteForm(int propertyId) {
+        propertyRepository.deleteById(propertyId);
         return "redirect:";
     }
 
