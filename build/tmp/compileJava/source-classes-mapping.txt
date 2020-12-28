@@ -24,7 +24,7 @@ com/example/burrowwebapp/models/Device.java
  com.example.burrowwebapp.models.Device
 com/example/burrowwebapp/models/AbstractEntity.java
  com.example.burrowwebapp.models.AbstractEntity
-com/example/burrowwebapp/controller/HelloController.java
- com.example.burrowwebapp.controller.HelloController
 com/example/burrowwebapp/controller/RoomController.java
  com.example.burrowwebapp.controller.RoomController
+com/example/burrowwebapp/controller/HelloController.java
+ com.example.burrowwebapp.controller.HelloController
