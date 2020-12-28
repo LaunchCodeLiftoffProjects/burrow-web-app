@@ -47,6 +47,7 @@
 <th:block th:if="${room}">
     <form method="post" th:action="@{/rooms/view}" id="delete-room">
         <input type="hidden" name="roomId" th:value="${room.id}" class="form-control">
+        <input type="hidden" id="roomId" th:value="${room.name}" class="form-control">
         <input type="hidden" name="propertyId" th:value="${room.property.id}" class="form-control">
         <p></p>
         <input onclick="deleteRoom()" type="button" value="Delete Room" class="btn btn-danger">
