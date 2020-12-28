@@ -34,6 +34,7 @@
 <th:block th:if="${property}">
     <form method="post" th:action="@{/properties/view}" id="delete-property">
         <input type="hidden" name="propertyId" th:value="${property.id}" class="form-control">
+        <input type="hidden" id="propertyId" th:value="${property.name}" class="form-control">
         <p></p>
         <input onclick="deleteProperty()" type="button" value="Delete Property" class="btn btn-danger">
     </form>

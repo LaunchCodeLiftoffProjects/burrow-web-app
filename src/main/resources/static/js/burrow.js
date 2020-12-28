@@ -5,8 +5,9 @@ function deleteRoom() {
     }
 }
 
-unction deleteProperty() {
-    if (confirm("Are you sure?")) {
+function deleteProperty() {
+    let property = $('#propertyId').val();
+    if (confirm(`Remove ${property}?`)) {
         document.getElementById("delete-property").submit();
     }
 }
