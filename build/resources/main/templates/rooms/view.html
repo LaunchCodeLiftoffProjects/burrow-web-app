@@ -43,6 +43,7 @@
         <input type="submit" value="Go back to property" class="btn btn-info">
     </a>
 </div>
+
 <th:block th:if="${room}">
     <form method="post" th:action="@{/rooms/view}" id="delete-room">
         <input type="hidden" name="roomId" th:value="${room.id}" class="form-control">
