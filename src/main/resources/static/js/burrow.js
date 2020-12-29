@@ -18,3 +18,10 @@ function deleteDevice() {
         document.getElementById("delete-device").submit();
     }
 }
+
+function deleteComponent() {
+    let component = $('#componentId').val();
+    if (confirm(`Remove ${component}?`)) {
+        document.getElementById("delete-component").submit();
+    }
+}
