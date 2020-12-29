@@ -84,7 +84,7 @@ public class ComponentController
         Device device = deviceRepository.findById(deviceId).get();
         component.setDevice(device);
         componentRepository.save(component);
-        return "redirect:";
+        return "redirect:view/" + componentId;
     }
 
     @GetMapping("delete")

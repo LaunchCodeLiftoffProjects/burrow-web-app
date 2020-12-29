@@ -88,7 +88,7 @@ public class RoomController {
         room.setName(name);
         room.setProperty(property);
         roomRepository.save(room);
-        return "redirect:";
+        return "redirect:view/" + roomId;
     }
 
     @GetMapping("view")
