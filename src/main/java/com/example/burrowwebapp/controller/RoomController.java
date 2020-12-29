@@ -4,7 +4,6 @@ package com.example.burrowwebapp.controller;
 import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.PropertyRepository;
 import com.example.burrowwebapp.data.RoomRepository;
-import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.Property;
 import com.example.burrowwebapp.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -91,20 +91,18 @@ public class RoomController {
         return "redirect:";
     }
 
-    @GetMapping("delete")
-    public String displayDeleteForm(Model model) {
-        model.addAttribute("title", "Delete Rooms");
-        model.addAttribute("rooms", roomRepository.findAll());
-        return "rooms/delete";
+    @GetMapping("view")
+    public String displayDeleteForm(Model model, @PathVariable int roomId) {
+        Room room = roomRepository.findById(roomId).get();
+        model.addAttribute("room", room);
+        return "redirect:";
     }
 
-    @PostMapping("delete")
-    public String processDeleteForm(@RequestParam(required = false) int[] roomIds) {
-        if (roomIds != null) {
-            for (int id : roomIds) {
-                roomRepository.deleteById(id);
-            }
-        }
-        return "redirect:";
+    @PostMapping("view")
+    public String processDeleteForm(int roomId, int propertyId, RedirectAttributes redirectAttributes) {
+        Optional optProperty = propertyRepository.findById(propertyId);
+        redirectAttributes.addAttribute("id", optProperty.get());
+        roomRepository.deleteById(roomId);
+        return "redirect:/properties/view/{id}";
     }
 }

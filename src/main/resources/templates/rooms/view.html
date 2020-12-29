@@ -32,10 +32,27 @@
         <input type="submit" value="Edit" class="btn btn-info">
     </a>
 
+    <a th:href="@{/rooms}">
+        <input type="submit" value="Back" class="btn btn-info">
+    </a>
+</div>
+<p></p>
+
+<div>
     <a th:href="@{/properties/view/{id}(id=${room.property.id})}">
         <input type="submit" value="Go back to property" class="btn btn-info">
     </a>
 </div>
+
+<th:block th:if="${room}">
+    <form method="post" th:action="@{/rooms/view}" id="delete-room">
+        <input type="hidden" name="roomId" th:value="${room.id}" class="form-control">
+        <input type="hidden" id="roomId" th:value="${room.name}" class="form-control">
+        <input type="hidden" name="propertyId" th:value="${room.property.id}" class="form-control">
+        <p></p>
+        <input onclick="deleteRoom()" type="button" value="Delete Room" class="btn btn-danger">
+    </form>
+</th:block>
 
 </body>
 </html>
