@@ -1,4 +1,5 @@
 package com.example.burrowwebapp.controller;
+import com.example.burrowwebapp.data.ComponentRepository;
 import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.RoomRepository;
 import com.example.burrowwebapp.data.PropertyRepository;
@@ -95,7 +96,7 @@ public class DeviceController {
         device.setRoom(room);
         device.setDescription(description);
         deviceRepository.save(device);
-        return "redirect:";
+        return "redirect:view/" + deviceId;
     }
 
     @GetMapping("delete")
