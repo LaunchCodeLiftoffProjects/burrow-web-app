@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -59,24 +60,17 @@ public class ComponentController
         }
     }
 
-//        model.addAttribute(new Component());
-//        model.addAttribute("devices", deviceRepository.findAll());
-//        model.addAttribute("names", nameList);
-//        return "components/add";
-//    }
-
     @PostMapping("add/{deviceId}")
     public String processAddComponentForm(@Valid @ModelAttribute Component newComponent,
                                           Errors errors, Model model, @PathVariable int deviceId){
         if (errors.hasErrors()) {
-            model.addAttribute("device", deviceRepository.findById(deviceId));
+            model.addAttribute("device", deviceRepository.findById(deviceId).get());
             model.addAttribute("names", nameList);
             return "components/add";
         }
         Device device = deviceRepository.findById(deviceId).get();
         newComponent.setDevice(device);
         componentRepository.save(newComponent);
-
         return "redirect:../";
     }
 

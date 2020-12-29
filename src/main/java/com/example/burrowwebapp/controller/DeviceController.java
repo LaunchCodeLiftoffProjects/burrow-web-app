@@ -52,7 +52,7 @@ public class DeviceController {
     public String processAddDeviceForm(@Valid @ModelAttribute Device newDevice,
                                        Errors errors, Model model, @PathVariable int roomId) {
         if (errors.hasErrors()) {
-            model.addAttribute("rooms", roomRepository.findAll());
+            model.addAttribute("room", roomRepository.findById(roomId).get());
             return "devices/add";
         }
         Room room = roomRepository.findById(roomId).get();
