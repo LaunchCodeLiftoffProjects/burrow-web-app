@@ -11,3 +11,10 @@ function deleteProperty() {
         document.getElementById("delete-property").submit();
     }
 }
+
+function deleteDevice() {
+    let device = $('#deviceId').val();
+    if (confirm(`Remove ${device}?`)) {
+        document.getElementById("delete-device").submit();
+    }
+}

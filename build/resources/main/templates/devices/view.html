@@ -44,5 +44,15 @@
     </a>
 </div>
 
+<th:block th:if="${device}">
+    <form method="post" th:action="@{/devices/view}" id="delete-device">
+        <input type="hidden" name="deviceId" th:value="${device.id}" class="form-control">
+        <input type="hidden" id="deviceId" th:value="${device.name}" class="form-control">
+        <input type="hidden" name="roomId" th:value="${device.room.id}" class="form-control">
+        <p></p>
+        <input onclick="deleteDevice()" type="button" value="Delete Device" class="btn btn-danger">
+    </form>
+</th:block>
+
 </body>
 </html>
