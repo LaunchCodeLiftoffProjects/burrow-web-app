@@ -22,11 +22,19 @@ com/example/burrowwebapp/controller/PropertyController.java
  com.example.burrowwebapp.controller.PropertyController
 com/example/burrowwebapp/models/Device.java
  com.example.burrowwebapp.models.Device
-com/example/burrowwebapp/models/User.java
- com.example.burrowwebapp.models.User
+com/example/burrowwebapp/controller/HelloController.java
+ com.example.burrowwebapp.controller.HelloController
 com/example/burrowwebapp/models/AbstractEntity.java
  com.example.burrowwebapp.models.AbstractEntity
 com/example/burrowwebapp/controller/RoomController.java
  com.example.burrowwebapp.controller.RoomController
-com/example/burrowwebapp/controller/HelloController.java
- com.example.burrowwebapp.controller.HelloController
+com/example/burrowwebapp/data/UserRepository.java
+ com.example.burrowwebapp.data.UserRepository
+com/example/burrowwebapp/models/User.java
+ com.example.burrowwebapp.models.User
+com/example/burrowwebapp/models/DTOs/RegisterFormDTO.java
+ com.example.burrowwebapp.models.DTOs.RegisterFormDTO
+com/example/burrowwebapp/models/DTOs/LoginFormDTO.java
+ com.example.burrowwebapp.models.DTOs.LoginFormDTO
+com/example/burrowwebapp/controller/AuthenticationController.java
+ com.example.burrowwebapp.controller.AuthenticationController

@@ -1,4 +1,4 @@
-package com.example.burrowwebapp.models;
+package com.example.burrowwebapp.models.DTOs;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

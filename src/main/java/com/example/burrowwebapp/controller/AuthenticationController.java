@@ -1,6 +1,8 @@
 package com.example.burrowwebapp.controller;
 
 import com.example.burrowwebapp.data.UserRepository;
+import com.example.burrowwebapp.models.DTOs.LoginFormDTO;
+import com.example.burrowwebapp.models.DTOs.RegisterFormDTO;
 import com.example.burrowwebapp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

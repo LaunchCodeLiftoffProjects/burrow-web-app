@@ -1,4 +1,6 @@
-package com.example.burrowwebapp.models;
+package com.example.burrowwebapp.models.DTOs;
+
+import com.example.burrowwebapp.models.DTOs.LoginFormDTO;
 
 public class RegisterFormDTO extends LoginFormDTO {
 
