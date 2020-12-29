@@ -1,8 +1,13 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 com/example/burrowwebapp/controller/ComponentController.java
  com.example.burrowwebapp.controller.ComponentController
  com.example.burrowwebapp.controller.ComponentController$1
 =======
+=======
+com/example/burrowwebapp/controller/PropertyController.java
+ com.example.burrowwebapp.controller.PropertyController
+>>>>>>> dev
 com/example/burrowwebapp/controller/HelloController.java
  com.example.burrowwebapp.controller.HelloController
 >>>>>>> dev
@@ -11,9 +16,14 @@ com/example/burrowwebapp/data/ComponentRepository.java
 com/example/burrowwebapp/BurrowWebAppApplication.java
  com.example.burrowwebapp.BurrowWebAppApplication
 <<<<<<< HEAD
+<<<<<<< HEAD
 com/example/burrowwebapp/controller/HelloController.java
  com.example.burrowwebapp.controller.HelloController
 =======
+=======
+com/example/burrowwebapp/controller/DeviceController.java
+ com.example.burrowwebapp.controller.DeviceController
+>>>>>>> dev
 com/example/burrowwebapp/controller/RoomController.java
  com.example.burrowwebapp.controller.RoomController
 >>>>>>> dev
@@ -29,18 +39,23 @@ com/example/burrowwebapp/data/PropertyRepository.java
  com.example.burrowwebapp.data.PropertyRepository
 com/example/burrowwebapp/models/Property.java
  com.example.burrowwebapp.models.Property
-com/example/burrowwebapp/controller/PropertyController.java
- com.example.burrowwebapp.controller.PropertyController
+com/example/burrowwebapp/controller/HelloController.java
+ com.example.burrowwebapp.controller.HelloController
 com/example/burrowwebapp/models/Device.java
  com.example.burrowwebapp.models.Device
 com/example/burrowwebapp/models/AbstractEntity.java
  com.example.burrowwebapp.models.AbstractEntity
+<<<<<<< HEAD
 <<<<<<< HEAD
 com/example/burrowwebapp/controller/RoomController.java
  com.example.burrowwebapp.controller.RoomController
 com/example/burrowwebapp/controller/DeviceController.java
  com.example.burrowwebapp.controller.DeviceController
 =======
+=======
+com/example/burrowwebapp/controller/RoomController.java
+ com.example.burrowwebapp.controller.RoomController
+>>>>>>> dev
 com/example/burrowwebapp/controller/DeviceController.java
  com.example.burrowwebapp.controller.DeviceController
 com/example/burrowwebapp/controller/ComponentController.java
