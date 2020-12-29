@@ -1,4 +1,5 @@
 package com.example.burrowwebapp.controller;
+import com.example.burrowwebapp.data.ComponentRepository;
 import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.RoomRepository;
 import com.example.burrowwebapp.data.PropertyRepository;

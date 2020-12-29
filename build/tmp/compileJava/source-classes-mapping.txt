@@ -6,6 +6,14 @@ com/example/burrowwebapp/data/ComponentRepository.java
  com.example.burrowwebapp.data.ComponentRepository
 com/example/burrowwebapp/BurrowWebAppApplication.java
  com.example.burrowwebapp.BurrowWebAppApplication
+<<<<<<< HEAD
+com/example/burrowwebapp/models/Room.java
+ com.example.burrowwebapp.models.Room
+com/example/burrowwebapp/controller/ComponentController.java
+ com.example.burrowwebapp.controller.ComponentController
+com/example/burrowwebapp/data/RoomRepository.java
+ com.example.burrowwebapp.data.RoomRepository
+=======
 com/example/burrowwebapp/dto/RegisterFormDTO.java
  com.example.burrowwebapp.dto.RegisterFormDTO
 com/example/burrowwebapp/data/DeviceRepository.java
@@ -20,6 +28,7 @@ com/example/burrowwebapp/controller/ComponentController.java
  com.example.burrowwebapp.controller.ComponentController
 com/example/burrowwebapp/models/Room.java
  com.example.burrowwebapp.models.Room
+>>>>>>> login
 com/example/burrowwebapp/models/Component.java
  com.example.burrowwebapp.models.Component
 com/example/burrowwebapp/controller/RoomController.java
@@ -32,8 +41,24 @@ com/example/burrowwebapp/controller/PropertyController.java
  com.example.burrowwebapp.controller.PropertyController
 com/example/burrowwebapp/models/Device.java
  com.example.burrowwebapp.models.Device
+com/example/burrowwebapp/controller/HelloController.java
+ com.example.burrowwebapp.controller.HelloController
 com/example/burrowwebapp/models/AbstractEntity.java
  com.example.burrowwebapp.models.AbstractEntity
+<<<<<<< HEAD
+com/example/burrowwebapp/controller/RoomController.java
+ com.example.burrowwebapp.controller.RoomController
+com/example/burrowwebapp/data/UserRepository.java
+ com.example.burrowwebapp.data.UserRepository
+com/example/burrowwebapp/models/User.java
+ com.example.burrowwebapp.models.User
+com/example/burrowwebapp/models/DTOs/RegisterFormDTO.java
+ com.example.burrowwebapp.models.DTOs.RegisterFormDTO
+com/example/burrowwebapp/models/DTOs/LoginFormDTO.java
+ com.example.burrowwebapp.models.DTOs.LoginFormDTO
+com/example/burrowwebapp/controller/AuthenticationController.java
+ com.example.burrowwebapp.controller.AuthenticationController
+=======
 com/example/burrowwebapp/models/User.java
  com.example.burrowwebapp.models.User
 com/example/burrowwebapp/controller/AuthenticationController.java
@@ -42,3 +67,4 @@ com/example/burrowwebapp/data/UserRepository.java
  com.example.burrowwebapp.data.UserRepository
 com/example/burrowwebapp/AuthenticationFilter.java
  com.example.burrowwebapp.AuthenticationFilter
+>>>>>>> login

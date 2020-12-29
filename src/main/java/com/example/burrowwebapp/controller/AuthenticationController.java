@@ -1,8 +1,13 @@
 package com.example.burrowwebapp.controller;
 
 import com.example.burrowwebapp.data.UserRepository;
+<<<<<<< HEAD
+import com.example.burrowwebapp.models.DTOs.LoginFormDTO;
+import com.example.burrowwebapp.models.DTOs.RegisterFormDTO;
+=======
 import com.example.burrowwebapp.dto.LoginFormDTO;
 import com.example.burrowwebapp.dto.RegisterFormDTO;
+>>>>>>> login
 import com.example.burrowwebapp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,10 +35,20 @@ public class AuthenticationController {
         if (userId == null) {
             return null;
         }
+<<<<<<< HEAD
+
+        Optional<User> user = userRepository.findById(userId);
+
+        if (user.isEmpty()) {
+            return null;
+        }
+
+=======
         Optional<User> user = userRepository.findById(userId);
         if (user.isEmpty()) {
             return null;
         }
+>>>>>>> login
         return user.get();
     }
 
@@ -41,7 +56,10 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> login
     @GetMapping("/register")
     public String displayRegistrationForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
@@ -125,5 +143,11 @@ public class AuthenticationController {
         request.getSession().invalidate();
         return "redirect:/login";
     }
+<<<<<<< HEAD
+}
+
+
+=======
 
 }
+>>>>>>> login

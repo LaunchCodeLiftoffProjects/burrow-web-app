@@ -4,6 +4,18 @@ import com.example.burrowwebapp.models.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+<<<<<<< HEAD
+
+@Repository
+public interface UserRepository extends CrudRepository<User, Integer> {
+
+    User findByUsername(String username);
+
+}
+
+
+
+=======
 import javax.transaction.Transactional;
 
 @Repository
@@ -11,3 +23,4 @@ import javax.transaction.Transactional;
 public interface UserRepository extends CrudRepository<User, Integer> {
     User findByUsername(String username);
 }
+>>>>>>> login

@@ -1,5 +1,13 @@
 package com.example.burrowwebapp.models;
 
+<<<<<<< HEAD
+import com.sun.istack.NotNull;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import javax.persistence.Entity;
+
+@Entity
+public class User extends AbstractEntity {
+=======
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
@@ -12,6 +20,7 @@ import java.util.Objects;
 @Entity
 public class User{
 
+>>>>>>> login
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -28,6 +37,10 @@ public class User{
         this.pwHash = encoder.encode(password);
     }
 
+<<<<<<< HEAD
+    public String getUsername() {
+        return username;
+=======
     @Id
     @GeneratedValue
     private int id;
@@ -46,12 +59,16 @@ public class User{
     public int hashCode()
     {
         return Objects.hash(id);
+>>>>>>> login
     }
 
     public boolean isMatchingPassword(String password) {
         return encoder.matches(password, pwHash);
     }
 
+<<<<<<< HEAD
+}
+=======
 
 
     public static BCryptPasswordEncoder getEncoder() {
@@ -80,3 +97,4 @@ public class User{
 
 }
 
+>>>>>>> login
