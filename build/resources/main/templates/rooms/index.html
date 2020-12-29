@@ -9,7 +9,7 @@
 <div class="container body-content">
     <ul>
         <li th:each="room : ${rooms}">
-            <a th:href="@{'/rooms/view/' + ${room.id}}" th:text="${room.name}"></a>
+            <a th:href="@{'/rooms/view/' + ${room.id}}" th:text="${room.name + ' in ' + room.property.name}"></a>
         </li>
     </ul>
     <a th:href="@{'/rooms/add'}">Add Rooms</a>

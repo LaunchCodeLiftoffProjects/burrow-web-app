@@ -2,33 +2,18 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<header th:replace="fragments :: header"></header>
-<h2>Add Component to: </h2>
-
-<!--<div class="form-group">-->
-<!--    <p th:text="${'Device: '+ device.name}">Device</p>-->
-<!--</div>-->
+<h2 th:text="${'Add Component To: ' + device.name}">Add Component</h2>
 
 <form method="post" style="max-width:600px;">
     <div class="form-group">
-        <label th:for="device">Device</label>
-        <select name="deviceId">
-            <option th:each="device : ${devices}"
-                    th:value = "${device.Id}"
-                    th:text="${device.name}">
+        <label th:for="name">Component</label>
+        <select name="name">
+            <option th:each="name : ${names}"
+                    th:value = "${name}"
+                    th:text="${name}">
             </option>
         </select>
     </div>
-    <div class="form-group">
-        <label th:for="name">Component</label>
-        <input class="form-control" th:field="${component.name}" />
-    </div>
-    <!--<div class="form-group">-->
-        <!--<label th:for="type">Type</label>-->
-        <!--<input class="form-control" th:field="${component.type}" />-->
-        <!--<span th:errors="${component.type}" class="error"></span>-->
-    <!--</div>-->
-
     <div class="form-group">
         <label th:for="quantity">Quantity</label>
         <input class="form-control" th:field="${component.quantity}" />
@@ -37,7 +22,7 @@
 
     <div class="form-group">
         <label th:for="description">Description</label>
-        <input class="form-control" th:field="${component.description}" />
+        <input class="form-control" th:field="${component.description}" placeholder="Type/Size"/>
         <span th:errors="${component.description}" class="error"></span>
     </div>
 

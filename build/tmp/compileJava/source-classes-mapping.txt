@@ -32,5 +32,7 @@ com/example/burrowwebapp/controller/RoomController.java
  com.example.burrowwebapp.controller.RoomController
 com/example/burrowwebapp/controller/DeviceController.java
  com.example.burrowwebapp.controller.DeviceController
+com/example/burrowwebapp/controller/DeviceController.java
+ com.example.burrowwebapp.controller.DeviceController
 com/example/burrowwebapp/controller/ComponentController.java
  com.example.burrowwebapp.controller.ComponentController
