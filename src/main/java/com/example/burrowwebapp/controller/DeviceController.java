@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import javax.validation.Valid;
 import java.util.Optional;
 @Controller
@@ -87,21 +89,17 @@ public class DeviceController {
         return "redirect:";
     }
 
-    @GetMapping("delete")
-    public String displayDeleteDeviceForm(Model model) {
-        model.addAttribute("title", "Delete Devices");
-        model.addAttribute("devices", deviceRepository.findAll());
-        model.addAttribute("rooms", roomRepository.findAll());
-        model.addAttribute("properties", propertyRepository.findAll());
-        return "devices/delete";
-    }
-    @PostMapping("delete")
-    public String processDeleteDeviceForm(@RequestParam(required = false) int[] deviceIds) {
-        if (deviceIds != null) {
-            for (int id : deviceIds) {
-                deviceRepository.deleteById(id);
-            }
-        }
+    @GetMapping("view")
+    public String displayDeleteDeviceForm(Model model, @PathVariable int deviceId) {
+        Device device = deviceRepository.findById(deviceId).get();
+        model.addAttribute("device", device);
         return "redirect:";
+    }
+    @PostMapping("view")
+    public String processDeleteDeviceForm(int deviceId, int roomId, RedirectAttributes redirectAttributes) {
+        Optional optRoom = roomRepository.findById(roomId);
+        redirectAttributes.addAttribute("id", optRoom.get());
+        deviceRepository.deleteById(deviceId);
+        return "redirect:/rooms/view/{id}";
     }
 }

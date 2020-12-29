@@ -1,5 +1,5 @@
-com/example/burrowwebapp/controller/DeviceController.java
- com.example.burrowwebapp.controller.DeviceController
+com/example/burrowwebapp/controller/PropertyController.java
+ com.example.burrowwebapp.controller.PropertyController
 com/example/burrowwebapp/data/ComponentRepository.java
  com.example.burrowwebapp.data.ComponentRepository
 com/example/burrowwebapp/BurrowWebAppApplication.java
@@ -26,5 +26,5 @@ com/example/burrowwebapp/models/AbstractEntity.java
  com.example.burrowwebapp.models.AbstractEntity
 com/example/burrowwebapp/controller/RoomController.java
  com.example.burrowwebapp.controller.RoomController
-com/example/burrowwebapp/controller/PropertyController.java
- com.example.burrowwebapp.controller.PropertyController
+com/example/burrowwebapp/controller/DeviceController.java
+ com.example.burrowwebapp.controller.DeviceController
