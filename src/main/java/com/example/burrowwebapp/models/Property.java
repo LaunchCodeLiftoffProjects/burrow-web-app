@@ -14,15 +14,15 @@ public class Property extends AbstractEntity {
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Room> rooms = new ArrayList<>();
 
-    @NotBlank
+    @NotBlank(message = "Location may not be blank")
     private String location;
 
-    @NotBlank
-    @Size(min = 1, max = 250, message = "Description must be between 1 and 250 characters")
+    @NotBlank(message = "Description may not be blank")
+    @Size(max = 250, message = "Description must be less than 250 characters")
     private String description;
 
     public Property(@NotBlank String name, @NotBlank String location,
-                    @NotBlank @Size(min = 1, max = 250, message = "Description must be between 1 and 250 characters") String description, List<Room> rooms)
+                    @NotBlank @Size(max = 250, message = "Description must be less than 250 characters") String description, List<Room> rooms)
     {
         this.setName(name);
         this.location = location;
