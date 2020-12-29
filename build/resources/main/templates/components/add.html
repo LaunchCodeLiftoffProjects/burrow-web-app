@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
+<header th:replace="fragments :: header"></header>
 <h2 th:text="${'Add Component To: ' + device.name}">Add Component</h2>
 
 <form method="post" style="max-width:600px;">
