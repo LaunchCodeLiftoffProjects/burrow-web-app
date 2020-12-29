@@ -1,4 +1,2 @@
-org/launchcode/burrowwebapp/BurrowWebAppApplicationTests.java
- org.launchcode.burrowwebapp.BurrowWebAppApplicationTests
 com/example/burrowwebapp/BurrowWebAppApplicationTests.java
  com.example.burrowwebapp.BurrowWebAppApplicationTests
