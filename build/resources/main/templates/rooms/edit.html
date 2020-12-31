@@ -24,24 +24,6 @@
                         th:value="${property.id}"></option>
             </select>
         </div>
-
-        <div>
-            <section th:text="${'Devices:'}">
-                <ul>
-                    <li th:each="device : ${devices}">
-                        <p th:text="${device.name}"></p>
-                    </li>
-                </ul>
-            </section>
-            <p></p>
-        </div>
-
-        <div>
-            <a th:href="@{'/devices/add'}">Add Device</a>
-        </div>
-        <div>
-            <a th:href="@{'/devices/delete'}">Remove Device</a>
-        </div>
         <p></p>
 
         <input type="hidden" th:value="${room.id}" name="roomId" />

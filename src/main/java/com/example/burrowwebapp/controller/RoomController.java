@@ -38,28 +38,6 @@ public class RoomController {
         return "rooms/index";
     }
 
-    @GetMapping("add")
-    public String displayAddRoomForm(Model model) {
-        model.addAttribute(new Room());
-        model.addAttribute("rooms", roomRepository.findAll());
-        model.addAttribute("properties", propertyRepository.findAll());
-        model.addAttribute("devices", deviceRepository.findAll());
-        return "rooms/add";
-    }
-
-    @PostMapping("add")
-    public String processAddRoomForm(@Valid @ModelAttribute Room newRoom,
-                                     Errors errors, Model model, @RequestParam int propertyId) {
-        if (errors.hasErrors()) {
-            model.addAttribute("properties", propertyRepository.findAll());
-            return "rooms/add";
-        }
-        Property property = propertyRepository.findById(propertyId).get();
-        newRoom.setProperty(property);
-        roomRepository.save(newRoom);
-        return "redirect:";
-    }
-
     @GetMapping("view/{roomId}")
     public String displayViewRoom(Model model, @PathVariable int roomId) {
 
