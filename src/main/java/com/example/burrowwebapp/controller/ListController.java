@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "list")
+@RequestMapping(value = "view")
 public class ListController {
 
     @Autowired
@@ -44,7 +44,10 @@ public class ListController {
         List<Property> properties = (List<Property>) propertyRepository.findAll();
         model.addAttribute("property", properties);
 
-        return "list";
+        List<Device> devices = (List<Device>) deviceRepository.findAll();
+        model.addAttribute("devices", devices);
+
+        return "view";
     }
 
     @RequestMapping(value = "devices")
@@ -59,6 +62,6 @@ public class ListController {
         }
         model.addAttribute("devices", devices);
 
-        return "list-devices";
+        return "view-devices";
     }
 }

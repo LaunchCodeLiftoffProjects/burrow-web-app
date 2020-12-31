@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
 
-<body class="container  body-content">
-<h1 th:text="${'Device: ' + device.name}">Default Title</h1>
-
-<nav th:replace="fragments :: page-header"></nav>
+<h1 th:text="${'View All'}">Default Title</h1>
 
 <div>
     <table class="devices-listing">
@@ -13,7 +12,7 @@
             <td>
                 <p th:text="${'Device Name: ' + device.name}"></p>
                 <p><a th:href="@{'/rooms/view/' + ${device.room.id}}" th:text="${'Room: ' + device.room.name}"></a></p>
-                <p><a th:href="@{'/property/view/' + ${device.property.id}}"  th:text="${'Property: ' + device.property.room.name}"></a></p>
+                <p><a th:href="@{'/property/view/' + ${device.room.property.id}}"  th:text="${'Property: ' + device.room.property.name}"></a></p>
                 <p>
                     Components:
                 <ul th:each="component : ${device.components}">
