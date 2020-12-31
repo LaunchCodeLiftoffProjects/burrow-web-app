@@ -4,7 +4,10 @@
 <body class="container">
 <header th:replace="fragments :: header"></header>
 <div class="container">
-    <p></p>
+    <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
+    <span>> <a th:href="@{/properties}" th:text="${'Properties'}"></a></span>
+    <span>> <a th:href="@{/rooms}" th:text="${'Rooms'}"></a></span>
+    <span>> Devices</span>
 </div>
 <h2>Devices</h2>
 <p th:unless="${devices} and ${devices.size()}">No devices!</p>

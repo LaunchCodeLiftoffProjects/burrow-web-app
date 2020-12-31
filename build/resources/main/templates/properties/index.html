@@ -4,7 +4,8 @@
 <body class="container">
 <header th:replace="fragments :: header"></header>
 <div class="container">
-    <p></p>
+    <span><a th:href="@{/}" th:text="${'Home'}"></a></span>
+    <span>> Properties</span>
 </div>
 <h2>Properties</h2>
 <p th:unless="${properties} and ${properties.size()}">No properties!</p>
