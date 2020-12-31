@@ -68,8 +68,13 @@ public class PropertyController {
     }
 
     @PostMapping("edit")
-    public String processEditForm(int propertyId, String name, String location, String description) {
-        Property property = propertyRepository.findById(propertyId).get();
+    public String processEditForm(int propertyId, String name, String location, String description,
+                                  @Valid @ModelAttribute Property editProperty, Errors errors) {
+
+        if (errors.hasErrors()) {
+            return "properties/edit";
+        }
+        Property property = editProperty;
         property.setName(name);
         property.setLocation(location);
         property.setDescription(description);
