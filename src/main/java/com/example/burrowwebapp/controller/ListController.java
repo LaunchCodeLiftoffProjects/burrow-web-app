@@ -41,18 +41,18 @@ public class ListController {
         List<Room> rooms = (List<Room>) roomRepository.findAll();
         model.addAttribute("rooms", rooms);
 
-        List<Property> skills = (List<Property>) propertyRepository.findAll();
-        model.addAttribute("skills", skills);
+        List<Property> properties = (List<Property>) propertyRepository.findAll();
+        model.addAttribute("property", properties);
 
         return "list";
     }
 
-    @RequestMapping(value = "jobs")
+    @RequestMapping(value = "devices")
     public String listDevicesByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
         Iterable<Device> devices;
         if (column.toLowerCase().equals("all")) {
             devices = deviceRepository.findAll();
-            model.addAttribute("title", "All Jobs");
+            model.addAttribute("title", "All Devices");
         } else {
             devices = HomeData.findByColumnAndValue(column, value, deviceRepository.findAll());
             model.addAttribute("title", "Devices with " + columnChoices.get(column) + ": " + value);
