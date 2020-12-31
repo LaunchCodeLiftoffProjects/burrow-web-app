@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container  body-content">
+<h1 th:text="${'Device: ' + device.name}">Default Title</h1>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<div>
+    <table class="devices-listing">
+        <tr th:each="device : ${devices}">
+            <td>
+                <p th:text="${'Device Name: ' + device.name}"></p>
+                <p><a th:href="@{'/rooms/view/' + ${device.room.id}}" th:text="${'Room: ' + device.room.name}"></a></p>
+                <p><a th:href="@{'/property/view/' + ${device.property.id}}"  th:text="${'Property: ' + device.property.room.name}"></a></p>
+                <p>
+                    Components:
+                <ul th:each="component : ${device.components}">
+                    <li>
+                        <a th:href="@{'/components/view/' + ${component.id}}" th:text="${component.name}"></a>
+                    </li>
+                </ul>
+                </p>
+
+            </td>
+        </tr>
+    </table>
+</div>
+<a th:href="@{'/search'}" class="btn btn-primary">Search Devices</a>
+</body>
+</html>
