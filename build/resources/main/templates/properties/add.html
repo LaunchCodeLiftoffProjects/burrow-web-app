@@ -3,6 +3,11 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
+<div class="container">
+    <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
+    <span>> <a th:href="@{/properties}" th:text="${'Properties'}"></a></span>
+    <span th:text="${'> Adding Property'}"></span>
+</div>
 <h2>Add Property</h2>
 
 <form method="post" style="max-width:600px;">
