@@ -50,4 +50,8 @@ public class Device extends AbstractEntity {
         return components;
     }
 
+    @Override
+    public Property getProperty() {
+        return null;
+    }
 }

@@ -4,6 +4,7 @@ package com.example.burrowwebapp.controller;
 import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.PropertyRepository;
 import com.example.burrowwebapp.data.RoomRepository;
+import com.example.burrowwebapp.models.AbstractEntity;
 import com.example.burrowwebapp.models.Property;
 import com.example.burrowwebapp.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("rooms")
-public class RoomController {
+public class RoomController extends AbstractEntity {
 
     @Autowired
     private RoomRepository roomRepository;
@@ -82,5 +83,10 @@ public class RoomController {
         redirectAttributes.addAttribute("id", optProperty.get());
         roomRepository.deleteById(roomId);
         return "redirect:/properties/view/{id}";
+    }
+
+    @Override
+    public Property getProperty() {
+        return null;
     }
 }
