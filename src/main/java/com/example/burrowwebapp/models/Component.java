@@ -9,16 +9,16 @@ import javax.validation.constraints.Size;
 @Entity
 public class Component extends AbstractEntity {
 
-    @Size(max = 250, message = "Description too long!")
+    @Size(max = 250, message = "Description must be less than 250 characters")
     private String description;
 
     @ManyToOne
     private Device device;
 
-    @Min(value=1)
+    @Min(value=1, message = "Quantity must be greater than or equal to 1")
     private int quantity;
 
-    public Component(@NotBlank String name, @Size(max = 250, message = "Description too long!") String description,
+    public Component(@NotBlank String name, @Size(max = 250, message = "Description must be less than 250 characters") String description,
                      Device device, @Min(value=1) int quantity) {
         this.setName(name);
         this.description = description;
