@@ -3,6 +3,11 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
+<div class="container">
+    <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
+    <span>> <a th:href="@{/properties}" th:text="${'Properties'}"></a></span>
+    <span th:text="${'> ' + property.name + ' Edit'}"></span>
+</div>
 <h2>Edit Property</h2>
 
 <th:block th:unless="${property}">
