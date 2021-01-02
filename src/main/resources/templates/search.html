@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
+
+<div class="container body-content">
+
+    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+
+    <form th:action="@{/search/results}" method = "post">
+        <h2>Search by:</h2>
+
+        <p>
+            <span th:each="column : ${columns}">
+                <input
+                        type="radio"
+                        name="searchType"
+                        th:id="${column.key}"
+                        th:value="${column.key}"
+                        th:checked="${column.key == 'all'}"/>
+                <label th:for="${column.key}" th:text="${column.value}"></label>
+            </span>
+
+        </p>
+
+        <p>
+            <label for="searchTerm">Keyword:</label>
+            <input type="text" name="searchTerm" id="searchTerm" />
+        </p>
+
+        <input type="submit"  class="btn btn-primary" value="Search" />
+    </form>
+
+    <hr />
+
+    <table class="devices-listing">
+        <tr th:each="device : ${devices}">
+            <td>
+                <p th:text="${'Device Name: ' + device.name}"></p>
+                <p><a th:href="@{'/rooms/view/' + ${device.room.id}}" th:text="${'Room: ' + device.room.name}"></a></p>
+                <p><a th:href="@{'/property/view/' + ${device.room.property.id}}"  th:text="${'Property: ' + device.room.property.name}"></a></p>
+                <p>
+                    Components:
+                    <ul th:each="component : ${device.components}">
+                      <li>
+                          <a th:href="@{'/components/view/' + ${component.id}}" th:text="${component.name}"></a>
+                      </li>
+                    </ul>
+                </p>
+
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

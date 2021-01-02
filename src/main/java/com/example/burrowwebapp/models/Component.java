@@ -53,4 +53,9 @@ public class Component extends AbstractEntity {
     {
         this.quantity = quantity;
     }
+
+    @Override
+    public Property getProperty() {
+        return null;
+    }
 }
