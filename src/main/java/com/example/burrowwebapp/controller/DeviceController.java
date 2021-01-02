@@ -3,9 +3,7 @@ import com.example.burrowwebapp.data.ComponentRepository;
 import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.RoomRepository;
 import com.example.burrowwebapp.data.PropertyRepository;
-import com.example.burrowwebapp.models.Component;
-import com.example.burrowwebapp.models.Device;
-import com.example.burrowwebapp.models.Room;
+import com.example.burrowwebapp.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +15,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 @Controller
 @RequestMapping("devices")
-public class DeviceController {
+public class DeviceController extends AbstractEntity {
 
     @Autowired
     private DeviceRepository deviceRepository;
@@ -113,5 +111,10 @@ public class DeviceController {
         redirectAttributes.addAttribute("id", optRoom.get());
         deviceRepository.deleteById(deviceId);
         return "redirect:/rooms/view/{id}";
+    }
+
+    @Override
+    public Property getProperty() {
+        return null;
     }
 }
