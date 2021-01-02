@@ -7,6 +7,7 @@
     <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
     <span>> <a th:href="@{/properties}" th:text="${'Properties'}"></a></span>
     <span>> <a th:href="@{/properties/view/{id}(id=${room.property.id})}" th:text="${room.property.name}"></a></span>
+    <span>> <a th:href="@{/rooms/view/{id}(id=${room.id})}" th:text="${room.name}"></a></span>
     <span th:text="${'> ' + room.name + ' Edit'}"></span>
 </div>
 <h2>Edit Room</h2>
