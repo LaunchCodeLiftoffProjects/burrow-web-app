@@ -9,6 +9,7 @@
     <span>> <a th:href="@{/properties/view/{id}(id=${component.device.room.property.id})}" th:text="${component.device.room.property.name}"></a></span>
     <span>> <a th:href="@{/rooms/view/{id}(id=${component.device.room.id})}" th:text="${component.device.room.name}"></a></span>
     <span>> <a th:href="@{/devices/view/{id}(id=${component.device.id})}" th:text="${component.device.name}"></a></span>
+    <span>> <a th:href="@{/components/view/{id}(id=${component.id})}" th:text="${component.name}"></a></span>
     <span th:text="${'> ' + component.name + ' Edit'}"></span>
 </div>
 <h2>Edit Component</h2>
