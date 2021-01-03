@@ -2,6 +2,11 @@
     color: red;
 }
 
+.breadcrumbs {
+    background: #e6e6e6;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
 table {
   width: 100%;
 }
