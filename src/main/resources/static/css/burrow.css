@@ -4,4 +4,9 @@
 
 table {
   width: 100%;
+  border: 1px solid black;
+}
+
+tr {
+    border: 1px solid black;
 }
