@@ -18,12 +18,11 @@ public class Component extends AbstractEntity {
     @Min(value=1, message = "Quantity must be greater than or equal to 1")
     private int quantity;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "install_date")
-    private Date installDate;
+    private String installDate;
 
     public Component(@NotBlank String name, @Size(max = 250, message = "Description must be less than 250 characters") String description,
-                     Device device, @Min(value=1) int quantity, Date installDate) {
+                     Device device, @Min(value=1) int quantity, String installDate) {
         this.setName(name);
         this.description = description;
         this.device = device;
@@ -59,11 +58,11 @@ public class Component extends AbstractEntity {
         this.quantity = quantity;
     }
 
-    public Date getInstallDate() {
+    public String getInstallDate() {
         return installDate;
     }
 
-    public void setInstallDate(Date installDate) {
+    public void setInstallDate(String installDate) {
         this.installDate = installDate;
     }
 
