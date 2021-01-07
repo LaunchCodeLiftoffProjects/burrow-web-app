@@ -73,8 +73,6 @@ public class PropertyController {
                                   int propertyId, String name, String location, String description) {
 
         if (errors.hasErrors()) {
-
-
             model.addAttribute("property", editProperty);
             model.addAttribute("propertyId", propertyId);
             return "properties/edit";

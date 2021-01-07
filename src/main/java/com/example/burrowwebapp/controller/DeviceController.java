@@ -91,7 +91,17 @@ public class DeviceController {
         return "devices/edit";
     }
     @PostMapping("edit")
-    public String processEditDeviceForm(int deviceId, String name, @RequestParam int roomId, String description) {
+    public String processEditDeviceForm(@Valid @ModelAttribute Device editDevice, Errors errors, int deviceId,
+                                        String name, @RequestParam int roomId, String description, Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("device", editDevice);
+            model.addAttribute("deviceId", deviceId);
+            model.addAttribute("rooms", roomRepository.findAll());
+            model.addAttribute("properties", propertyRepository.findAll());
+            return "devices/edit";
+        }
+
         Device device = deviceRepository.findById(deviceId).get();
         device.setName(name);
         Room room = roomRepository.findById(roomId).get();

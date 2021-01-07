@@ -55,6 +55,7 @@ public class RoomController {
     public String displayEditForm(Model model, @PathVariable int roomId) {
         Room room = roomRepository.findById(roomId).get();
         model.addAttribute("room", room);
+        model.addAttribute("roomId", roomId);
         model.addAttribute("properties", propertyRepository.findAll());
         return "rooms/edit";
     }
@@ -65,6 +66,7 @@ public class RoomController {
 
         if (errors.hasErrors()) {
             model.addAttribute("room", editRoom);
+            model.addAttribute("roomId", roomId);
             model.addAttribute("properties", propertyRepository.findAll());
             return "rooms/edit";
         }
