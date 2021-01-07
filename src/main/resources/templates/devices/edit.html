@@ -14,6 +14,7 @@
             <label>Name
                 <input type="text" name="name" class="form-control" th:value="${device.name}">
             </label>
+            <span th:errors="${device.name}" class="error"></span>
         </div>
         <div class="form-group">
             <label th:for="room">Room</label>
@@ -21,7 +22,7 @@
                     <option th:each="room : ${rooms}"
                             th:value = "${room.id}"
                             th:text="${room.name}"
-                            th:selected="${room.name == device.room.name}">
+                            th:selected="${room.name == deviceRoom.room.name}">
                     </option>
                 </select>
         </div>
@@ -29,6 +30,7 @@
             <label>Description
                 <input type="text" name="description" class="form-control" th:value="${device.description}">
             </label>
+            <span th:errors="${device.description}" class="error"></span>
         </div>
         <input type="hidden" th:value="${deviceId}" name="deviceId" />
         <div class="form-group">
