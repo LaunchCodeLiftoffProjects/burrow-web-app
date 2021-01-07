@@ -26,11 +26,15 @@ function deleteComponent() {
     }
 }
 
-$(function () {
-    $("#installDate").datepicker({
-        shoeButtonPanel: true,
-        showOn: "button",
-        buttonImage: "/images/calendar.png",
-        buttonImageOnly: true
-    });
-});
+$(document).ready(function(){
+    let date_input=$('input[name="installDate"]');
+    let container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+    let options={
+        format: 'mm/dd/yyyy',
+        orientation: "bottom right",
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    };
+    date_input.datepicker(options);
+})
