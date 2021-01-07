@@ -51,6 +51,11 @@
             <span th:errors="${component.description}" class="error"></span>
         </div>
 
+        <div class="form-group">
+            <label th:for="installDate">Install Date</label>
+            <input class="form-control" th:field="${component.installDate}" type="text" id="installDate" name="installDate" placeholder="MM-DD-YYYY"/>
+        </div>
+
         <input type="hidden" th:value="${component.id}" name="componentId" />
         <div class="form-group">
             <input type="submit" value="Update Component" class="btn btn-success">

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -101,11 +102,12 @@ public class ComponentController
     }
 
     @PostMapping("edit")
-    public String processEditComponentForm(int componentId, String name, @RequestParam int deviceId, String description, int quantity) {
+    public String processEditComponentForm(int componentId, String name, @RequestParam int deviceId, String description, int quantity, Date installDate) {
         Component component = componentRepository.findById(componentId).get();
         component.setName(name);
         component.setDescription(description);
         component.setQuantity(quantity);
+        component.setInstallDate(installDate);
         Device device = deviceRepository.findById(deviceId).get();
         component.setDevice(device);
         componentRepository.save(component);
