@@ -30,8 +30,7 @@ $(function () {
     $("#installDate").datepicker({
         shoeButtonPanel: true,
         showOn: "button",
-        buttonImage: "Images/calendar.png",
+        buttonImage: "/images/calendar.png",
         buttonImageOnly: true,
-        buttonText: "Select date"
     });
 });
