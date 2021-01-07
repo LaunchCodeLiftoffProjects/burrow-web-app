@@ -60,7 +60,14 @@ public class RoomController {
     }
 
     @PostMapping("edit")
-    public String processEditForm(int roomId, String name, @RequestParam int propertyId) {
+    public String processEditForm(int roomId, String name, @RequestParam int propertyId, Model model,
+                                  @Valid @ModelAttribute Room editRoom, Errors errors) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("room", editRoom);
+            model.addAttribute("properties", propertyRepository.findAll());
+            return "rooms/edit";
+        }
         Room room = roomRepository.findById(roomId).get();
         Property property = propertyRepository.findById(propertyId).get();
         room.setName(name);

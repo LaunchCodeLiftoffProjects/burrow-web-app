@@ -14,6 +14,7 @@
             <label>Name
                 <input type="text" name="name" class="form-control" th:value="${room.name}">
             </label>
+            <span th:errors="${room.name}" class="error"></span>
         </div>
 
         <div class="form-group">

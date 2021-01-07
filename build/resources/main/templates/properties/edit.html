@@ -14,20 +14,24 @@
             <label>Name
                 <input type="text" name="name" class="form-control" th:value="${property.name}">
             </label>
+            <span th:errors="${property.name}" class="error"></span>
         </div>
         <div class="form-group">
             <label>Location
                 <input type="text" name="location" class="form-control" th:value="${property.location}">
             </label>
+            <span th:errors="${property.location}" class="error"></span>
         </div>
         <div class="form-group">
             <label>Description
                 <input type="text" name="description" class="form-control" th:value="${property.description}">
             </label>
+            <span th:errors="${property.description}" class="error"></span>
         </div>
-        <input type="hidden" th:value="${property.id}" name="propertyId" />
+        <input type="hidden" th:value="${propertyId}" name="propertyId" />
         <div class="form-group">
             <input type="submit" value="Edit Property" class="btn btn-success">
+
         </div>
     </form>
 </th:block>
