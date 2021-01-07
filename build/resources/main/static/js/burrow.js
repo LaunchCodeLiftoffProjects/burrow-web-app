@@ -25,3 +25,13 @@ function deleteComponent() {
         document.getElementById("delete-component").submit();
     }
 }
+
+$(function () {
+    $("#installDate").datepicker({
+        shoeButtonPanel: true,
+        showOn: "button",
+        buttonImage: "Images/calendar.png",
+        buttonImageOnly: true,
+        buttonText: "Select date"
+    });
+});

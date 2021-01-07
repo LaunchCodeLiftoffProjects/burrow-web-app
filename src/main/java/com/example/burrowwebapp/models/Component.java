@@ -1,9 +1,12 @@
 package com.example.burrowwebapp.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 public class Component extends AbstractEntity {
@@ -17,11 +20,12 @@ public class Component extends AbstractEntity {
     @Min(value=1, message = "Quantity must be greater than or equal to 1")
     private int quantity;
 
-    @Column(name = "install_date")
-    private String installDate;
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
+    @Temporal(TemporalType.DATE)
+    private Date installDate;
 
     public Component(@NotBlank String name, @Size(max = 250, message = "Description must be less than 250 characters") String description,
-                     Device device, @Min(value=1) int quantity, String installDate) {
+                     Device device, @Min(value=1) int quantity, Date installDate) {
         this.setName(name);
         this.description = description;
         this.device = device;
@@ -57,11 +61,11 @@ public class Component extends AbstractEntity {
         this.quantity = quantity;
     }
 
-    public String getInstallDate() {
+    public Date getInstallDate() {
         return installDate;
     }
 
-    public void setInstallDate(String installDate) {
+    public void setInstallDate(Date installDate) {
         this.installDate = installDate;
     }
 
