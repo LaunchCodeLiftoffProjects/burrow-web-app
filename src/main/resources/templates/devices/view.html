@@ -3,6 +3,13 @@
 <head th:replace="fragments :: head"></head>
 <body class="container body-content">
 <header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
+    <span>> <a th:href="@{/properties}" th:text="${'Properties'}"></a></span>
+    <span>> <a th:href="@{/properties/view/{id}(id=${device.room.property.id})}" th:text="${device.room.property.name}"></a></span>
+    <span>> <a th:href="@{/rooms/view/{id}(id=${device.room.id})}" th:text="${device.room.name}"></a></span>
+    <span th:text="${'> ' + device.name}"></span>
+</div>
 <h2 th:text="${'Device: ' + device.name}">Default Title</h2>
 
 <div>

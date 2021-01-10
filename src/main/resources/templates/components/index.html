@@ -3,6 +3,10 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
+    <span>> Components</span>
+</div>
 <h2>Components</h2>
 <p th:unless="${components} and ${components.size()}">No Components!</p>
 

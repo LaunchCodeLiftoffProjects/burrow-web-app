@@ -2,6 +2,7 @@ package com.example.burrowwebapp.controller;
 
 import com.example.burrowwebapp.data.PropertyRepository;
 import com.example.burrowwebapp.data.RoomRepository;
+import com.example.burrowwebapp.models.AbstractEntity;
 import com.example.burrowwebapp.models.Property;
 import com.example.burrowwebapp.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("properties")
-public class PropertyController {
+public class PropertyController extends AbstractEntity {
 
     @Autowired
     private PropertyRepository propertyRepository;
@@ -136,4 +137,8 @@ public class PropertyController {
 
     }
 
+    @Override
+    public Property getProperty() {
+        return null;
+    }
 }
