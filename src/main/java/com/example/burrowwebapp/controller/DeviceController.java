@@ -84,7 +84,7 @@ public class DeviceController extends AbstractEntity {
     public String displayEditDeviceForm(Model model, @PathVariable int deviceId) {
         Device device = deviceRepository.findById(deviceId).get();
         model.addAttribute("device", device);
-        model.addAttribute("deviceRoom", device);
+        model.addAttribute("uneditedDevice", device);
         model.addAttribute("rooms", roomRepository.findAll());
         model.addAttribute("properties", propertyRepository.findAll());
         return "devices/edit";
@@ -95,7 +95,7 @@ public class DeviceController extends AbstractEntity {
 
         if (errors.hasErrors()) {
             model.addAttribute("device", editDevice);
-            model.addAttribute("deviceRoom", deviceRepository.findById(deviceId).get());
+            model.addAttribute("uneditedDevice", deviceRepository.findById(deviceId).get());
             model.addAttribute("deviceId", deviceId);
             model.addAttribute("rooms", roomRepository.findAll());
             model.addAttribute("properties", propertyRepository.findAll());

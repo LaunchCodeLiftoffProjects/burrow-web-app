@@ -6,8 +6,8 @@
 <div class="container breadcrumbs">
     <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
     <span>> <a th:href="@{/properties}" th:text="${'Properties'}"></a></span>
-    <span>> <a th:href="@{/properties/view/{id}(id=${room.property.id})}" th:text="${room.property.name}"></a></span>
-    <span>> <a th:href="@{/rooms/view/{id}(id=${room.id})}" th:text="${room.name}"></a></span>
+    <span>> <a th:href="@{/properties/view/{id}(id=${uneditedRoom.property.id})}" th:text="${uneditedRoom.property.name}"></a></span>
+    <span>> <a th:href="@{/rooms/view/{id}(id=${uneditedRoom.id})}" th:text="${uneditedRoom.name}"></a></span>
     <span th:text="${'> ' + room.name + ' Edit'}"></span>
 </div>
 <h2>Edit Room</h2>
@@ -30,7 +30,7 @@
                 <option th:each="property : ${properties}"
                         th:text="${property.name}"
                         th:value="${property.id}"
-                        th:selected="${property.name == room.property.name}">
+                        th:selected="${property.name == uneditedRoom.property.name}">
                 </option>
             </select>
         </div>

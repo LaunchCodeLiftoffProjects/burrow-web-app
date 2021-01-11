@@ -95,7 +95,7 @@ public class ComponentController
     public String displayEditComponentForm(Model model, @PathVariable int componentId) {
         Component component = componentRepository.findById(componentId).get();
         model.addAttribute("component", component);
-        model.addAttribute("selectedComponent", component);
+        model.addAttribute("uneditedComponent", component);
         model.addAttribute("devices", deviceRepository.findAll());
         model.addAttribute("names", nameList);
         return "components/edit";
@@ -108,7 +108,7 @@ public class ComponentController
 
         if(errors.hasErrors()){
             model.addAttribute("component", editComponent);
-            model.addAttribute("selectedComponent", componentRepository.findById(componentId).get());
+            model.addAttribute("uneditedComponent", componentRepository.findById(componentId).get());
             model.addAttribute("componentId", componentId);
             model.addAttribute("devices", deviceRepository.findAll());
             model.addAttribute("names", nameList);
