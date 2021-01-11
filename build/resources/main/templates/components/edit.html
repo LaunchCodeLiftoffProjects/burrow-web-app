@@ -35,7 +35,8 @@
             <select name="name">
                 <option th:each="name : ${names}"
                         th:value = "${name}"
-                        th:text="${name}">
+                        th:text="${name}"
+                        th:selected="${name == uneditedComponent.name}">
                 </option>
             </select>
         </div>
