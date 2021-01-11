@@ -7,6 +7,7 @@ import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.Property;
 import com.example.burrowwebapp.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -103,9 +104,8 @@ public class ComponentController
     }
 
     @PostMapping("edit")
-    public String processEditComponentForm(int componentId, String name, @RequestParam int deviceId, String description, int quantity, Date installDate) {
     public String processEditComponentForm(@Valid @ModelAttribute Component editComponent, Errors errors, int componentId,
-                                           String name, @RequestParam int deviceId, String description, int quantity,
+                                           String name, @DateTimeFormat(pattern = "MM/dd/yyyy") Date installDate, @RequestParam int deviceId, String description, int quantity,
                                            Model model) {
 
         if(errors.hasErrors()){

@@ -54,11 +54,10 @@
 
         <div class="form-group">
             <label th:for="installDate">Install Date</label>
-            <input class="form-control" th:field="${component.installDate}" type="text" id="installDate" name="installDate" placeholder="MM-DD-YYYY"/>
+            <input class="form-control" th:field="${component.installDate}" th:value="${component.installDate}" type="text" id="installDate" name="installDate" placeholder="MM/DD/YYYY"/>
             <span th:errors="${component.installDate}" class="error"></span>
         </div>
 
-        <input type="hidden" th:value="${component.id}" name="componentId" />
         <input type="hidden" th:value="${componentId}" name="componentId" />
         <div class="form-group">
             <input type="submit" value="Update Component" class="btn btn-success">
