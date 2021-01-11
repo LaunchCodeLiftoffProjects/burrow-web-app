@@ -84,12 +84,24 @@ public class DeviceController extends AbstractEntity {
     public String displayEditDeviceForm(Model model, @PathVariable int deviceId) {
         Device device = deviceRepository.findById(deviceId).get();
         model.addAttribute("device", device);
+        model.addAttribute("uneditedDevice", device);
         model.addAttribute("rooms", roomRepository.findAll());
         model.addAttribute("properties", propertyRepository.findAll());
         return "devices/edit";
     }
     @PostMapping("edit")
-    public String processEditDeviceForm(int deviceId, String name, @RequestParam int roomId, String description) {
+    public String processEditDeviceForm(@Valid @ModelAttribute Device editDevice, Errors errors, int deviceId,
+                                        String name, @RequestParam int roomId, String description, Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("device", editDevice);
+            model.addAttribute("uneditedDevice", deviceRepository.findById(deviceId).get());
+            model.addAttribute("deviceId", deviceId);
+            model.addAttribute("rooms", roomRepository.findAll());
+            model.addAttribute("properties", propertyRepository.findAll());
+            return "devices/edit";
+        }
+
         Device device = deviceRepository.findById(deviceId).get();
         device.setName(name);
         Room room = roomRepository.findById(roomId).get();
