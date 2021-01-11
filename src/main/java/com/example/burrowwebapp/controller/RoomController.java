@@ -56,12 +56,23 @@ public class RoomController extends AbstractEntity {
     public String displayEditForm(Model model, @PathVariable int roomId) {
         Room room = roomRepository.findById(roomId).get();
         model.addAttribute("room", room);
+        model.addAttribute("uneditedRoom", room);
+        model.addAttribute("roomId", roomId);
         model.addAttribute("properties", propertyRepository.findAll());
         return "rooms/edit";
     }
 
     @PostMapping("edit")
-    public String processEditForm(int roomId, String name, @RequestParam int propertyId) {
+    public String processEditForm(@Valid @ModelAttribute Room editRoom, Errors errors, int roomId, String name,
+                                  @RequestParam int propertyId, Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("uneditedRoom", roomRepository.findById(roomId).get());
+            model.addAttribute("room", editRoom);
+            model.addAttribute("roomId", roomId);
+            model.addAttribute("properties", propertyRepository.findAll());
+            return "rooms/edit";
+        }
         Room room = roomRepository.findById(roomId).get();
         Property property = propertyRepository.findById(propertyId).get();
         room.setName(name);

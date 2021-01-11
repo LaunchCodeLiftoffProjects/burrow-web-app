@@ -96,6 +96,7 @@ public class ComponentController
     public String displayEditComponentForm(Model model, @PathVariable int componentId) {
         Component component = componentRepository.findById(componentId).get();
         model.addAttribute("component", component);
+        model.addAttribute("uneditedComponent", component);
         model.addAttribute("devices", deviceRepository.findAll());
         model.addAttribute("names", nameList);
         return "components/edit";
@@ -103,6 +104,19 @@ public class ComponentController
 
     @PostMapping("edit")
     public String processEditComponentForm(int componentId, String name, @RequestParam int deviceId, String description, int quantity, Date installDate) {
+    public String processEditComponentForm(@Valid @ModelAttribute Component editComponent, Errors errors, int componentId,
+                                           String name, @RequestParam int deviceId, String description, int quantity,
+                                           Model model) {
+
+        if(errors.hasErrors()){
+            model.addAttribute("component", editComponent);
+            model.addAttribute("uneditedComponent", componentRepository.findById(componentId).get());
+            model.addAttribute("componentId", componentId);
+            model.addAttribute("devices", deviceRepository.findAll());
+            model.addAttribute("names", nameList);
+            return "components/edit";
+        }
+
         Component component = componentRepository.findById(componentId).get();
         component.setName(name);
         component.setDescription(description);
