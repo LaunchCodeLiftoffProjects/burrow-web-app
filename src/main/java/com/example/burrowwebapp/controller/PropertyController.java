@@ -65,6 +65,7 @@ public class PropertyController extends AbstractEntity {
     public String displayEditForm(Model model, @PathVariable int propertyId) {
         Property property = propertyRepository.findById(propertyId).get();
         model.addAttribute("property", property);
+        model.addAttribute("uneditedProperty", property);
         model.addAttribute("propertyId", propertyId);
         return "properties/edit";
     }
@@ -75,6 +76,7 @@ public class PropertyController extends AbstractEntity {
 
         if (errors.hasErrors()) {
             model.addAttribute("property", editProperty);
+            model.addAttribute("uneditedProperty", propertyRepository.findById(propertyId).get());
             model.addAttribute("propertyId", propertyId);
             return "properties/edit";
         }
