@@ -7,6 +7,7 @@ import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.Property;
 import com.example.burrowwebapp.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -103,7 +105,7 @@ public class ComponentController
 
     @PostMapping("edit")
     public String processEditComponentForm(@Valid @ModelAttribute Component editComponent, Errors errors, int componentId,
-                                           String name, @RequestParam int deviceId, String description, int quantity,
+                                           String name, @DateTimeFormat(pattern = "MM/dd/yyyy") Date installDate, @RequestParam int deviceId, String description, int quantity,
                                            Model model) {
 
         if(errors.hasErrors()){
@@ -119,6 +121,7 @@ public class ComponentController
         component.setName(name);
         component.setDescription(description);
         component.setQuantity(quantity);
+        component.setInstallDate(installDate);
         Device device = deviceRepository.findById(deviceId).get();
         component.setDevice(device);
         componentRepository.save(component);

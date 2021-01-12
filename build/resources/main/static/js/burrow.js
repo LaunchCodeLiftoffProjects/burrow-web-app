@@ -25,3 +25,9 @@ function deleteComponent() {
         document.getElementById("delete-component").submit();
     }
 }
+
+
+$(function() {
+    $( "#installDate" ).datepicker({
+    });
+ });
