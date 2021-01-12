@@ -43,7 +43,7 @@
             <td>
                 <p th:text="${'Device Name: ' + device.name}"></p>
                 <p><a th:href="@{'/rooms/view/' + ${device.room.id}}" th:text="${'Room: ' + device.room.name}"></a></p>
-                <p><a th:href="@{'/property/view/' + ${device.room.property.id}}"  th:text="${'Property: ' + device.room.property.name}"></a></p>
+                <p><a th:href="@{'/properties/view/' + ${device.room.property.id}}"  th:text="${'Property: ' + device.room.property.name}"></a></p>
                 <p>
                     Components:
                     <ul th:each="component : ${device.components}">
