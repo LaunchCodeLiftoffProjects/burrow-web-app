@@ -105,7 +105,7 @@ public class ComponentController
 
     @PostMapping("edit")
     public String processEditComponentForm(@Valid @ModelAttribute Component editComponent, Errors errors, int componentId,
-                                           String name, @DateTimeFormat(pattern = "MM/dd/yyyy") Date installDate, @RequestParam int deviceId, String description, int quantity,
+                                           String name, @DateTimeFormat(pattern = "MM/dd/yyyy") Date installDate, @RequestParam int deviceId, String description, Integer quantity,
                                            Model model) {
 
         if(errors.hasErrors()){
