@@ -5,6 +5,7 @@ import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.PropertyRepository;
 import com.example.burrowwebapp.data.RoomRepository;
 import com.example.burrowwebapp.models.AbstractEntity;
+import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.Property;
 import com.example.burrowwebapp.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,17 +40,21 @@ public class RoomController extends AbstractEntity {
         return "rooms/index";
     }
 
-    @GetMapping("view/{roomId}")
-    public String displayViewRoom(Model model, @PathVariable int roomId) {
-
-        Optional optRoom = roomRepository.findById(roomId);
-        if (optRoom.isPresent()) {
-            Room room = (Room) optRoom.get();
-            model.addAttribute("room", room);
-            return "rooms/view";
+    @GetMapping(path = {"view/{roomId}", "view"})
+    public String displayViewRoom(Model model, @PathVariable (required = false) Integer roomId) {
+        if (roomId == null){
+            model.addAttribute("rooms", roomRepository.findAll());
+            return "rooms/index";
         } else {
-            return "redirect:../";
+            Optional<Room> result = roomRepository.findById(roomId);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Room room = result.get();
+                model.addAttribute("room", room);
+            }
         }
+        return "rooms/view";
     }
 
     @GetMapping("edit/{roomId}")
@@ -79,13 +84,6 @@ public class RoomController extends AbstractEntity {
         room.setProperty(property);
         roomRepository.save(room);
         return "redirect:view/" + roomId;
-    }
-
-    @GetMapping("view")
-    public String displayDeleteForm(Model model, @PathVariable int roomId) {
-        Room room = roomRepository.findById(roomId).get();
-        model.addAttribute("room", room);
-        return "redirect:";
     }
 
     @PostMapping("view")
