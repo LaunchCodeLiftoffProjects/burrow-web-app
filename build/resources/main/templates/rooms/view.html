@@ -32,14 +32,14 @@
 </div>
 <div>
     <a th:href="@{/devices/add/{id}(id=${room.id})}">
-        <input type="submit" value="Add Device" class="btn btn-info">
+        <input type="submit" value="Add Device" class="btn btn-secondary">
     </a>
 </div>
 <p></p>
 
 <div>
     <a th:href="@{/properties/view/{id}(id=${room.property.id})}">
-        <input type="submit" th:value="${'Back to ' + room.property.name}" class="btn btn-info">
+        <input type="submit" th:value="${'Back to ' + room.property.name}" class="btn btn-dark">
     </a>
 </div>
 

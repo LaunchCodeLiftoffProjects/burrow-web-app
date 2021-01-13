@@ -36,14 +36,14 @@
 
 <div>
     <a th:href="@{/components/add/{id}(id=${device.id})}">
-        <input type="submit" value="Add Components" class="btn btn-info">
+        <input type="submit" value="Add Components" class="btn btn-secondary">
     </a>
 </div>
 <p></p>
 
 <div>
     <a th:href="@{/rooms/view/{id}(id=${device.room.id})}">
-        <input type="submit" th:value="${'Back to ' + device.room.name}" class="btn btn-info">
+        <input type="submit" th:value="${'Back to ' + device.room.name}" class="btn btn-dark">
     </a>
 </div>
 
