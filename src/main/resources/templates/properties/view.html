@@ -35,6 +35,13 @@
         <input type="submit" value="Add Room" class="btn btn-info">
     </a>
 </div>
+<p></p>
+
+<div>
+    <a th:href="@{/}">
+        <input type="submit" th:value="${'Back to Home-Page'}" class="btn btn-dark">
+    </a>
+</div>
 
 <th:block th:if="${property}">
     <form method="post" th:action="@{/properties/view}" id="delete-property">
