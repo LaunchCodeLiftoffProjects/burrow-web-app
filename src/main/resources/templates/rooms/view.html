@@ -31,7 +31,9 @@
     </ul>
 </div>
 <div>
-    <a th:href="@{/devices/add/{id}(id=${room.id})}">Add Device</a>
+    <a th:href="@{/devices/add/{id}(id=${room.id})}">
+        <input type="submit" value="Add Device" class="btn btn-info">
+    </a>
 </div>
 <p></p>
 
