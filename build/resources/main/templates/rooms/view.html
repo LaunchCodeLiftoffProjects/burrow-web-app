@@ -15,6 +15,11 @@
     <p th:text="${'Name: ' + room.name}"></p>
     <p th:text="${'Property: ' + room.property.name}"></p>
 </div>
+<div>
+    <a th:href="@{/rooms/edit/{id}(id=${room.id})}">
+        <input type="submit" value="Edit" class="btn btn-info">
+    </a>
+</div>
 
 <h3 th:text="${'Devices:'}"></h3>
 
@@ -27,17 +32,6 @@
 </div>
 <div>
     <a th:href="@{/devices/add/{id}(id=${room.id})}">Add Device</a>
-</div>
-<p></p>
-
-<div>
-    <a th:href="@{/rooms/edit/{id}(id=${room.id})}">
-        <input type="submit" value="Edit" class="btn btn-info">
-    </a>
-
-    <a th:href="@{/rooms}">
-        <input type="submit" value="Back" class="btn btn-info">
-    </a>
 </div>
 <p></p>
 
