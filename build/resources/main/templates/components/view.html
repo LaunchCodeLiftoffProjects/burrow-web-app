@@ -25,13 +25,12 @@
     <a th:href="@{/components/edit/{id}(id=${component.id})}">
         <input type="submit" value="Edit" class="btn btn-info">
     </a>
+</div>
+<p></p>
 
+<div>
     <a th:href="@{/devices/view/{id}(id=${component.device.id})}">
-        <input type="submit" value="Back" class="btn btn-info">
-    </a>
-
-    <a th:href="@{/devices}">
-        <input type="submit" value="View Devices" class="btn btn-info">
+        <input type="submit" th:value="${'Back to ' + component.device.name}" class="btn btn-info">
     </a>
 </div>
 
