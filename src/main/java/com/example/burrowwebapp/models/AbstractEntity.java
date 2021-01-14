@@ -51,6 +51,4 @@ public abstract class AbstractEntity
     {
         return Objects.hash(id);
     }
-
-    public abstract Property getProperty();
 }
