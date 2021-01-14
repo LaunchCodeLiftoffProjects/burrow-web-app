@@ -61,7 +61,6 @@ public class DeviceController {
         Room room = roomRepository.findById(roomId).get();
         redirectAttributes.addAttribute("id", optRoom.get());
         newDevice.setRoom(room);
-        int deviceId = newDevice.getId();
         deviceRepository.save(newDevice);
         return "redirect:/rooms/view/{id}";
     }

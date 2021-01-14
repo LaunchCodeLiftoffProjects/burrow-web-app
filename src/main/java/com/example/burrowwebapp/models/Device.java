@@ -49,5 +49,4 @@ public class Device extends AbstractEntity {
     public List<Component> getComponents() {
         return components;
     }
-
 }

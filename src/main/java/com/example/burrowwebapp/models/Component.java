@@ -71,5 +71,4 @@ public class Component extends AbstractEntity {
     public void setInstallDate(Date installDate) {
         this.installDate = installDate;
     }
-
 }
