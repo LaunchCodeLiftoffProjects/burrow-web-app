@@ -58,18 +58,4 @@ public class ViewController {
         return "view";
     }
 
-//    @RequestMapping(value = "devices")
-//    public String listDevicesByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
-//        Iterable<Device> devices;
-//        if (column.toLowerCase().equals("all")) {
-//            devices = deviceRepository.findAll();
-//            model.addAttribute("title", "All Devices");
-//        } else {
-//            devices = HomeData.findByColumnAndValue(column, value, deviceRepository.findAll());
-//            model.addAttribute("title", "Devices with " + columnChoices.get(column) + ": " + value);
-//        }
-//        model.addAttribute("devices", devices);
-//
-//        return "view-devices";
-//    }
 }

@@ -114,12 +114,6 @@ public class DeviceController extends AbstractEntity {
         return "redirect:view/" + deviceId;
     }
 
-    @GetMapping("view")
-    public String displayDeleteDeviceForm(Model model, @PathVariable int deviceId) {
-        Device device = deviceRepository.findById(deviceId).get();
-        model.addAttribute("device", device);
-        return "redirect:";
-    }
     @PostMapping("view")
     public String processDeleteDeviceForm(int deviceId, int roomId, RedirectAttributes redirectAttributes) {
         Optional optRoom = roomRepository.findById(roomId);
