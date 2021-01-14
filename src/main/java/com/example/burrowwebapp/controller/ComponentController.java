@@ -131,13 +131,6 @@ public class ComponentController
         return "redirect:view/" + componentId;
     }
 
-    @GetMapping("view")
-    public String displayDeleteComponentForm(Model model, @PathVariable int componentId) {
-        Component component = componentRepository.findById(componentId).get();
-        model.addAttribute("components", component);
-        return "redirect:";
-    }
-
     @PostMapping("view")
     public String processDeleteComponentForm(int componentId, int deviceId, RedirectAttributes redirectAttributes) {
         Optional optDevice = deviceRepository.findById(deviceId);

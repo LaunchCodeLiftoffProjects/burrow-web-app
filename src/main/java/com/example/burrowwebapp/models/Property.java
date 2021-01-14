@@ -60,9 +60,4 @@ public class Property extends AbstractEntity {
     public void addRoom(Room newRoom){
         this.rooms.add(newRoom);
     }
-
-    @Override
-    public Property getProperty() {
-        return null;
-    }
 }
