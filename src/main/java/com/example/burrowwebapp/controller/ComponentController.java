@@ -7,6 +7,7 @@ import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.Property;
 import com.example.burrowwebapp.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -62,16 +64,19 @@ public class ComponentController
 
     @PostMapping("add/{deviceId}")
     public String processAddComponentForm(@Valid @ModelAttribute Component newComponent,
-                                          Errors errors, Model model, @PathVariable int deviceId){
+                                          Errors errors, Model model, @PathVariable int deviceId,
+                                          RedirectAttributes redirectAttributes){
         if (errors.hasErrors()) {
             model.addAttribute("device", deviceRepository.findById(deviceId).get());
             model.addAttribute("names", nameList);
             return "components/add";
         }
+        Optional optDevice = deviceRepository.findById(deviceId);
         Device device = deviceRepository.findById(deviceId).get();
+        redirectAttributes.addAttribute("id", optDevice.get());
         newComponent.setDevice(device);
         componentRepository.save(newComponent);
-        return "redirect:../";
+        return "redirect:/devices/view/{id}";
     }
 
     @GetMapping(path = {"view/{componentId}", "view"})
@@ -95,28 +100,35 @@ public class ComponentController
     public String displayEditComponentForm(Model model, @PathVariable int componentId) {
         Component component = componentRepository.findById(componentId).get();
         model.addAttribute("component", component);
+        model.addAttribute("uneditedComponent", component);
         model.addAttribute("devices", deviceRepository.findAll());
         model.addAttribute("names", nameList);
         return "components/edit";
     }
 
     @PostMapping("edit")
-    public String processEditComponentForm(int componentId, String name, @RequestParam int deviceId, String description, int quantity) {
+    public String processEditComponentForm(@Valid @ModelAttribute Component editComponent, Errors errors, int componentId,
+                                           String name, @DateTimeFormat(pattern = "MM/dd/yyyy") Date installDate,
+                                           @RequestParam int deviceId, String description, Integer quantity, Model model) {
+
+        if(errors.hasErrors()){
+            model.addAttribute("component", editComponent);
+            model.addAttribute("uneditedComponent", componentRepository.findById(componentId).get());
+            model.addAttribute("componentId", componentId);
+            model.addAttribute("devices", deviceRepository.findAll());
+            model.addAttribute("names", nameList);
+            return "components/edit";
+        }
+
         Component component = componentRepository.findById(componentId).get();
         component.setName(name);
         component.setDescription(description);
         component.setQuantity(quantity);
+        component.setInstallDate(installDate);
         Device device = deviceRepository.findById(deviceId).get();
         component.setDevice(device);
         componentRepository.save(component);
         return "redirect:view/" + componentId;
-    }
-
-    @GetMapping("view")
-    public String displayDeleteComponentForm(Model model, @PathVariable int componentId) {
-        Component component = componentRepository.findById(componentId).get();
-        model.addAttribute("components", component);
-        return "redirect:";
     }
 
     @PostMapping("view")

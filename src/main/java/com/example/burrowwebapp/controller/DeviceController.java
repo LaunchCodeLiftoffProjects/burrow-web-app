@@ -51,16 +51,19 @@ public class DeviceController extends AbstractEntity {
 
     @PostMapping("add/{roomId}")
     public String processAddDeviceForm(@Valid @ModelAttribute Device newDevice,
-                                       Errors errors, Model model, @PathVariable int roomId) {
+                                       Errors errors, Model model, @PathVariable int roomId,
+                                       RedirectAttributes redirectAttributes) {
         if (errors.hasErrors()) {
             model.addAttribute("room", roomRepository.findById(roomId).get());
             return "devices/add";
         }
+        Optional optRoom = roomRepository.findById(roomId);
         Room room = roomRepository.findById(roomId).get();
+        redirectAttributes.addAttribute("id", optRoom.get());
         newDevice.setRoom(room);
         int deviceId = newDevice.getId();
         deviceRepository.save(newDevice);
-        return "redirect:../";
+        return "redirect:/rooms/view/{id}";
     }
 
     @GetMapping(path = {"view/{deviceID}", "view"})
@@ -84,12 +87,24 @@ public class DeviceController extends AbstractEntity {
     public String displayEditDeviceForm(Model model, @PathVariable int deviceId) {
         Device device = deviceRepository.findById(deviceId).get();
         model.addAttribute("device", device);
+        model.addAttribute("uneditedDevice", device);
         model.addAttribute("rooms", roomRepository.findAll());
         model.addAttribute("properties", propertyRepository.findAll());
         return "devices/edit";
     }
     @PostMapping("edit")
-    public String processEditDeviceForm(int deviceId, String name, @RequestParam int roomId, String description) {
+    public String processEditDeviceForm(@Valid @ModelAttribute Device editDevice, Errors errors, int deviceId,
+                                        String name, @RequestParam int roomId, String description, Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("device", editDevice);
+            model.addAttribute("uneditedDevice", deviceRepository.findById(deviceId).get());
+            model.addAttribute("deviceId", deviceId);
+            model.addAttribute("rooms", roomRepository.findAll());
+            model.addAttribute("properties", propertyRepository.findAll());
+            return "devices/edit";
+        }
+
         Device device = deviceRepository.findById(deviceId).get();
         device.setName(name);
         Room room = roomRepository.findById(roomId).get();
@@ -99,12 +114,6 @@ public class DeviceController extends AbstractEntity {
         return "redirect:view/" + deviceId;
     }
 
-    @GetMapping("view")
-    public String displayDeleteDeviceForm(Model model, @PathVariable int deviceId) {
-        Device device = deviceRepository.findById(deviceId).get();
-        model.addAttribute("device", device);
-        return "redirect:";
-    }
     @PostMapping("view")
     public String processDeleteDeviceForm(int deviceId, int roomId, RedirectAttributes redirectAttributes) {
         Optional optRoom = roomRepository.findById(roomId);

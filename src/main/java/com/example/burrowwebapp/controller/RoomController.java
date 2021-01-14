@@ -5,6 +5,7 @@ import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.PropertyRepository;
 import com.example.burrowwebapp.data.RoomRepository;
 import com.example.burrowwebapp.models.AbstractEntity;
+import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.Property;
 import com.example.burrowwebapp.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,42 +40,50 @@ public class RoomController extends AbstractEntity {
         return "rooms/index";
     }
 
-    @GetMapping("view/{roomId}")
-    public String displayViewRoom(Model model, @PathVariable int roomId) {
-
-        Optional optRoom = roomRepository.findById(roomId);
-        if (optRoom.isPresent()) {
-            Room room = (Room) optRoom.get();
-            model.addAttribute("room", room);
-            return "rooms/view";
+    @GetMapping(path = {"view/{roomId}", "view"})
+    public String displayViewRoom(Model model, @PathVariable (required = false) Integer roomId) {
+        if (roomId == null){
+            model.addAttribute("rooms", roomRepository.findAll());
+            return "rooms/index";
         } else {
-            return "redirect:../";
+            Optional<Room> result = roomRepository.findById(roomId);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Room room = result.get();
+                model.addAttribute("room", room);
+            }
         }
+        return "rooms/view";
     }
 
     @GetMapping("edit/{roomId}")
     public String displayEditForm(Model model, @PathVariable int roomId) {
         Room room = roomRepository.findById(roomId).get();
         model.addAttribute("room", room);
+        model.addAttribute("uneditedRoom", room);
+        model.addAttribute("roomId", roomId);
         model.addAttribute("properties", propertyRepository.findAll());
         return "rooms/edit";
     }
 
     @PostMapping("edit")
-    public String processEditForm(int roomId, String name, @RequestParam int propertyId) {
+    public String processEditForm(@Valid @ModelAttribute Room editRoom, Errors errors, int roomId, String name,
+                                  @RequestParam int propertyId, Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("uneditedRoom", roomRepository.findById(roomId).get());
+            model.addAttribute("room", editRoom);
+            model.addAttribute("roomId", roomId);
+            model.addAttribute("properties", propertyRepository.findAll());
+            return "rooms/edit";
+        }
         Room room = roomRepository.findById(roomId).get();
         Property property = propertyRepository.findById(propertyId).get();
         room.setName(name);
         room.setProperty(property);
         roomRepository.save(room);
         return "redirect:view/" + roomId;
-    }
-
-    @GetMapping("view")
-    public String displayDeleteForm(Model model, @PathVariable int roomId) {
-        Room room = roomRepository.findById(roomId).get();
-        model.addAttribute("room", room);
-        return "redirect:";
     }
 
     @PostMapping("view")

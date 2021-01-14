@@ -3,11 +3,20 @@
 <head th:replace="fragments :: head"></head>
 <body class="container body-content">
 <header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
+    <span>> <a th:href="@{/properties}" th:text="${'Properties'}"></a></span>
+    <span>> <a th:href="@{/properties/view/{id}(id=${component.device.room.property.id})}" th:text="${component.device.room.property.name}"></a></span>
+    <span>> <a th:href="@{/rooms/view/{id}(id=${component.device.room.id})}" th:text="${component.device.room.name}"></a></span>
+    <span>> <a th:href="@{/devices/view/{id}(id=${component.device.id})}" th:text="${component.device.name}"></a></span>
+    <span th:text="${'> ' + component.name}"></span>
+</div>
 <h2 th:text="${component.device.room.name + ' ' + component.device.name + ' ' + component.name}">Default Title</h2>
 
 <div>
     <p th:text="${'Quantity: ' + component.quantity}"></p>
     <p th:text="${'Description: ' + component.description}"></p>
+    <p th:text="${'Install Date: ' + component.installDate}"></p>
     <p th:text="${'Room: ' + component.device.room.name}"></p>
     <p th:text="${'House: ' + component.device.room.property.name}"></p>
 </div>
@@ -16,13 +25,12 @@
     <a th:href="@{/components/edit/{id}(id=${component.id})}">
         <input type="submit" value="Edit" class="btn btn-info">
     </a>
+</div>
+<p></p>
 
+<div>
     <a th:href="@{/devices/view/{id}(id=${component.device.id})}">
-        <input type="submit" value="Back" class="btn btn-info">
-    </a>
-
-    <a th:href="@{/devices}">
-        <input type="submit" value="View Devices" class="btn btn-info">
+        <input type="submit" th:value="${'Back to ' + component.device.name}" class="btn btn-dark">
     </a>
 </div>
 

@@ -8,6 +8,15 @@
 <p th:unless="${components} and ${components.size()}">No Components!</p>
 <div>
     <table  class="table table-bordered">
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
+    <span>> View All Components</span>
+</div>
+<p></p>
+<h2 th:text="${'View All Components'}">Default Title</h2>
+<p></p>
+<div>
+    <table>
         <thead>
         <tr>
             <th>Component</th>

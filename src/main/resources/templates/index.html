@@ -3,10 +3,15 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span>Home-Page</span>
+</div>
 <h1>Burrow</h1>
 
 <div class="container body-content">
-    <a th:href="@{'/properties'}">View Properties</a>
+    <a th:href="@{'/properties'}">
+        <input type="submit" value="View Properties" class="btn btn-light">
+    </a>
 </div>
 
 </body>

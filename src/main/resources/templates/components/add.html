@@ -3,6 +3,14 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
+    <span>> <a th:href="@{/properties}" th:text="${'Properties'}"></a></span>
+    <span>> <a th:href="@{/properties/view/{id}(id=${device.room.property.id})}" th:text="${device.room.property.name}"></a></span>
+    <span>> <a th:href="@{/rooms/view/{id}(id=${device.room.id})}" th:text="${device.room.name}"></a></span>
+    <span>> <a th:href="@{/devices/view/{id}(id=${device.id})}" th:text="${device.name}"></a></span>
+    <span th:text="${'> ' + device.name + ' Component'}"></span>
+</div>
 <h2 th:text="${'Add Component To: ' + device.name}">Add Component</h2>
 
 <form method="post" style="max-width:600px;">
@@ -17,7 +25,7 @@
     </div>
     <div class="form-group">
         <label th:for="quantity">Quantity</label>
-        <input class="form-control" th:field="${component.quantity}" />
+        <input class="form-control" th:field="${component.quantity}" placeholder="0"/>
         <span th:errors="${component.quantity}" class="error"></span>
     </div>
 
@@ -25,6 +33,12 @@
         <label th:for="description">Description</label>
         <input class="form-control" th:field="${component.description}" placeholder="Type/Size"/>
         <span th:errors="${component.description}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="installDate">Install Date</label>
+        <input class="form-control" th:field="${component.installDate}" th:value="${component.installDate}" type="text" id="installDate" name="installDate" placeholder="MM/DD/YYYY" autocomplete="off"/>
+        <span th:errors="${component.installDate}" class="error"></span>
     </div>
 
     <input type="submit" value="Add Component" />

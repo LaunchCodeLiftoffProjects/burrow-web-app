@@ -3,7 +3,11 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
-
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
+    <span th:unless="${title}">> Search by:</span>
+    <span th:if="${title}">> <a th:href="@{/search}" th:text="${'Search by:'}"></a><span th:text="${result}"></span></span>
+</div>
 <div class="container body-content">
 
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
