@@ -16,7 +16,9 @@
             <a th:href="@{'/properties/view/' + ${property.id}}" th:text="${property.name}"></a>
         </li>
     </ul>
-    <a th:href="@{'/properties/add'}">Add Properties</a>
+    <a th:href="@{'/properties/add'}">
+        <input type="submit" value="Add Properties" class="btn btn-secondary">
+    </a>
 </div>
 
 </body>

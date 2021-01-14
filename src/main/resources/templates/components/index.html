@@ -16,13 +16,8 @@
             <a th:href="@{'/components/view/' + ${component.id}}" th:text="${component.name + ' for ' + component.device.name + ' in ' + component.device.room.name}"></a>
         </li>
     </ul>
-    <a th:href="@{'/components/add'}">Add Components</a>
-</div>
-<p></p>
-
-<div>
-    <a th:href="@{/devices}">
-        <input type="submit" value="View Devices" class="btn btn-info">
+    <a th:href="@{'/components/add'}">
+        <input type="submit" value="Add Components" class="btn btn-secondary">
     </a>
 </div>
 
