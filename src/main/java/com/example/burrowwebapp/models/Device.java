@@ -49,9 +49,4 @@ public class Device extends AbstractEntity {
     public List<Component> getComponents() {
         return components;
     }
-
-    @Override
-    public Property getProperty() {
-        return null;
-    }
 }

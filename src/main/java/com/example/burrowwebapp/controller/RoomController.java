@@ -21,7 +21,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("rooms")
-public class RoomController extends AbstractEntity {
+public class RoomController {
 
     @Autowired
     private RoomRepository roomRepository;
@@ -92,10 +92,5 @@ public class RoomController extends AbstractEntity {
         redirectAttributes.addAttribute("id", optProperty.get());
         roomRepository.deleteById(roomId);
         return "redirect:/properties/view/{id}";
-    }
-
-    @Override
-    public Property getProperty() {
-        return null;
     }
 }

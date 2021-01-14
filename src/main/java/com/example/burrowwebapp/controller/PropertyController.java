@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("properties")
-public class PropertyController extends AbstractEntity {
+public class PropertyController {
 
     @Autowired
     private PropertyRepository propertyRepository;
@@ -135,10 +135,5 @@ public class PropertyController extends AbstractEntity {
         }
 
 
-    }
-
-    @Override
-    public Property getProperty() {
-        return null;
     }
 }

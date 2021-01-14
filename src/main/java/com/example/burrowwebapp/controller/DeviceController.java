@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 @Controller
 @RequestMapping("devices")
-public class DeviceController extends AbstractEntity {
+public class DeviceController {
 
     @Autowired
     private DeviceRepository deviceRepository;
@@ -61,7 +61,6 @@ public class DeviceController extends AbstractEntity {
         Room room = roomRepository.findById(roomId).get();
         redirectAttributes.addAttribute("id", optRoom.get());
         newDevice.setRoom(room);
-        int deviceId = newDevice.getId();
         deviceRepository.save(newDevice);
         return "redirect:/rooms/view/{id}";
     }
@@ -120,10 +119,5 @@ public class DeviceController extends AbstractEntity {
         redirectAttributes.addAttribute("id", optRoom.get());
         deviceRepository.deleteById(deviceId);
         return "redirect:/rooms/view/{id}";
-    }
-
-    @Override
-    public Property getProperty() {
-        return null;
     }
 }
