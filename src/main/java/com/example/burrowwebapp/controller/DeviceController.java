@@ -51,16 +51,19 @@ public class DeviceController extends AbstractEntity {
 
     @PostMapping("add/{roomId}")
     public String processAddDeviceForm(@Valid @ModelAttribute Device newDevice,
-                                       Errors errors, Model model, @PathVariable int roomId) {
+                                       Errors errors, Model model, @PathVariable int roomId,
+                                       RedirectAttributes redirectAttributes) {
         if (errors.hasErrors()) {
             model.addAttribute("room", roomRepository.findById(roomId).get());
             return "devices/add";
         }
+        Optional optRoom = roomRepository.findById(roomId);
         Room room = roomRepository.findById(roomId).get();
+        redirectAttributes.addAttribute("id", optRoom.get());
         newDevice.setRoom(room);
         int deviceId = newDevice.getId();
         deviceRepository.save(newDevice);
-        return "redirect:../";
+        return "redirect:/rooms/view/{id}";
     }
 
     @GetMapping(path = {"view/{deviceID}", "view"})

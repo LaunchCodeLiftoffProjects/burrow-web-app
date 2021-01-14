@@ -64,16 +64,19 @@ public class ComponentController
 
     @PostMapping("add/{deviceId}")
     public String processAddComponentForm(@Valid @ModelAttribute Component newComponent,
-                                          Errors errors, Model model, @PathVariable int deviceId){
+                                          Errors errors, Model model, @PathVariable int deviceId,
+                                          RedirectAttributes redirectAttributes){
         if (errors.hasErrors()) {
             model.addAttribute("device", deviceRepository.findById(deviceId).get());
             model.addAttribute("names", nameList);
             return "components/add";
         }
+        Optional optDevice = deviceRepository.findById(deviceId);
         Device device = deviceRepository.findById(deviceId).get();
+        redirectAttributes.addAttribute("id", optDevice.get());
         newComponent.setDevice(device);
         componentRepository.save(newComponent);
-        return "redirect:../";
+        return "redirect:/devices/view/{id}";
     }
 
     @GetMapping(path = {"view/{componentId}", "view"})
@@ -105,8 +108,8 @@ public class ComponentController
 
     @PostMapping("edit")
     public String processEditComponentForm(@Valid @ModelAttribute Component editComponent, Errors errors, int componentId,
-                                           String name, @DateTimeFormat(pattern = "MM/dd/yyyy") Date installDate, @RequestParam int deviceId, String description, int quantity,
-                                           Model model) {
+                                           String name, @DateTimeFormat(pattern = "MM/dd/yyyy") Date installDate,
+                                           @RequestParam int deviceId, String description, Integer quantity, Model model) {
 
         if(errors.hasErrors()){
             model.addAttribute("component", editComponent);

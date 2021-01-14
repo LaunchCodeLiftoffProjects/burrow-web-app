@@ -42,19 +42,19 @@
         </div>
         <div class="form-group">
             <label th:for="quantity">Quantity</label>
-            <input class="form-control" th:field="${component.quantity}" th:value="${component.quantity}"/>
+            <input class="form-control" th:field="${component.quantity}" th:value="${component.quantity}" placeholder="0"/>
             <span th:errors="${component.quantity}" class="error"></span>
         </div>
 
         <div class="form-group">
             <label th:for="description">Description</label>
-            <input class="form-control" th:field="${component.description}" th:value="${component.description}"/>
+            <input class="form-control" th:field="${component.description}" th:value="${component.description}" placeholder="Type/Size"/>
             <span th:errors="${component.description}" class="error"></span>
         </div>
 
         <div class="form-group">
             <label th:for="installDate">Install Date</label>
-            <input class="form-control" th:field="${component.installDate}" th:value="${component.installDate}" type="text" id="installDate" name="installDate" placeholder="MM/DD/YYYY"/>
+            <input class="form-control" th:field="${component.installDate}" th:value="${component.installDate}" type="text" id="installDate" name="installDate" placeholder="MM/DD/YYYY" autocomplete="off"/>
             <span th:errors="${component.installDate}" class="error"></span>
         </div>
 

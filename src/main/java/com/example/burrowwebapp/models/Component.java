@@ -18,8 +18,9 @@ public class Component extends AbstractEntity {
     @ManyToOne
     private Device device;
 
+    @NotNull(message = "Quantity must be greater than or equal to 1")
     @Min(value=1, message = "Quantity must be greater than or equal to 1")
-    private int quantity;
+    private Integer quantity;
 
     @NotNull(message = "Please enter a date")
     @DateTimeFormat(pattern = "MM/dd/yyyy")
@@ -27,7 +28,7 @@ public class Component extends AbstractEntity {
     private Date installDate;
 
     public Component(@NotBlank String name, @Size(max = 250, message = "Description must be less than 250 characters") String description,
-                     Device device, @Min(value=1) int quantity, @NotNull Date installDate) {
+                     Device device, @NotNull @Min(value=1) Integer quantity, @NotNull Date installDate) {
         this.setName(name);
         this.description = description;
         this.device = device;
@@ -53,12 +54,12 @@ public class Component extends AbstractEntity {
         this.device = device;
     }
 
-    public int getQuantity()
+    public Integer getQuantity()
     {
         return quantity;
     }
 
-    public void setQuantity(int quantity)
+    public void setQuantity(Integer quantity)
     {
         this.quantity = quantity;
     }
