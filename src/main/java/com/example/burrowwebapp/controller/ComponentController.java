@@ -64,16 +64,19 @@ public class ComponentController
 
     @PostMapping("add/{deviceId}")
     public String processAddComponentForm(@Valid @ModelAttribute Component newComponent,
-                                          Errors errors, Model model, @PathVariable int deviceId){
+                                          Errors errors, Model model, @PathVariable int deviceId,
+                                          RedirectAttributes redirectAttributes){
         if (errors.hasErrors()) {
             model.addAttribute("device", deviceRepository.findById(deviceId).get());
             model.addAttribute("names", nameList);
             return "components/add";
         }
+        Optional optDevice = deviceRepository.findById(deviceId);
         Device device = deviceRepository.findById(deviceId).get();
+        redirectAttributes.addAttribute("id", optDevice.get());
         newComponent.setDevice(device);
         componentRepository.save(newComponent);
-        return "redirect:../";
+        return "redirect:/devices/view/{id}";
     }
 
     @GetMapping(path = {"view/{componentId}", "view"})

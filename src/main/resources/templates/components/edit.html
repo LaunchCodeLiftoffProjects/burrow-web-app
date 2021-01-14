@@ -54,7 +54,7 @@
 
         <div class="form-group">
             <label th:for="installDate">Install Date</label>
-            <input class="form-control" th:field="${component.installDate}" th:value="${component.installDate}" type="text" id="installDate" name="installDate" placeholder="MM/DD/YYYY"/>
+            <input class="form-control" th:field="${component.installDate}" th:value="${component.installDate}" type="text" id="installDate" name="installDate" placeholder="MM/DD/YYYY" autocomplete="off"/>
             <span th:errors="${component.installDate}" class="error"></span>
         </div>
 
