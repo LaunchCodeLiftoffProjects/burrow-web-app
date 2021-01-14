@@ -72,8 +72,4 @@ public class Component extends AbstractEntity {
         this.installDate = installDate;
     }
 
-    @Override
-    public Property getProperty() {
-        return null;
-    }
 }

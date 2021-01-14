@@ -28,9 +28,12 @@ public class SearchController {
     public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm){
         Iterable<Device> devices;
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
-            devices = deviceRepository.findAll();
-//        } else {
-//            devices = HomeData.findByColumnAndValue(searchType, searchTerm, deviceRepository.findAll());
+            model.addAttribute("devices", deviceRepository.findAll());
+
+//        } else if (searchType.equals("property")) {
+//            model.addAttribute("devices", deviceRepository.)
+//
+//            devices = homething.findByColumnAndValue(searchType, searchTerm, deviceRepository.findAll());
         }
         model.addAttribute("columns", columnChoices);
         model.addAttribute("title", "Gophers found " + columnChoices.get(searchType) + ": " + searchTerm);
