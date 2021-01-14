@@ -38,24 +38,48 @@
 
     <hr />
 
-    <table class="devices-listing">
+    <table class="table table-bordered">
+        <tr th:if="${devices}">
+            <th>Device</th>
+            <th>Room</th>
+            <th>Device</th>
+            <th>Component</th>
+        </tr>
         <tr th:each="device : ${devices}">
+            <td th:text="${device.name}"></td>
+            <td><a th:href="@{'/rooms/view/' + ${device.room.id}}" th:text="${device.room.name}"></a></td>
+            <td><a th:href="@{'/property/view/' + ${device.room.property.id}}"  th:text="${device.room.property.name}"></a></td>
             <td>
-                <p th:text="${'Device Name: ' + device.name}"></p>
-                <p><a th:href="@{'/rooms/view/' + ${device.room.id}}" th:text="${'Room: ' + device.room.name}"></a></p>
-                <p><a th:href="@{'/properties/view/' + ${device.room.property.id}}"  th:text="${'Property: ' + device.room.property.name}"></a></p>
-                <p>
-                    Components:
-                    <ul th:each="component : ${device.components}">
-                      <li>
-                          <a th:href="@{'/components/view/' + ${component.id}}" th:text="${component.name}"></a>
-                      </li>
-                    </ul>
-                </p>
-
+                <!--                    Components:-->
+                <ul th:each="component : ${device.components}">
+                    <li>
+                        <a th:href="@{'/components/view/' + ${component.id}}" th:text="${component.name}"></a>
+                    </li>
+                </ul>
             </td>
+
+            <!--            </td>-->
         </tr>
     </table>
+
+<!--    <table class="devices-listing">-->
+<!--        <tr th:each="device : ${devices}">-->
+<!--            <td>-->
+<!--                <p th:text="${'Device Name: ' + device.name}"></p>-->
+<!--                <p><a th:href="@{'/rooms/view/' + ${device.room.id}}" th:text="${'Room: ' + device.room.name}"></a></p>-->
+<!--                <p><a th:href="@{'/property/view/' + ${device.room.property.id}}"  th:text="${'Property: ' + device.room.property.name}"></a></p>-->
+<!--                <p>-->
+<!--                    Components:-->
+<!--                    <ul th:each="component : ${device.components}">-->
+<!--                      <li>-->
+<!--                          <a th:href="@{'/components/view/' + ${component.id}}" th:text="${component.name}"></a>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                </p>-->
+
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
 
 </div>
 
