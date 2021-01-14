@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
+<p></p>
+<h2 th:text="${'View All Components'}">Default Title</h2>
+<p th:unless="${components} and ${components.size()}">No Components!</p>
+<div>
+    <table  class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Component</th>
+            <th>Qty</th>
+            <th>Description</th>
+            <th>Device</th>
+            <th>Room</th>
+            <th>Property</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="component : ${components}">
+            <td><a th:href="@{'/components/view/' + ${component.id}}" th:text="${component.name}"></a></td>
+            <td th:text="${component.quantity}"></td>
+            <td th:text="${component.description}"></td>
+            <td><a th:href="@{'/devices/view/' + ${component.device.id}}" th:text="${component.device.name}"></a></td>
+            <td><a th:href="@{'/rooms/view/' + ${component.device.room.id}}" th:text="${component.device.room.name}"></a></td>
+            <td><a th:href="@{'/properties/view/' + ${component.device.room.property.id}}" th:text="${component.device.room.property.name}"></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p></p>
+<a th:href="@{'/search'}" class="btn btn-primary">Search Devices</a>
+
+
+</body>
+</html>
