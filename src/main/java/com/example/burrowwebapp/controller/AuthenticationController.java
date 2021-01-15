@@ -2,6 +2,7 @@ package com.example.burrowwebapp.controller;
 
 import com.example.burrowwebapp.data.UserRepository;
 import com.example.burrowwebapp.models.User;
+import com.example.burrowwebapp.models.dto.LoginFormDTO;
 import com.example.burrowwebapp.models.dto.RegisterFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -81,5 +82,12 @@ public class AuthenticationController {
         setUserInSession(request.getSession(), newUser);
 
         return "redirect:";
+    }
+
+    @GetMapping("/login")
+    public String displayLoginForm(Model model) {
+        model.addAttribute(new LoginFormDTO());
+        model.addAttribute("title", "Log In");
+        return "login";
     }
 }
