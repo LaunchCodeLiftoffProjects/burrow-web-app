@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class Notification extends AbstractEntity
 {
 
-    @OneToOne(mappedBy = "notification")
+    @OneToOne
     private Component component;
 
     private boolean isActive;
@@ -87,4 +87,8 @@ public class Notification extends AbstractEntity
         this.setReplacedDate(LocalDate.now());
         this.setActive(false);
     }
+
+//    public String message(){
+//        return "You last replaced" + this.getComponent().getName() + this.getComponent().getDevice().getName() + " on " + this.getReplacedDate() + ". It should be replaced every " + this.getDaysBetweenReplacements() + " days.";
+//    }
 }

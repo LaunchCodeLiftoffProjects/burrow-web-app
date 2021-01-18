@@ -2,6 +2,7 @@ package com.example.burrowwebapp.controller;
 
 import com.example.burrowwebapp.data.ComponentRepository;
 import com.example.burrowwebapp.data.DeviceRepository;
+import com.example.burrowwebapp.data.NotificationRepository;
 import com.example.burrowwebapp.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,6 +27,9 @@ public class ComponentController
 
     @Autowired
     private DeviceRepository deviceRepository;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
 
     private ArrayList<String> nameList = new ArrayList<String>() {
         {
@@ -73,9 +77,11 @@ public class ComponentController
         Device device = deviceRepository.findById(deviceId).get();
         redirectAttributes.addAttribute("id", optDevice.get());
         newComponent.setDevice(device);
-        Notification notification = new Notification("It has been at least " + newComponent.getDaysBetweenReplacements() + "days since you replaced this " + newComponent.getName(), newComponent.getInstallDate(), newComponent.getDaysBetweenReplacements());
+        Notification notification = new Notification("It has been at least " + newComponent.getDaysBetweenReplacements() + " days since you replaced the " + newComponent.getName() + " in the " + newComponent.getDevice().getName(), newComponent.getInstallDate(), newComponent.getDaysBetweenReplacements());
         newComponent.setNotification(notification);
+        notification.setComponent(newComponent);
         componentRepository.save(newComponent);
+        notificationRepository.save(notification);
         return "redirect:/devices/view/{id}";
     }
 
