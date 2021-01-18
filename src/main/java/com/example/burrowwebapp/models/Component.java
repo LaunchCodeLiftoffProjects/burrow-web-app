@@ -24,7 +24,7 @@ public class Component extends AbstractEntity {
     @DateTimeFormat(pattern = "MM/dd/yyyy")
     private LocalDate installDate;
 
-    @OneToOne(mappedBy = "component", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "component", cascade = CascadeType.ALL, orphanRemoval = true)
     private Notification notification;
 
     @NotNull
