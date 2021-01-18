@@ -2,10 +2,8 @@ package com.example.burrowwebapp.controller;
 
 import com.example.burrowwebapp.data.ComponentRepository;
 import com.example.burrowwebapp.data.DeviceRepository;
-import com.example.burrowwebapp.models.Component;
-import com.example.burrowwebapp.models.Device;
-import com.example.burrowwebapp.models.Property;
-import com.example.burrowwebapp.models.Room;
+import com.example.burrowwebapp.data.NotificationRepository;
+import com.example.burrowwebapp.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
@@ -28,6 +27,9 @@ public class ComponentController
 
     @Autowired
     private DeviceRepository deviceRepository;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
 
     private ArrayList<String> nameList = new ArrayList<String>() {
         {
@@ -75,7 +77,11 @@ public class ComponentController
         Device device = deviceRepository.findById(deviceId).get();
         redirectAttributes.addAttribute("id", optDevice.get());
         newComponent.setDevice(device);
+        Notification notification = new Notification("It has been at least " + newComponent.getDaysBetweenReplacements() + " days since you replaced the " + newComponent.getName() + " in the " + newComponent.getDevice().getName(), newComponent.getInstallDate(), newComponent.getDaysBetweenReplacements());
+        newComponent.setNotification(notification);
+        notification.setComponent(newComponent);
         componentRepository.save(newComponent);
+        notificationRepository.save(notification);
         return "redirect:/devices/view/{id}";
     }
 
@@ -108,7 +114,7 @@ public class ComponentController
 
     @PostMapping("edit")
     public String processEditComponentForm(@Valid @ModelAttribute Component editComponent, Errors errors, int componentId,
-                                           String name, @DateTimeFormat(pattern = "MM/dd/yyyy") Date installDate,
+                                           String name, @DateTimeFormat(pattern = "MM/dd/yyyy") LocalDate installDate,
                                            @RequestParam int deviceId, String description, Integer quantity, Model model) {
 
         if(errors.hasErrors()){
