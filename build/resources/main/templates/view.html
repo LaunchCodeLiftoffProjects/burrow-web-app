@@ -2,6 +2,14 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
 <header th:replace="fragments :: header"></header>
 <div class="container breadcrumbs">
     <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
@@ -11,7 +19,7 @@
 <h2 th:text="${'View All Components'}">Default Title</h2>
 <p th:unless="${components} and ${components.size()}">No Components!</p>
 <div>
-    <table  class="table table-bordered">
+    <table class="table table-bordered" id="sortTable">
         <thead>
         <tr>
             <th>Component</th>
@@ -37,6 +45,8 @@
 <p></p>
 <a th:href="@{'/search'}" class="btn btn-primary">Search Devices</a>
 
-
+<script>
+$('#sortTable').DataTable();
+</script>
 </body>
 </html>
