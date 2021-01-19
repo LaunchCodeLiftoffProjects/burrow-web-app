@@ -7,7 +7,8 @@
     <span>Home-Page</span>
 </div>
 <h1>Burrow</h1>
-
+<h2 th:text="${'Hello ' + user.name + '!'}"></h2>
+<p></p>
 <div class="container body-content">
     <a th:href="@{'/properties'}">
         <input type="submit" value="View Properties" class="btn btn-light">
