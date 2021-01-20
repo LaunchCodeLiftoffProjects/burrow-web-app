@@ -29,8 +29,7 @@ public class PropertyController {
     private UserRepository userRepository;
 
     private static final String userSessionKey = "user";
-
-
+    
     @GetMapping
     public String displayAllProperties(Model model, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
