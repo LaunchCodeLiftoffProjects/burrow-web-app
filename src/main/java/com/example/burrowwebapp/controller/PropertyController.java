@@ -35,10 +35,10 @@ public class PropertyController {
     public String displayAllProperties(Model model, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
 
-        Optional<User> user = userRepository.findById(userId);
+        User user = userRepository.findById(userId).get();
 
-        model.addAttribute("user", user.get());
-        model.addAttribute("properties", propertyRepository.findAllById(Collections.singleton(userId)));
+        model.addAttribute("user", user);
+        model.addAttribute("users", propertyRepository.findAllById(Collections.singleton(userId)));
         return "properties/index";
     }
 
@@ -51,10 +51,13 @@ public class PropertyController {
 
     @PostMapping("add")
     public String processAddPropertyForm(@Valid @ModelAttribute Property newProperty,
-                                         Errors errors, Model model) {
+                                         Errors errors, Model model, HttpSession session) {
         if (errors.hasErrors()) {
             return "properties/add";
         }
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        newProperty.setUser(user);
         propertyRepository.save(newProperty);
         return "redirect:";
     }
