@@ -34,9 +34,7 @@ public class PropertyController {
     @GetMapping
     public String displayAllProperties(Model model, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
-
         User user = userRepository.findById(userId).get();
-
         model.addAttribute("user", user);
         model.addAttribute("users", propertyRepository.findAllById(Collections.singleton(userId)));
         return "properties/index";
@@ -51,7 +49,7 @@ public class PropertyController {
 
     @PostMapping("add")
     public String processAddPropertyForm(@Valid @ModelAttribute Property newProperty,
-                                         Errors errors, Model model, HttpSession session) {
+                                         Errors errors, HttpSession session) {
         if (errors.hasErrors()) {
             return "properties/add";
         }
