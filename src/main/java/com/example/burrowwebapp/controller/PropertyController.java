@@ -2,17 +2,17 @@ package com.example.burrowwebapp.controller;
 
 import com.example.burrowwebapp.data.PropertyRepository;
 import com.example.burrowwebapp.data.RoomRepository;
-import com.example.burrowwebapp.models.AbstractEntity;
-import com.example.burrowwebapp.models.Device;
-import com.example.burrowwebapp.models.Property;
-import com.example.burrowwebapp.models.Room;
+import com.example.burrowwebapp.data.UserRepository;
+import com.example.burrowwebapp.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.Optional;
 
 @Controller
@@ -25,10 +25,20 @@ public class PropertyController {
     @Autowired
     private RoomRepository roomRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    private static final String userSessionKey = "user";
+
 
     @GetMapping
-    public String displayAllProperties(Model model) {
-        model.addAttribute("properties", propertyRepository.findAll());
+    public String displayAllProperties(Model model, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+
+        Optional<User> user = userRepository.findById(userId);
+
+        model.addAttribute("user", user.get());
+        model.addAttribute("properties", propertyRepository.findAllById(Collections.singleton(userId)));
         return "properties/index";
     }
 

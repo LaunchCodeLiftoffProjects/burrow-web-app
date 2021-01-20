@@ -8,6 +8,7 @@
     <span>> Properties</span>
 </div>
 <h2>Properties</h2>
+<h3 th:text="${'The user id is: ' + user.id}"></h3>
 <p th:unless="${properties} and ${properties.size()}">No properties!</p>
 
 <div class="container body-content">
