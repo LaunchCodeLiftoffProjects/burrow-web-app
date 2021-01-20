@@ -3,7 +3,9 @@ package com.example.burrowwebapp.controller;
 import com.example.burrowwebapp.data.ComponentRepository;
 import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.NotificationRepository;
-import com.example.burrowwebapp.models.*;
+import com.example.burrowwebapp.models.Component;
+import com.example.burrowwebapp.models.Device;
+import com.example.burrowwebapp.models.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -15,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 
 @Controller
