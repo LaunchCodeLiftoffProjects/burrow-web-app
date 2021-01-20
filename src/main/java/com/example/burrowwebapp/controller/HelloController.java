@@ -10,9 +10,7 @@ import com.example.burrowwebapp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
@@ -39,7 +37,7 @@ public class HelloController {
     private static final String userSessionKey = "user";
 
     @RequestMapping("")
-    public String getUserFromSession(Model model, HttpSession session) {
+    public String welcomeUserFromSession(Model model, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         if (userId == null) {
             return null;
@@ -53,9 +51,4 @@ public class HelloController {
         model.addAttribute("user", user.get());
         return "index";
     }
-
-//    public String index(Model model) {
-//        model.addAttribute("properties", propertyRepository.findAll());
-//        return "index";
-//    }
 }
