@@ -2,10 +2,12 @@ package com.example.burrowwebapp.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Component extends AbstractEntity {
