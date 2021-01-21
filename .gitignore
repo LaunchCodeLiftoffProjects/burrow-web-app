@@ -6,3 +6,4 @@
 .idea/**/dictionaries
 .idea/**/shelf
 .idea/workspace.xml
+build/tmp/compileJava/source-classes-mapping.txt

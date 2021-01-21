@@ -2,6 +2,7 @@ package com.example.burrowwebapp.models;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -11,18 +12,21 @@ import java.util.List;
 @Entity
 public class Property extends AbstractEntity {
 
+    @ManyToOne
+    private User user;
+
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Room> rooms = new ArrayList<>();
 
-    @NotBlank
+    @NotBlank(message = "Location may not be blank")
     private String location;
 
-    @NotBlank
-    @Size(min = 1, max = 250, message = "Description must be between 1 and 250 characters")
+    @NotBlank(message = "Description may not be blank")
+    @Size(max = 250, message = "Description must be less than 250 characters")
     private String description;
 
-    public Property(@NotBlank String name, @NotBlank String location,
-                    @NotBlank @Size(min = 1, max = 250, message = "Description must be between 1 and 250 characters") String description, List<Room> rooms)
+    public Property(@NotBlank String name, User user, @NotBlank String location,
+                    @NotBlank @Size(max = 250, message = "Description must be less than 250 characters") String description, List<Room> rooms)
     {
         this.setName(name);
         this.location = location;
@@ -31,6 +35,14 @@ public class Property extends AbstractEntity {
     }
 
     public Property(){}
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getLocation()
     {
@@ -59,10 +71,5 @@ public class Property extends AbstractEntity {
 
     public void addRoom(Room newRoom){
         this.rooms.add(newRoom);
-    }
-
-    @Override
-    public Property getProperty() {
-        return null;
     }
 }

@@ -10,6 +10,10 @@
     <script th:src="@{/js/popper.js}" type="text/javascript"></script>
     <script th:src="@{/js/bootstrap.js}" type="text/javascript"></script>
     <script th:src="@{/js/burrow.js}" type="text/javascript"></script>
+    <script th:src="@{/js/jquery-ui.min.js}" type="text/javascript"></script>
+    <link th:href="@{/css/jquery-ui.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/jquery-ui..structure.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/jquery-ui.theme.min.css}" rel="stylesheet"/>
 
 </head>
 <body>
@@ -26,13 +30,20 @@
                 <li class="nav-item"><a class="nav-link" href="/rooms">Rooms</a></li>
                 <li class="nav-item"><a class="nav-link" href="/devices">Devices</a></li>
                 <li class="nav-item"><a class="nav-link" href="/components">Components</a></li>
+                <li class="nav-item"><a class="nav-link" href="/view">View All Components</a></li>
+                <li class="nav-item"><a class="nav-link" href="/search">Search by:</a></li>
 
                 <form class="form-inline">
                     <input class ="form-control mr-sm-2" type="search"
                            placeholder="Search Burrow" aria-label="search">
                     <button class=" btn btn-light my-sm-0" type = "submit"> &#x1F50D; </button>
+
+                    <a th:href="@{/notifications}">
+                        <button class=" btn btn-light my-sm-0" type = "submit" >&#128234; </button>
+                    </a>
                 </form>
 
+                <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
             </ul>
         </div>
     </nav>

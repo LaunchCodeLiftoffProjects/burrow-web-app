@@ -1,29 +1,49 @@
 package com.example.burrowwebapp.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.*;
+import java.time.LocalDate;
 
 @Entity
 public class Component extends AbstractEntity {
 
-    @Size(max = 250, message = "Description too long!")
+    @Size(max = 250, message = "Description must be less than 250 characters")
     private String description;
 
     @ManyToOne
     private Device device;
 
-    @Min(value=1)
-    private int quantity;
+    @NotNull(message = "Quantity must be greater than or equal to 1")
+    @Min(value=1, message = "Quantity must be greater than or equal to 1")
+    private Integer quantity;
 
-    public Component(@NotBlank String name, @Size(max = 250, message = "Description too long!") String description,
-                     Device device, @Min(value=1) int quantity) {
+    @NotNull(message = "Please enter a date")
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
+    private LocalDate installDate;
+
+    @OneToOne(mappedBy = "component", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Notification notification;
+
+    @NotNull
+    @Min(value=1)
+    @Max(value=3650)
+    private long daysBetweenReplacements;
+
+    public Component(@NotBlank String name, @Size(max = 250, message = "Description must be less than 250 characters") String description,
+                     Device device, @NotNull @Min(value=1) Integer quantity, @NotNull LocalDate installDate,
+                     @NotNull @Min(value=1) @Max(value=3650)long daysBetweenReplacements) {
         this.setName(name);
         this.description = description;
         this.device = device;
         this.quantity = quantity;
+        this.installDate = installDate;
+        this.daysBetweenReplacements = daysBetweenReplacements;
+        //this.notification = new Notification("It has been at least" + daysBetweenReplacements + "days since you replaced this" + name, installDate, daysBetweenReplacements);
     }
 
     public Component() {}
@@ -44,18 +64,41 @@ public class Component extends AbstractEntity {
         this.device = device;
     }
 
-    public int getQuantity()
+    public Integer getQuantity()
     {
         return quantity;
     }
 
-    public void setQuantity(int quantity)
+    public void setQuantity(Integer quantity)
     {
         this.quantity = quantity;
     }
 
-    @Override
-    public Property getProperty() {
-        return null;
+    public LocalDate getInstallDate() {
+        return installDate;
+    }
+
+    public void setInstallDate(LocalDate installDate) {
+        this.installDate = installDate;
+    }
+
+    public Notification getNotification()
+    {
+        return notification;
+    }
+
+    public void setNotification(Notification notification)
+    {
+        this.notification = notification;
+    }
+
+    public long getDaysBetweenReplacements()
+    {
+        return daysBetweenReplacements;
+    }
+
+    public void setDaysBetweenReplacements(long daysBetweenReplacements)
+    {
+        this.daysBetweenReplacements = daysBetweenReplacements;
     }
 }

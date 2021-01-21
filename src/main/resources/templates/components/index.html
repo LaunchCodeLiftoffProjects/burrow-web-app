@@ -3,6 +3,10 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
+    <span>> Components</span>
+</div>
 <h2>Components</h2>
 <p th:unless="${components} and ${components.size()}">No Components!</p>
 
@@ -12,13 +16,8 @@
             <a th:href="@{'/components/view/' + ${component.id}}" th:text="${component.name + ' for ' + component.device.name + ' in ' + component.device.room.name}"></a>
         </li>
     </ul>
-    <a th:href="@{'/components/add'}">Add Components</a>
-</div>
-<p></p>
-
-<div>
-    <a th:href="@{/devices}">
-        <input type="submit" value="View Devices" class="btn btn-info">
+    <a th:href="@{'/components/add'}">
+        <input type="submit" value="Add Components" class="btn btn-secondary">
     </a>
 </div>
 

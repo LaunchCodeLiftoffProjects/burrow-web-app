@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
+    <span>> Notifications</span>
+</div>
+<h2>Notifications</h2>
+<p th:unless="${notifications} and ${notifications.size()}">No Notifications!</p>
+
+<div class="container body-content">
+    <ul>
+        <li th:each="notification : ${notifications}">
+            <div th:text="${notification.name}"></div>
+            <div></div>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

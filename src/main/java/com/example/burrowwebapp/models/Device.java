@@ -18,10 +18,10 @@ public class Device extends AbstractEntity {
     @OneToMany(mappedBy = "device", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Component> components = new ArrayList<>();
 
-    @Size(max = 250, message = "Description must less than 250 characters")
+    @Size(max = 250, message = "Description must be less than 250 characters")
     private String description;
 
-    public Device (@NotBlank String name, Room room, @Size(max = 250, message = "Description must less than 250 characters") String description)
+    public Device (@NotBlank String name, Room room, @Size(max = 250, message = "Description must be less than 250 characters") String description)
     {
         this.setName(name);
         this.room = room;
@@ -48,10 +48,5 @@ public class Device extends AbstractEntity {
 
     public List<Component> getComponents() {
         return components;
-    }
-
-    @Override
-    public Property getProperty() {
-        return null;
     }
 }

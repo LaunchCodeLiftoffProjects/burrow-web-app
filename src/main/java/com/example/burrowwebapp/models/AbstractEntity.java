@@ -14,7 +14,7 @@ public abstract class AbstractEntity
     @GeneratedValue
     private int id;
 
-    @NotBlank
+    @NotBlank(message = "Name may not be blank")
     private String name;
 
     public int getId(){
@@ -51,6 +51,4 @@ public abstract class AbstractEntity
     {
         return Objects.hash(id);
     }
-
-    public abstract Property getProperty();
 }

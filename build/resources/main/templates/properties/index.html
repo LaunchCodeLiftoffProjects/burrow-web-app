@@ -3,16 +3,23 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <header th:replace="fragments :: header"></header>
+<div class="container breadcrumbs">
+    <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
+    <span>> Properties</span>
+</div>
 <h2>Properties</h2>
-<p th:unless="${properties} and ${properties.size()}">No properties!</p>
+
+<p th:unless="${user.properties} and ${user.properties.size()}">No properties!</p>
 
 <div class="container body-content">
     <ul>
-        <li th:each="property : ${properties}">
+        <li th:each="property : ${user.properties}">
             <a th:href="@{'/properties/view/' + ${property.id}}" th:text="${property.name}"></a>
         </li>
     </ul>
-    <a th:href="@{'/properties/add'}">Add Properties</a>
+    <a th:href="@{'/properties/add'}">
+        <input type="submit" value="Add Properties" class="btn btn-secondary">
+    </a>
 </div>
 
 </body>
