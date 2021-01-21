@@ -1,4 +1,4 @@
-.error{
+.error {
     color: red;
 }
 
@@ -7,8 +7,9 @@
     padding-top: 4px;
     padding-bottom: 4px;
 }
+
 table {
-  width: 100%;
+    width: 100%;
 }
 
 .mailbox:hover {
