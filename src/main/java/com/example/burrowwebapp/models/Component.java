@@ -92,12 +92,12 @@ public class Component extends AbstractEntity {
         this.notification = notification;
     }
 
-    public long getDaysBetweenReplacements()
+    public Long getDaysBetweenReplacements()
     {
         return daysBetweenReplacements;
     }
 
-    public void setDaysBetweenReplacements(long daysBetweenReplacements)
+    public void setDaysBetweenReplacements(Long daysBetweenReplacements)
     {
         this.daysBetweenReplacements = daysBetweenReplacements;
     }

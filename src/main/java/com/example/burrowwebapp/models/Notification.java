@@ -59,7 +59,7 @@ public class Notification extends AbstractEntity
         this.replacedDate = replacedDate;
     }
 
-    public long getDaysBetweenReplacements()
+    public Long getDaysBetweenReplacements()
     {
         return daysBetweenReplacements;
     }
