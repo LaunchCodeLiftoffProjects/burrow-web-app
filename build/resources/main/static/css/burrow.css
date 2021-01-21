@@ -10,3 +10,7 @@
 table {
   width: 100%;
 }
+
+.mailbox:hover {
+    text-decoration: none;
+}
