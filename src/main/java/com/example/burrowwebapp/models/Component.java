@@ -32,11 +32,11 @@ public class Component extends AbstractEntity {
     @NotNull
     @Min(value=1)
     @Max(value=3650)
-    private long daysBetweenReplacements;
+    private Long daysBetweenReplacements;
 
     public Component(@NotBlank String name, @Size(max = 250, message = "Description must be less than 250 characters") String description,
                      Device device, @NotNull @Min(value=1) Integer quantity, @NotNull LocalDate installDate,
-                     @NotNull @Min(value=1) @Max(value=3650)long daysBetweenReplacements) {
+                     @NotNull @Min(value=1) @Max(value=3650)Long daysBetweenReplacements) {
         this.setName(name);
         this.description = description;
         this.device = device;

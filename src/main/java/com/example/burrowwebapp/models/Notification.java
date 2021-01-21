@@ -15,13 +15,13 @@ public class Notification extends AbstractEntity
 
     private LocalDate replacedDate;
 
-    private long daysBetweenReplacements;
+    private Long daysBetweenReplacements;
 
     public Notification(){
         this.isActive = false;
     }
 
-    public Notification(String message, LocalDate installDate, long daysBetweenReplacements){
+    public Notification(String message, LocalDate installDate, Long daysBetweenReplacements){
 
         this.setName(message);
         this.replacedDate = installDate;
@@ -64,7 +64,7 @@ public class Notification extends AbstractEntity
         return daysBetweenReplacements;
     }
 
-    public void setDaysBetweenReplacements(long daysBetweenReplacements)
+    public void setDaysBetweenReplacements(Long daysBetweenReplacements)
     {
         this.daysBetweenReplacements = daysBetweenReplacements;
     }
