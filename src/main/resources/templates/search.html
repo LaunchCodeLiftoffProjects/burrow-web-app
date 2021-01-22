@@ -38,13 +38,16 @@
 
     <hr />
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="sortTable">
+        <thead>
         <tr th:if="${devices}">
             <th>Device</th>
             <th>Room</th>
             <th>Property</th>
             <th>Component</th>
         </tr>
+        </thead>
+        <tbody>
         <tr th:each="device : ${devices}">
             <td><a th:href="@{'/devices/view/' + ${device.id}}" th:text="${device.name}"></a></td>
             <td><a th:href="@{'/rooms/view/' + ${device.room.id}}" th:text="${device.room.name}"></a></td>
@@ -57,6 +60,7 @@
                 </ul>
             </td>
         </tr>
+        </tbody>
     </table>
 </div>
 

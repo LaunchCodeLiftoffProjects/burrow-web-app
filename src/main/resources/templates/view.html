@@ -2,16 +2,12 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
-<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-
 <header th:replace="fragments :: header"></header>
 <div class="container breadcrumbs">
     <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
     <span>> View All Components</span>
 </div>
-<p></p>
+<p/>
 <h2 th:text="${'View All Components'}">Default Title</h2>
 <p th:unless="${components} and ${components.size()}">No Components!</p>
 <div>
@@ -41,8 +37,5 @@
 <p></p>
 <a th:href="@{'/search'}" class="btn btn-primary">Search Devices</a>
 
-<script>
-$('#sortTable').DataTable();
-</script>
 </body>
 </html>
