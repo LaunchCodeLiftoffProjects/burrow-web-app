@@ -36,7 +36,7 @@ public class SearchController {
         model.addAttribute("columns", columnChoices);
         model.addAttribute("title", "Gophers found " + columnChoices.get(searchType) + ": " + searchTerm);
         model.addAttribute("devices", devices);
-        model.addAttribute("result", " " + columnChoices.get(searchType));
+        model.addAttribute("result", " " + columnChoices.get(searchType) + ": " + searchTerm);
 
         return "search";
     }
