@@ -42,7 +42,7 @@ public class HomeData {
 
     public static String getFieldValue(Device device, String fieldName){
         String theValue;
-        if (fieldName.equals("name")){
+        if (fieldName.equals("device")){
             theValue = device.getName();
         } else if (fieldName.equals("room")){
             theValue = device.getRoom().toString();
