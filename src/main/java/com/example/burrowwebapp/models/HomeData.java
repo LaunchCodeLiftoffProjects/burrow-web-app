@@ -44,17 +44,19 @@ public class HomeData {
         String theValue;
         if (fieldName.equals("name")){
             theValue = device.getName();
-        } else if (fieldName.equals("employer")){
+        } else if (fieldName.equals("room")){
             theValue = device.getRoom().toString();
-        } else {
+        } else if (fieldName.equals("property")){
             theValue = device.getRoom().getProperty().toString();
+        } else {
+            theValue = device.getComponents().toString();
         }
 
         return theValue;
     }
 
     /**
-     * Search all Job fields for the given term.
+     * Search all Device fields for the given term.
      *
      * @param value The search term to look for.
      * @param allDevices The list of devices to search.
@@ -72,6 +74,8 @@ public class HomeData {
             } else if (device.getRoom().toString().toLowerCase().contains(lower_val)) {
                 results.add(device);
             } else if (device.getRoom().getProperty().toString().toLowerCase().contains(lower_val)) {
+                results.add(device);
+            } else if (device.getComponents().toString().toLowerCase().contains(lower_val)) {
                 results.add(device);
             } else if (device.toString().toLowerCase().contains(lower_val)) {
                 results.add(device);
