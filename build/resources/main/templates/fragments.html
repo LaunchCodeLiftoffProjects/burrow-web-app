@@ -37,8 +37,13 @@
                     <input class ="form-control mr-sm-2" type="search"
                            placeholder="Search Burrow" aria-label="search">
                     <button class=" btn btn-light my-sm-0" type = "submit"> &#x1F50D; </button>
+
+                    <a th:href="@{/notifications}">
+                        <button class=" btn btn-light my-sm-0" type = "submit" >&#128234; </button>
+                    </a>
                 </form>
 
+                <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
             </ul>
         </div>
     </nav>

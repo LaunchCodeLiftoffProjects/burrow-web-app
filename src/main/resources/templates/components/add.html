@@ -41,6 +41,12 @@
         <span th:errors="${component.installDate}" class="error"></span>
     </div>
 
+    <div class="form-group">
+        <label th:for="daysBetweenReplacements">Enter the number of days until you would like to be notified to replace this</label>
+        <input class="form-control" th:field="${component.daysBetweenReplacements}" th:value="${component.daysBetweenReplacements}" type="text" name="daysBetweenReplacements" placeholder="0"/>
+        <span th:errors="${component.daysBetweenReplacements}" class="error"></span>
+    </div>
+
     <input type="submit" value="Add Component" />
 </form>
 </body>

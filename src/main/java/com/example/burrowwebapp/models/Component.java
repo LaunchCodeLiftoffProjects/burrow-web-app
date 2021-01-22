@@ -2,12 +2,12 @@ package com.example.burrowwebapp.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.*;
+import java.time.LocalDate;
 
 @Entity
 public class Component extends AbstractEntity {
@@ -24,16 +24,26 @@ public class Component extends AbstractEntity {
 
     @NotNull(message = "Please enter a date")
     @DateTimeFormat(pattern = "MM/dd/yyyy")
-    @Temporal(TemporalType.DATE)
-    private Date installDate;
+    private LocalDate installDate;
+
+    @OneToOne(mappedBy = "component", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Notification notification;
+
+    @NotNull
+    @Min(value=1)
+    @Max(value=3650)
+    private long daysBetweenReplacements;
 
     public Component(@NotBlank String name, @Size(max = 250, message = "Description must be less than 250 characters") String description,
-                     Device device, @NotNull @Min(value=1) Integer quantity, @NotNull Date installDate) {
+                     Device device, @NotNull @Min(value=1) Integer quantity, @NotNull LocalDate installDate,
+                     @NotNull @Min(value=1) @Max(value=3650)long daysBetweenReplacements) {
         this.setName(name);
         this.description = description;
         this.device = device;
         this.quantity = quantity;
         this.installDate = installDate;
+        this.daysBetweenReplacements = daysBetweenReplacements;
+        //this.notification = new Notification("It has been at least" + daysBetweenReplacements + "days since you replaced this" + name, installDate, daysBetweenReplacements);
     }
 
     public Component() {}
@@ -64,11 +74,31 @@ public class Component extends AbstractEntity {
         this.quantity = quantity;
     }
 
-    public Date getInstallDate() {
+    public LocalDate getInstallDate() {
         return installDate;
     }
 
-    public void setInstallDate(Date installDate) {
+    public void setInstallDate(LocalDate installDate) {
         this.installDate = installDate;
+    }
+
+    public Notification getNotification()
+    {
+        return notification;
+    }
+
+    public void setNotification(Notification notification)
+    {
+        this.notification = notification;
+    }
+
+    public long getDaysBetweenReplacements()
+    {
+        return daysBetweenReplacements;
+    }
+
+    public void setDaysBetweenReplacements(long daysBetweenReplacements)
+    {
+        this.daysBetweenReplacements = daysBetweenReplacements;
     }
 }

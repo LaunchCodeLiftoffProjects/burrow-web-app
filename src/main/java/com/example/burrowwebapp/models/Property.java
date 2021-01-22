@@ -2,6 +2,7 @@ package com.example.burrowwebapp.models;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -10,6 +11,9 @@ import java.util.List;
 
 @Entity
 public class Property extends AbstractEntity {
+
+    @ManyToOne
+    private User user;
 
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Room> rooms = new ArrayList<>();
@@ -30,6 +34,14 @@ public class Property extends AbstractEntity {
     }
 
     public Property(){}
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getLocation()
     {
