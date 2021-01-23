@@ -33,9 +33,22 @@
                 <li class="nav-item"><a class="nav-link" href="/view">View All Components</a></li>
                 <li class="nav-item"><a class="nav-link" href="/search">Search by:</a></li>
 
-                <form class="form-inline" action="/searchbar" method="get">
-                    <input class ="form-control mr-sm-2" type="search"
-                           placeholder="Search Burrow" aria-label="search">
+                <form class="form-inline" th:action="@{/searchbar}" method="post">
+
+                    <span style="display:none" th:each="column : ${columns}">
+                        <input
+                                type="radio"
+                                name="searchType"
+                                th:id="${column.key}"
+                                th:value="${column.key}"
+                                th:checked="${column.key == 'all'}"/>
+                        <label th:for="${column.key}" th:text="${column.value}"></label>
+                    </span>
+
+
+                    <label style="display:none" for="searchTerm"></label>
+                    <input class ="form-control mr-sm-2" type="text" name="searchTerm" id="searchTerm" placeholder="Search Burrow" aria-label="search"/>
+
                     <button class=" btn btn-light my-sm-0" type = "submit"> &#x1F50D; </button>
                 </form>
 
