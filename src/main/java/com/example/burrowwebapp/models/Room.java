@@ -12,6 +12,9 @@ import java.util.List;
 public class Room extends AbstractEntity {
 
     @ManyToOne
+    private User user;
+
+    @ManyToOne
     private Property property;
 
     @OneToMany (mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -19,9 +22,22 @@ public class Room extends AbstractEntity {
 
     public Room(){ }
 
-    public Room(@NotBlank String name, Property property) {
+    public Room(@NotBlank String name, User user, Property property) {
         this.setName(name);
+        this.user = user;
         this.property = property;
+    }
+
+    public Room(String s, Property property) {
+        super();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Property getProperty() {

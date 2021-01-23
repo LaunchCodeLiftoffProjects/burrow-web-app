@@ -4,8 +4,10 @@ package com.example.burrowwebapp.controller;
 import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.PropertyRepository;
 import com.example.burrowwebapp.data.RoomRepository;
+import com.example.burrowwebapp.data.UserRepository;
 import com.example.burrowwebapp.models.Property;
 import com.example.burrowwebapp.models.Room;
+import com.example.burrowwebapp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +15,17 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("rooms")
 public class RoomController {
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private RoomRepository roomRepository;
@@ -29,10 +36,14 @@ public class RoomController {
     @Autowired
     private PropertyRepository propertyRepository;
 
+    private static final String userSessionKey = "user";
 
     @GetMapping
-    public String displayAllRooms(Model model) {
-        model.addAttribute("rooms", roomRepository.findAll());
+    public String displayAllRooms(Model model, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        model.addAttribute("user", user);
+        model.addAttribute("users", roomRepository.findAllById(Collections.singleton(userId)));
         model.addAttribute("devices", deviceRepository.findAll());
         return "rooms/index";
     }

@@ -29,6 +29,7 @@ public class Property extends AbstractEntity {
                     @NotBlank @Size(max = 250, message = "Description must be less than 250 characters") String description, List<Room> rooms)
     {
         this.setName(name);
+        this.user = user;
         this.location = location;
         this.description = description;
         this.rooms = rooms;
