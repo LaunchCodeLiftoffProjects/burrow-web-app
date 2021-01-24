@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
+
+import java.util.Collections;
+
 import static com.example.burrowwebapp.controller.ViewController.columnChoices;
 
 @Controller
@@ -20,6 +24,8 @@ public class SearchbarController {
     @Autowired
     private DeviceRepository deviceRepository;
 
+    private static final String userSessionKey = "user";
+
     @GetMapping
     public String search(Model model) {
         model.addAttribute("columns", columnChoices);
@@ -27,12 +33,13 @@ public class SearchbarController {
     }
 
     @PostMapping("")
-    public String displaySearchResults(Model model, @RequestParam String searchTerm){
+    public String displaySearchResults(Model model, @RequestParam String searchTerm, HttpSession session){
         Iterable<Device> devices;
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
-            devices = deviceRepository.findAll();
+            devices = deviceRepository.findAllById(Collections.singleton(userId));
         } else {
-            devices = HomeData.findByValue(searchTerm, deviceRepository.findAll());
+            devices = HomeData.findByValue(searchTerm, deviceRepository.findAllById(Collections.singleton(userId)));
         }
         model.addAttribute("columns", columnChoices);
         model.addAttribute("devices", devices);
