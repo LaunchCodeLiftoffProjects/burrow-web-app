@@ -17,7 +17,6 @@ import java.util.Collections;
 
 import static com.example.burrowwebapp.controller.ViewController.columnChoices;
 
-
 @Controller
 @RequestMapping("search")
 public class SearchController {
@@ -34,13 +33,12 @@ public class SearchController {
     }
 
     @PostMapping("results")
-    public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm, HttpSession session){
+    public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm){
         Iterable<Device> devices;
-        Integer userId = (Integer) session.getAttribute(userSessionKey);
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
-            devices = deviceRepository.findAllById(Collections.singleton(userId));
+            devices = deviceRepository.findAll();
         } else {
-            devices = HomeData.findByColumnAndValue(searchType, searchTerm, deviceRepository.findAllById(Collections.singleton(userId)));
+            devices = HomeData.findByColumnAndValue(searchType, searchTerm, deviceRepository.findAll());
         }
         model.addAttribute("columns", columnChoices);
         model.addAttribute("title", "Gophers found " + columnChoices.get(searchType) + ": " + searchTerm);
