@@ -23,9 +23,6 @@ import static com.example.burrowwebapp.controller.ViewController.columnChoices;
 public class SearchController {
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private DeviceRepository deviceRepository;
 
     private static final String userSessionKey = "user";
