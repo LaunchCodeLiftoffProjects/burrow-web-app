@@ -11,6 +11,8 @@ import java.util.List;
 
 @Entity
 public class Device extends AbstractEntity {
+    @ManyToOne
+    private User user;
 
     @ManyToOne
     private Room room;
@@ -21,14 +23,23 @@ public class Device extends AbstractEntity {
     @Size(max = 250, message = "Description must be less than 250 characters")
     private String description;
 
-    public Device (@NotBlank String name, Room room, @Size(max = 250, message = "Description must be less than 250 characters") String description)
+    public Device (@NotBlank String name, User user, Room room, @Size(max = 250, message = "Description must be less than 250 characters") String description)
     {
         this.setName(name);
+        this.user = user;
         this.room = room;
         this.description = description;
     }
 
     public Device() {}
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Room getRoom() {
         return room;

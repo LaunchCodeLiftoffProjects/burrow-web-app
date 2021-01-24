@@ -44,7 +44,6 @@ public class RoomController {
         User user = userRepository.findById(userId).get();
         model.addAttribute("user", user);
         model.addAttribute("users", roomRepository.findAllById(Collections.singleton(userId)));
-        model.addAttribute("devices", deviceRepository.findAll());
         return "rooms/index";
     }
 

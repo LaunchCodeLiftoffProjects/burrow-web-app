@@ -18,9 +18,9 @@ public class User extends AbstractEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Room> rooms = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private final List<Device> devices = new ArrayList<>();
-//
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Device> devices = new ArrayList<>();
+
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private final List<Component> components = new ArrayList<>();
 
@@ -44,10 +44,10 @@ public class User extends AbstractEntity {
         return rooms;
     }
 
-//    public List<Device> getDevices() {
-//        return devices;
-//    }
-//
+    public List<Device> getDevices() {
+        return devices;
+    }
+
 //    public List<Component> getComponents() {
 //        return components;
 //    }
