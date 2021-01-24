@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 public class Device extends AbstractEntity {
+
     @ManyToOne
     private User user;
 
