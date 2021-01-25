@@ -4,6 +4,7 @@ import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.UserRepository;
 import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.HomeData;
+import com.example.burrowwebapp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,11 @@ public class SearchController {
     @Autowired
     private DeviceRepository deviceRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    private static final String userSessionKey = "user";
+
     @RequestMapping("")
     public String search(Model model) {
         model.addAttribute("columns", columnChoices);
@@ -31,12 +37,15 @@ public class SearchController {
     }
 
     @PostMapping("results")
-    public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm){
+    public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm, HttpSession session){
         Iterable<Device> devices;
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        model.addAttribute("user", user);
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
-            devices = deviceRepository.findAll();
+            devices = user.getDevices();
         } else {
-            devices = HomeData.findByColumnAndValue(searchType, searchTerm, deviceRepository.findAll());
+            devices = HomeData.findByColumnAndValue(searchType, searchTerm, user.getDevices());
         }
         model.addAttribute("columns", columnChoices);
         model.addAttribute("title", "Gophers found " + columnChoices.get(searchType) + ": " + searchTerm);
