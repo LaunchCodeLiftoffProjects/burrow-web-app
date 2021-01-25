@@ -8,17 +8,20 @@ import com.example.burrowwebapp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 
+import java.util.Collections;
+
 import static com.example.burrowwebapp.controller.ViewController.columnChoices;
 
 @Controller
-@RequestMapping("search")
-public class SearchController {
+@RequestMapping("searchbar")
+public class SearchbarController {
 
     @Autowired
     private DeviceRepository deviceRepository;
@@ -28,14 +31,14 @@ public class SearchController {
 
     private static final String userSessionKey = "user";
 
-    @RequestMapping("")
+    @GetMapping
     public String search(Model model) {
         model.addAttribute("columns", columnChoices);
-        return "search";
+        return "searchbar/index";
     }
 
-    @PostMapping("results")
-    public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm, HttpSession session){
+    @PostMapping("")
+    public String displaySearchResults(Model model, @RequestParam String searchTerm, HttpSession session){
         Iterable<Device> devices;
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
@@ -43,13 +46,12 @@ public class SearchController {
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
             devices = user.getDevices();
         } else {
-            devices = HomeData.findByColumnAndValue(searchType, searchTerm, user.getDevices());
+            devices = HomeData.findByValue(searchTerm, user.getDevices());
         }
         model.addAttribute("columns", columnChoices);
-        model.addAttribute("title", "Gophers found " + columnChoices.get(searchType) + ": " + searchTerm);
         model.addAttribute("devices", devices);
-        model.addAttribute("result", " " + columnChoices.get(searchType) + ": " + searchTerm);
+        model.addAttribute("result", ": " + searchTerm);
 
-        return "search";
+        return "searchbar/index";
     }
 }
