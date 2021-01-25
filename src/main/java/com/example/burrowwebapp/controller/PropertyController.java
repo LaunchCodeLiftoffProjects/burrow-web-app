@@ -35,7 +35,7 @@ public class PropertyController {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         model.addAttribute("user", user);
-        model.addAttribute("users", propertyRepository.findAllById(Collections.singleton(userId)));
+        model.addAttribute("properties", propertyRepository.findAllById(Collections.singleton(userId)));
         return "properties/index";
     }
 

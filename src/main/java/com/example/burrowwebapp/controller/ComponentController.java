@@ -55,7 +55,7 @@ public class ComponentController
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         model.addAttribute("user", user);
-        model.addAttribute("users", componentRepository.findAllById(Collections.singleton(userId)));
+        model.addAttribute("components", componentRepository.findAllById(Collections.singleton(userId)));
         return "components/index";
     }
 
