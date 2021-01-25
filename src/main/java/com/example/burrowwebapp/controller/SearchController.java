@@ -24,8 +24,6 @@ public class SearchController {
     @Autowired
     private DeviceRepository deviceRepository;
 
-    private static final String userSessionKey = "user";
-
     @RequestMapping("")
     public String search(Model model) {
         model.addAttribute("columns", columnChoices);
