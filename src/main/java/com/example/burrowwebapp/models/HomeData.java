@@ -13,22 +13,22 @@ public class HomeData {
      *
      * @param column Device field that should be searched.
      * @param value Value of the field to search for.
-     * @param allDevices The list of devices to search.
+     * @param userDevices The list of user devices to search.
      * @return List of all devices matching the criteria.
      */
-    public static ArrayList<Device> findByColumnAndValue(String column, String value, Iterable<Device> allDevices) {
+    public static ArrayList<Device> findByColumnAndValue(String column, String value, Iterable<Device> userDevices) {
 
         ArrayList<Device> results = new ArrayList<>();
 
         if (value.toLowerCase().equals("all")){
-            return (ArrayList<Device>) allDevices;
+            return (ArrayList<Device>) userDevices;
         }
 
         if (column.equals("all")){
-            results = findByValue(value, allDevices);
+            results = findByValue(value, userDevices);
             return results;
         }
-        for (Device device : allDevices) {
+        for (Device device : userDevices) {
 
             String aValue = getFieldValue(device, column);
 
@@ -59,15 +59,15 @@ public class HomeData {
      * Search all Device fields for the given term.
      *
      * @param value The search term to look for.
-     * @param allDevices The list of devices to search.
+     * @param userDevices The list of user devices to search.
      * @return List of all devices with at least one field containing the value.
      */
-    public static ArrayList<Device> findByValue(String value, Iterable<Device> allDevices) {
+    public static ArrayList<Device> findByValue(String value, Iterable<Device> userDevices) {
         String lower_val = value.toLowerCase();
 
         ArrayList<Device> results = new ArrayList<>();
 
-        for (Device device : allDevices) {
+        for (Device device : userDevices) {
 
             if (device.getName().toLowerCase().contains(lower_val)) {
                 results.add(device);
