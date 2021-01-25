@@ -49,6 +49,7 @@ public class SearchbarController {
             devices = HomeData.findByValue(searchTerm, user.getDevices());
         }
         model.addAttribute("columns", columnChoices);
+        model.addAttribute("title", "Search Results: " + searchTerm);
         model.addAttribute("devices", devices);
         model.addAttribute("result", ": " + searchTerm);
 
