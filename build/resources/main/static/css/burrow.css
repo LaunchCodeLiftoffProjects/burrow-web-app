@@ -15,3 +15,9 @@ table {
 .mailbox:hover {
     text-decoration: none;
 }
+
+.enlighten {
+    width: 18rem;
+    padding: 10px 20px;
+    border-width: 5px;
+}
