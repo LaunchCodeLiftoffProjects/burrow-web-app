@@ -29,14 +29,14 @@ public class Component extends AbstractEntity {
     @OneToOne(mappedBy = "component", cascade = CascadeType.ALL, orphanRemoval = true)
     private Notification notification;
 
-    @NotNull
-    @Min(value=1)
+    @NotNull(message = "Please enter number of days")
+    @Min(value=1, message = "Day(s) must be greater than or equal to 1")
     @Max(value=3650)
     private Long daysBetweenReplacements;
 
     public Component(@NotBlank String name, @Size(max = 250, message = "Description must be less than 250 characters") String description,
                      Device device, @NotNull @Min(value=1) Integer quantity, @NotNull LocalDate installDate,
-                     @NotNull @Min(value=1) @Max(value=3650)Long daysBetweenReplacements) {
+                     @NotNull @Min(value=1) @Max(value=3650) Long daysBetweenReplacements) {
         this.setName(name);
         this.description = description;
         this.device = device;
