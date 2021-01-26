@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
@@ -28,6 +30,18 @@ public class NotificationController
             }
         }
         model.addAttribute("notifications", activeNotifications);
+        return "notifications/index";
+    }
+
+    @PostMapping
+    public String resetNotifications(@RequestParam(required=false) int[] notificationIds){
+        if(notificationIds != null){
+            for(int id : notificationIds){
+                Notification notification = notificationRepository.findById(id).get();
+                notification.replaceComponent();
+                notificationRepository.save(notification);
+            }
+        }
         return "notifications/index";
     }
 }
