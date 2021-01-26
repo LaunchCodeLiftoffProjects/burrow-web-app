@@ -21,8 +21,8 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("components")
-public class ComponentController
-{
+public class ComponentController {
+
     @Autowired
     private ComponentRepository componentRepository;
 
