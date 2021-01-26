@@ -116,7 +116,7 @@ public class ComponentController {
     @PostMapping("edit")
     public String processEditComponentForm(@Valid @ModelAttribute Component editComponent, Errors errors, int componentId,
                                            String name, @DateTimeFormat(pattern = "MM/dd/yyyy") LocalDate installDate,
-                                           @RequestParam int deviceId, String description, Integer quantity, Model model) {
+                                           @RequestParam int deviceId, String description, Integer quantity, Model model, Long daysBetweenReplacements) {
 
         if(errors.hasErrors()){
             model.addAttribute("component", editComponent);
@@ -134,6 +134,7 @@ public class ComponentController {
         component.setInstallDate(installDate);
         Device device = deviceRepository.findById(deviceId).get();
         component.setDevice(device);
+        component.setDaysBetweenReplacements(daysBetweenReplacements);
         componentRepository.save(component);
         return "redirect:view/" + componentId;
     }
