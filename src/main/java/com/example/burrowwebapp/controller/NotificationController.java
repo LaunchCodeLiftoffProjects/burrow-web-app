@@ -37,7 +37,9 @@ public class NotificationController
     public String resetNotifications(@RequestParam(required=false) int[] notificationIds){
         if(notificationIds != null){
             for(int id : notificationIds){
-                notificationRepository.findById(id).get().replaceComponent();
+                Notification notification = notificationRepository.findById(id).get();
+                notification.replaceComponent();
+                notificationRepository.save(notification);
             }
         }
         return "redirect:";
