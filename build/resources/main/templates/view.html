@@ -9,7 +9,7 @@
 </div>
 <p/>
 <h2 th:text="${'View All Components'}">Default Title</h2>
-<p th:unless="${components} and ${components.size()}">No Components!</p>
+<p th:unless="${user.components} and ${user.components.size()}">No Components!</p>
 <div>
     <table class="table table-bordered" id="sortTable">
         <thead>
@@ -23,7 +23,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="component : ${components}">
+        <tr th:each="component : ${user.components}">
             <td><a th:href="@{'/components/view/' + ${component.id}}" th:text="${component.name}"></a></td>
             <td th:text="${component.quantity}"></td>
             <td th:text="${component.description}"></td>

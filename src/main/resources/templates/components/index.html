@@ -8,11 +8,11 @@
     <span>> Components</span>
 </div>
 <h2>Components</h2>
-<p th:unless="${components} and ${components.size()}">No Components!</p>
+<p th:unless="${user.components} and ${user.components.size()}">No Components!</p>
 
 <div class="container body-content">
     <ul>
-        <li th:each="component : ${components}">
+        <li th:each="component : ${user.components}">
             <a th:href="@{'/components/view/' + ${component.id}}" th:text="${component.name + ' for ' + component.device.name + ' in ' + component.device.room.name}"></a>
         </li>
     </ul>

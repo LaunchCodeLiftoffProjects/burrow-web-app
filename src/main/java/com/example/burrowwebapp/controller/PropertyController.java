@@ -35,7 +35,7 @@ public class PropertyController {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         model.addAttribute("user", user);
-        model.addAttribute("users", propertyRepository.findAllById(Collections.singleton(userId)));
+        model.addAttribute("properties", propertyRepository.findAllById(Collections.singleton(userId)));
         return "properties/index";
     }
 
@@ -125,7 +125,7 @@ public class PropertyController {
 
     @PostMapping("addRoom/{propertyId}")
     public String processAddRoomForm(@Valid @ModelAttribute Room newRoom,
-                                         Errors errors, Model model, @PathVariable int propertyId) {
+                                         Errors errors, Model model, @PathVariable int propertyId, HttpSession session) {
         Optional optProperty = propertyRepository.findById(propertyId);
         if (optProperty.isPresent())
         {
@@ -136,6 +136,11 @@ public class PropertyController {
                 model.addAttribute("property", property);
                 return "properties/addRoom";
             }else{
+                Integer userId = (Integer) session.getAttribute(userSessionKey);
+                User user = userRepository.findById(userId).get();
+                Property property = (Property) optProperty.get();
+                newRoom.setUser(user);
+                newRoom.setProperty(property);
                 roomRepository.save(newRoom);
 
                 return "redirect:../view/"+propertyId;

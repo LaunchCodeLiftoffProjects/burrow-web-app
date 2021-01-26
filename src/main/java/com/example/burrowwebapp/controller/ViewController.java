@@ -1,18 +1,14 @@
 package com.example.burrowwebapp.controller;
 
-import com.example.burrowwebapp.data.ComponentRepository;
-import com.example.burrowwebapp.data.DeviceRepository;
-import com.example.burrowwebapp.data.PropertyRepository;
-import com.example.burrowwebapp.data.RoomRepository;
-import com.example.burrowwebapp.models.Device;
-import com.example.burrowwebapp.models.Property;
-import com.example.burrowwebapp.models.Component;
-import com.example.burrowwebapp.models.Room;
+import com.example.burrowwebapp.data.*;
+import com.example.burrowwebapp.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,6 +25,11 @@ public class ViewController {
     @Autowired
     private PropertyRepository propertyRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    private static final String userSessionKey = "user";
+
     static HashMap<String, String> columnChoices = new HashMap<>();
 
     public ViewController() {
@@ -41,17 +42,21 @@ public class ViewController {
     }
 
     @RequestMapping("")
-    public String list(Model model) {
-        List<Room> rooms = (List<Room>) roomRepository.findAll();
+    public String list(Model model, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        model.addAttribute("user", user);
+
+        List<Room> rooms = (List<Room>) roomRepository.findAllById(Collections.singleton(userId));
         model.addAttribute("rooms", rooms);
 
-        List<Property> properties = (List<Property>) propertyRepository.findAll();
+        List<Property> properties = (List<Property>) propertyRepository.findAllById(Collections.singleton(userId));
         model.addAttribute("property", properties);
 
-        List<Device> devices = (List<Device>) deviceRepository.findAll();
+        List<Device> devices = (List<Device>) deviceRepository.findAllById(Collections.singleton(userId));
         model.addAttribute("devices", devices);
 
-        List<Component> components = (List<Component>) componentRepository.findAll();
+        List<Component> components = (List<Component>) componentRepository.findAllById(Collections.singleton(userId));
         model.addAttribute("components", components);
 
         return "view";

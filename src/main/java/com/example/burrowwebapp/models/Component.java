@@ -12,6 +12,9 @@ import java.time.LocalDate;
 @Entity
 public class Component extends AbstractEntity {
 
+    @ManyToOne
+    private User user;
+
     @Size(max = 250, message = "Description must be less than 250 characters")
     private String description;
 
@@ -34,10 +37,11 @@ public class Component extends AbstractEntity {
     @Max(value=3650)
     private Long daysBetweenReplacements;
 
-    public Component(@NotBlank String name, @Size(max = 250, message = "Description must be less than 250 characters") String description,
+    public Component(@NotBlank String name, User user, @Size(max = 250, message = "Description must be less than 250 characters") String description,
                      Device device, @NotNull @Min(value=1) Integer quantity, @NotNull LocalDate installDate,
                      @NotNull @Min(value=1) @Max(value=3650) Long daysBetweenReplacements) {
         this.setName(name);
+        this.user = user;
         this.description = description;
         this.device = device;
         this.quantity = quantity;
@@ -47,6 +51,14 @@ public class Component extends AbstractEntity {
     }
 
     public Component() {}
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getDescription() {
         return description;

@@ -9,7 +9,7 @@
 </div>
 <p/>
 <h2>Devices</h2>
-<p th:unless="${devices} and ${devices.size()}">No devices!</p>
+<p th:unless="${user.devices} and ${user.devices.size()}">No devices!</p>
 <div>
     <table class="table table-bordered" id="sortTable">
         <thead>
@@ -21,7 +21,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="device : ${devices}">
+        <tr th:each="device : ${user.devices}">
             <td><a th:href="@{'/devices/view/' + ${device.id}}" th:text="${device.name}"></a></td>
             <td><a th:href="@{'/rooms/view/' + ${device.room.id}}" th:text="${device.room.name}"></a></td>
             <td><a th:href="@{'/properties/view/' + ${device.room.property.id}}"  th:text="${device.room.property.name}"></a></td>
