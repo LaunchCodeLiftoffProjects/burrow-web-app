@@ -10260,4 +10260,50 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+
+body{
+   font-family: 'Lato', sans-serif;
+}
+h2{
+   position: relative;
+}
+h2::after{
+   content: "";
+   width: 130px;
+   position: absolute;
+   margin: 0 auto;
+   height: 3px;
+   background: #808080;
+   left: 0;
+   right: 0;
+   bottom: -10px;
+}
+.carousel-inner .carousel-item .img-box{
+   width: 135px;
+   height: 135px;
+}
+.carousel-control-prev{
+   left: -100px;
+}
+.carousel-control-next{
+   right: -100px;
+}
+.carousel-indicators{
+   top: 320px;
+}
+@media (min-width: 320px) and (max-width: 640px) {
+   .carousel-inner .carousel-item p{
+      font-size: 14px;
+   }
+   .carousel-control-prev{
+      left: -40px;
+   }
+   .carousel-control-next{
+      right: -40px;
+   }
+    .carousel-indicators{
+      top: 400px;
+   }
+}
+
 /*# sourceMappingURL=bootstrap.css.map */
