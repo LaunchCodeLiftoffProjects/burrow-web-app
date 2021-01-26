@@ -40,7 +40,6 @@ public class Room extends AbstractEntity {
         this.devices = devices;
     }
 
-    //testing dan's theory
 }
 
 

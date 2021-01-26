@@ -12,9 +12,10 @@
 
 <div>
     <p th:text="${'Name: ' + property.name}"></p>
-    <p th:text="${'Location: ' + property.location}"></p>
-    <p th:text="${'Description: ' + property.description}"></p>
+    <p th:if="${property.location != ''}" th:text="${'Location: ' + property.location}"></p>
+    <p th:if="${property.description != ''}" th:text="${'Description: ' + property.description}"></p>
 </div>
+
 <div>
     <a th:href="@{/properties/edit/{id}(id=${property.id})}">
         <input type="submit" value="Edit" class="btn btn-info">
