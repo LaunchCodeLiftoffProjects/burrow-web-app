@@ -42,6 +42,6 @@ public class NotificationController
                 notificationRepository.save(notification);
             }
         }
-        return "redirect:";
+        return "notifications/index";
     }
 }
