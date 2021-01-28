@@ -82,23 +82,29 @@ public class PropertyController {
         return "properties/view";
     }
 
-    @GetMapping("edit/{propertyId}")
-    public String displayEditForm(Model model, @PathVariable int propertyId, HttpSession session) {
+    @GetMapping(path = {"edit/{propertyId}", "edit"})
+    public String displayEditForm(Model model, @PathVariable(required = false) Integer propertyId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        Optional optProperty = propertyRepository.findById(propertyId);
-        if (optProperty.isPresent()) {
-            Property property = propertyRepository.findById(propertyId).get();
-            if (user.getId() != property.getUser().getId()) {
-                return "redirect:../";
-            }
-            model.addAttribute("property", property);
-            model.addAttribute("uneditedProperty", property);
-            model.addAttribute("propertyId", propertyId);
-            return "properties/edit";
+        if (propertyId == null){
+            model.addAttribute("user", user);
+            model.addAttribute("properties", propertyRepository.findAllById(Collections.singleton(userId)));
+            return "properties/index";
         } else {
-            return "redirect:../";
+            Optional<Property> result = propertyRepository.findById(propertyId);
+            if (result.isEmpty()){
+                return "redirect:../";
+            } else {
+                Property property = result.get();
+                if (user.getId() != property.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("property", property);
+                model.addAttribute("uneditedProperty", property);
+                model.addAttribute("propertyId", propertyId);
+            }
         }
+        return "properties/edit";
     }
 
     @PostMapping("edit")
