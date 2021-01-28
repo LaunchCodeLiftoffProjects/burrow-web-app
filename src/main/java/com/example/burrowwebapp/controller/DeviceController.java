@@ -114,16 +114,22 @@ public class DeviceController {
     public String displayEditDeviceForm(Model model, @PathVariable int deviceId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        Device device = deviceRepository.findById(deviceId).get();
-        if (user.getId() != device.getUser().getId()) {
+        Optional optDevice = deviceRepository.findById(deviceId);
+        if (optDevice.isPresent()) {
+            Device device = deviceRepository.findById(deviceId).get();
+            if (user.getId() != device.getUser().getId()) {
+                return "redirect:../";
+            }
+            model.addAttribute("device", device);
+            model.addAttribute("uneditedDevice", device);
+            model.addAttribute("rooms", roomRepository.findAll());
+            model.addAttribute("properties", propertyRepository.findAll());
+            return "devices/edit";
+        } else {
             return "redirect:../";
         }
-        model.addAttribute("device", device);
-        model.addAttribute("uneditedDevice", device);
-        model.addAttribute("rooms", roomRepository.findAll());
-        model.addAttribute("properties", propertyRepository.findAll());
-        return "devices/edit";
     }
+
     @PostMapping("edit")
     public String processEditDeviceForm(@Valid @ModelAttribute Device editDevice, Errors errors, int deviceId,
                                         String name, @RequestParam int roomId, String description, Model model) {
