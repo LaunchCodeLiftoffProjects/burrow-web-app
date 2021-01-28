@@ -52,7 +52,8 @@ public class RoomController {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         if (roomId == null){
-            model.addAttribute("rooms", roomRepository.findAll());
+            model.addAttribute("user", user);
+            model.addAttribute("rooms", roomRepository.findAllById(Collections.singleton(userId)));
             return "rooms/index";
         } else {
             Optional<Room> result = roomRepository.findById(roomId);

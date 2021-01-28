@@ -92,7 +92,8 @@ public class DeviceController {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         if (deviceID == null) {
-            model.addAttribute("devices", deviceRepository.findAll());
+            model.addAttribute("user", user);
+            model.addAttribute("devices", deviceRepository.findAllById(Collections.singleton(userId)));
             return "devices/index";
         } else {
             Optional<Device> result = deviceRepository.findById(deviceID);

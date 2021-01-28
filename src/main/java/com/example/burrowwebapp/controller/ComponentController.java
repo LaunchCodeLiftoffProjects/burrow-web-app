@@ -112,7 +112,8 @@ public class ComponentController
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         if (componentId == null) {
-            model.addAttribute("components", componentRepository.findAll());
+            model.addAttribute("user", user);
+            model.addAttribute("components", componentRepository.findAllById(Collections.singleton(userId)));
             return "components/index";
         } else {
             Optional<Component> result = componentRepository.findById(componentId);
