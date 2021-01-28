@@ -60,7 +60,7 @@ public class PropertyController {
     }
 
     @GetMapping(path = {"view/{propertyId}", "view"})
-    public String displayViewProperty(Model model, @PathVariable (required = false) Integer propertyId, HttpSession session) {
+    public String displayViewProperty(Model model, @PathVariable(required = false) Integer propertyId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         if (propertyId == null){

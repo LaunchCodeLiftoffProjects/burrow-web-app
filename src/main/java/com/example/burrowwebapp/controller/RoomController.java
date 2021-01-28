@@ -48,7 +48,7 @@ public class RoomController {
     }
 
     @GetMapping(path = {"view/{roomId}", "view"})
-    public String displayViewRoom(Model model, @PathVariable (required = false) Integer roomId, HttpSession session) {
+    public String displayViewRoom(Model model, @PathVariable(required = false) Integer roomId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         if (roomId == null){

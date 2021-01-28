@@ -83,7 +83,7 @@ public class DeviceController {
     }
 
     @GetMapping(path = {"view/{deviceID}", "view"})
-    public String displayViewDevice(Model model, @PathVariable (required = false) Integer deviceID, HttpSession session) {
+    public String displayViewDevice(Model model, @PathVariable(required = false) Integer deviceID, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         if (deviceID == null) {
