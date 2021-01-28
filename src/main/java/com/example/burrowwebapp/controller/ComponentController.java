@@ -60,7 +60,7 @@ public class ComponentController
     }
 
     @GetMapping(path = {"add/{deviceId}", "add"})
-    public String displayAddComponent(Model model, @PathVariable (required = false) Integer deviceId){
+    public String displayAddComponent(Model model, @PathVariable(required = false) Integer deviceId){
         if (deviceId == null) {
             model.addAttribute("components", componentRepository.findAll());
             return "redirect:../devices/";
@@ -103,7 +103,9 @@ public class ComponentController
     }
 
     @GetMapping(path = {"view/{componentId}", "view"})
-    public String displayViewComponent(Model model, @PathVariable (required = false) Integer componentId) {
+    public String displayViewComponent(Model model, @PathVariable(required = false) Integer componentId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
         if (componentId == null) {
             model.addAttribute("components", componentRepository.findAll());
             return "components/index";
@@ -113,6 +115,9 @@ public class ComponentController
                 return "redirect:../";
             } else {
                 Component component = result.get();
+                if (user.getId() != component.getUser().getId()) {
+                    return "redirect:../";
+                }
                 model.addAttribute("component", component);
             }
         }
@@ -120,8 +125,13 @@ public class ComponentController
     }
 
     @GetMapping("edit/{componentId}")
-    public String displayEditComponentForm(Model model, @PathVariable int componentId) {
+    public String displayEditComponentForm(Model model, @PathVariable int componentId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
         Component component = componentRepository.findById(componentId).get();
+        if (user.getId() != component.getUser().getId()) {
+            return "redirect:../";
+        }
         model.addAttribute("component", component);
         model.addAttribute("uneditedComponent", component);
         model.addAttribute("devices", deviceRepository.findAll());
