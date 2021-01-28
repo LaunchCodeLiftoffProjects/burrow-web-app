@@ -7,9 +7,10 @@
     <span><a th:href="@{/}" th:text="${'Home-Page'}"></a></span>
     <span>> Devices</span>
 </div>
-<p/>
 <h2>Devices</h2>
 <p th:unless="${user.devices} and ${user.devices.size()}">No devices!</p>
+
+<p th:text="${message}"></p>
 <div>
     <table class="table table-bordered" id="sortTable">
         <thead>
