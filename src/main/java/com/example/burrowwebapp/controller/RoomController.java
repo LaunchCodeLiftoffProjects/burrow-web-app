@@ -74,15 +74,20 @@ public class RoomController {
     public String displayEditForm(Model model, @PathVariable int roomId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        Room room = roomRepository.findById(roomId).get();
-        if (user.getId() != room.getUser().getId()) {
+        Optional optRoom = roomRepository.findById(roomId);
+        if (optRoom.isPresent()) {
+            Room room = roomRepository.findById(roomId).get();
+            if (user.getId() != room.getUser().getId()) {
+                return "redirect:../";
+            }
+            model.addAttribute("room", room);
+            model.addAttribute("uneditedRoom", room);
+            model.addAttribute("roomId", roomId);
+            model.addAttribute("properties", propertyRepository.findAll());
+            return "rooms/edit";
+        } else {
             return "redirect:../";
         }
-        model.addAttribute("room", room);
-        model.addAttribute("uneditedRoom", room);
-        model.addAttribute("roomId", roomId);
-        model.addAttribute("properties", propertyRepository.findAll());
-        return "rooms/edit";
     }
 
     @PostMapping("edit")
