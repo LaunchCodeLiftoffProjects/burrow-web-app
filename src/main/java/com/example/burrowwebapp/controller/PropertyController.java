@@ -86,14 +86,19 @@ public class PropertyController {
     public String displayEditForm(Model model, @PathVariable int propertyId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        Property property = propertyRepository.findById(propertyId).get();
-        if (user.getId() != property.getUser().getId()) {
+        Optional optProperty = propertyRepository.findById(propertyId);
+        if (optProperty.isPresent()) {
+            Property property = propertyRepository.findById(propertyId).get();
+            if (user.getId() != property.getUser().getId()) {
+                return "redirect:../";
+            }
+            model.addAttribute("property", property);
+            model.addAttribute("uneditedProperty", property);
+            model.addAttribute("propertyId", propertyId);
+            return "properties/edit";
+        } else {
             return "redirect:../";
         }
-        model.addAttribute("property", property);
-        model.addAttribute("uneditedProperty", property);
-        model.addAttribute("propertyId", propertyId);
-        return "properties/edit";
     }
 
     @PostMapping("edit")
