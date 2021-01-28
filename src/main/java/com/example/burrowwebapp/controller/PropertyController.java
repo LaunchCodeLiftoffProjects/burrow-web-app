@@ -60,9 +60,12 @@ public class PropertyController {
     }
 
     @GetMapping(path = {"view/{propertyId}", "view"})
-    public String displayViewProperty(Model model, @PathVariable (required = false) Integer propertyId) {
+    public String displayViewProperty(Model model, @PathVariable (required = false) Integer propertyId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
         if (propertyId == null){
-            model.addAttribute("properties", propertyRepository.findAll());
+            model.addAttribute("user", user);
+            model.addAttribute("properties", propertyRepository.findAllById(Collections.singleton(userId)));
             return "properties/index";
         } else {
             Optional<Property> result = propertyRepository.findById(propertyId);
@@ -70,6 +73,9 @@ public class PropertyController {
                 return "redirect:../";
             } else {
                 Property property = result.get();
+                if (user.getId() != property.getUser().getId()) {
+                    return "redirect:../";
+                }
                 model.addAttribute("property", property);
             }
         }
@@ -77,8 +83,13 @@ public class PropertyController {
     }
 
     @GetMapping("edit/{propertyId}")
-    public String displayEditForm(Model model, @PathVariable int propertyId) {
+    public String displayEditForm(Model model, @PathVariable int propertyId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
         Property property = propertyRepository.findById(propertyId).get();
+        if (user.getId() != property.getUser().getId()) {
+            return "redirect:../";
+        }
         model.addAttribute("property", property);
         model.addAttribute("uneditedProperty", property);
         model.addAttribute("propertyId", propertyId);
