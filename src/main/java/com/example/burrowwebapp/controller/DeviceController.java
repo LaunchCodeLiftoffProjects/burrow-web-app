@@ -46,21 +46,26 @@ public class DeviceController {
     }
 
     @GetMapping(path={"add/{roomId}", "add"})
-    public String displayAddDeviceForm(Model model, @PathVariable(required = false) Integer roomId) {
-       if (roomId == null) {
-           model.addAttribute("devices", deviceRepository.findAll());
-           return "redirect:../rooms/";
-       } else {
-           Optional optRoom = roomRepository.findById(roomId);
-           if (optRoom.isPresent()) {
-               Room room = (Room) optRoom.get();
-               model.addAttribute(new Device());
-               model.addAttribute("room", room);
-               return "devices/add";
-           } else {
-               return "redirect:../";
-           }
-       }
+    public String displayAddDeviceForm(Model model, @PathVariable(required = false) Integer roomId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (roomId == null) {
+            model.addAttribute("devices", deviceRepository.findAll());
+            return "redirect:../rooms/";
+        } else {
+            Optional optRoom = roomRepository.findById(roomId);
+            if (optRoom.isPresent()) {
+                Room room = (Room) optRoom.get();
+                model.addAttribute(new Device());
+                model.addAttribute("room", room);
+                if (user.getId() != room.getUser().getId()) {
+                    return "redirect:../";
+                }
+                return "devices/add";
+            } else {
+                return "redirect:../";
+            }
+        }
     }
 
     @PostMapping("add/{roomId}")
