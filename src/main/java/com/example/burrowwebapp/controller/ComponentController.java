@@ -134,15 +134,20 @@ public class ComponentController
     public String displayEditComponentForm(Model model, @PathVariable int componentId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        Component component = componentRepository.findById(componentId).get();
-        if (user.getId() != component.getUser().getId()) {
+        Optional optComponent = componentRepository.findById(componentId);
+        if (optComponent.isPresent()) {
+            Component component = componentRepository.findById(componentId).get();
+            if (user.getId() != component.getUser().getId()) {
+                return "redirect:../";
+            }
+            model.addAttribute("component", component);
+            model.addAttribute("uneditedComponent", component);
+            model.addAttribute("devices", deviceRepository.findAll());
+            model.addAttribute("names", nameList);
+            return "components/edit";
+        } else {
             return "redirect:../";
         }
-        model.addAttribute("component", component);
-        model.addAttribute("uneditedComponent", component);
-        model.addAttribute("devices", deviceRepository.findAll());
-        model.addAttribute("names", nameList);
-        return "components/edit";
     }
 
     @PostMapping("edit")
