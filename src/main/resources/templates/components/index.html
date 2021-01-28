@@ -11,11 +11,28 @@
 <p th:unless="${user.components} and ${user.components.size()}">No Components!</p>
 
 <div class="container body-content">
-    <ul>
-        <li th:each="component : ${user.components}">
-            <a th:href="@{'/components/view/' + ${component.id}}" th:text="${component.name + ' for ' + component.device.name + ' in ' + component.device.room.name}"></a>
-        </li>
-    </ul>
+    <table class="table table-bordered" id="sortTable">
+        <thead>
+        <tr>
+            <th>Component</th>
+            <th>Qty</th>
+            <th>Description</th>
+            <th>Device</th>
+            <th>Room</th>
+            <th>Property</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="component : ${user.components}">
+            <td><a th:href="@{'/components/view/' + ${component.id}}" th:text="${component.name}"></a></td>
+            <td th:text="${component.quantity}"></td>
+            <td th:text="${component.description}"></td>
+            <td><a th:href="@{'/devices/view/' + ${component.device.id}}" th:text="${component.device.name}"></a></td>
+            <td><a th:href="@{'/rooms/view/' + ${component.device.room.id}}" th:text="${component.device.room.name}"></a></td>
+            <td><a th:href="@{'/properties/view/' + ${component.device.room.property.id}}" th:text="${component.device.room.property.name}"></a></td>
+        </tr>
+        </tbody>
+    </table>
     <a th:href="@{'/components/add'}">
         <input type="submit" value="Add Components" class="btn btn-secondary">
     </a>
