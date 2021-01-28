@@ -83,7 +83,9 @@ public class DeviceController {
     }
 
     @GetMapping(path = {"view/{deviceID}", "view"})
-    public String displayViewDevice(Model model, @PathVariable (required = false) Integer deviceID) {
+    public String displayViewDevice(Model model, @PathVariable (required = false) Integer deviceID, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
         if (deviceID == null) {
             model.addAttribute("devices", deviceRepository.findAll());
             return "devices/index";
@@ -93,6 +95,9 @@ public class DeviceController {
                 return "redirect:../";
             } else {
                 Device device = result.get();
+                if (user.getId() != device.getUser().getId()) {
+                    return "redirect:../";
+                }
                 model.addAttribute("device", device);
             }
         }
@@ -100,8 +105,13 @@ public class DeviceController {
     }
 
     @GetMapping("edit/{deviceId}")
-    public String displayEditDeviceForm(Model model, @PathVariable int deviceId) {
+    public String displayEditDeviceForm(Model model, @PathVariable int deviceId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
         Device device = deviceRepository.findById(deviceId).get();
+        if (user.getId() != device.getUser().getId()) {
+            return "redirect:../";
+        }
         model.addAttribute("device", device);
         model.addAttribute("uneditedDevice", device);
         model.addAttribute("rooms", roomRepository.findAll());
