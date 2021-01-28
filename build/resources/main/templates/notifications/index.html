@@ -22,7 +22,7 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th></th>
+                <th width="40px"></th>
                 <th>View Info</th>
                 <th>Notifications</th>
             </tr>
@@ -30,7 +30,7 @@
             <tbody>
             <tr th:each="notification : ${notifications}">
                 <td><input type="checkbox" name="notificationIds" th:value="${notification.id}" class="form-control"></td>
-                <td><a th:href="@{/components}" th:text="${'Details'}"></a></td>
+                <td><a th:href="@{'/components'}" th:text="${'Details'}"></a></td>
                 <td th:for="notificationIds" th:text="${notification.name}"></td>
             </tr>
             </tbody>
