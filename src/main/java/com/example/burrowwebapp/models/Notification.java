@@ -85,6 +85,6 @@ public class Notification extends AbstractEntity
     }
 
     public void setMessage(){
-        this.setName("You last replaced" + this.getComponent().getName() + this.getComponent().getDevice().getName() + " on " + this.getReplacedDate() + ". It should be replaced every " + this.getDaysBetweenReplacements() + " days.");
+        this.setName("You last replaced " + this.getComponent().getName() + this.getComponent().getDevice().getName() + " on " + this.getReplacedDate() + ". It should be replaced every " + this.getDaysBetweenReplacements() + " days.");
     }
 }
