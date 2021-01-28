@@ -121,13 +121,17 @@ public class PropertyController {
     }
 
     @GetMapping("addRoom/{propertyId}")
-    public String displayAddRoom(Model model, @PathVariable int propertyId) {
-
+    public String displayAddRoom(Model model, @PathVariable int propertyId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
         Optional optProperty = propertyRepository.findById(propertyId);
         if (optProperty.isPresent()) {
             Property property = (Property) optProperty.get();
             model.addAttribute(new Room("", property));
             model.addAttribute("property", property);
+            if (user.getId() != property.getUser().getId()) {
+                return "redirect:../";
+            }
             return "properties/addRoom";
         } else {
             return "redirect:../";
