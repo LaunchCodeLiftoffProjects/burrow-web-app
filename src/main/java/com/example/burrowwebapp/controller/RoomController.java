@@ -48,7 +48,9 @@ public class RoomController {
     }
 
     @GetMapping(path = {"view/{roomId}", "view"})
-    public String displayViewRoom(Model model, @PathVariable (required = false) Integer roomId) {
+    public String displayViewRoom(Model model, @PathVariable (required = false) Integer roomId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
         if (roomId == null){
             model.addAttribute("rooms", roomRepository.findAll());
             return "rooms/index";
@@ -58,6 +60,9 @@ public class RoomController {
                 return "redirect:../";
             } else {
                 Room room = result.get();
+                if (user.getId() != room.getUser().getId()) {
+                    return "redirect:../";
+                }
                 model.addAttribute("room", room);
             }
         }
@@ -65,8 +70,13 @@ public class RoomController {
     }
 
     @GetMapping("edit/{roomId}")
-    public String displayEditForm(Model model, @PathVariable int roomId) {
+    public String displayEditForm(Model model, @PathVariable int roomId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
         Room room = roomRepository.findById(roomId).get();
+        if (user.getId() != room.getUser().getId()) {
+            return "redirect:../";
+        }
         model.addAttribute("room", room);
         model.addAttribute("uneditedRoom", room);
         model.addAttribute("roomId", roomId);
