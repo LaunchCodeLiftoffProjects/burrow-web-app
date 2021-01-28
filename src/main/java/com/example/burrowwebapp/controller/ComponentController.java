@@ -150,7 +150,10 @@ public class ComponentController
         component.setInstallDate(installDate);
         Device device = deviceRepository.findById(deviceId).get();
         component.setDevice(device);
-        component.setDaysBetweenReplacements(daysBetweenReplacements);
+        Notification notification = component.getNotification();
+        notification.setDaysBetweenReplacements(daysBetweenReplacements);
+        notification.setMessage();
+        notificationRepository.save(notification);
         componentRepository.save(component);
         return "redirect:view/" + componentId;
     }
