@@ -60,7 +60,9 @@ public class ComponentController
     }
 
     @GetMapping(path = {"add/{deviceId}", "add"})
-    public String displayAddComponent(Model model, @PathVariable(required = false) Integer deviceId){
+    public String displayAddComponent(Model model, @PathVariable(required = false) Integer deviceId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
         if (deviceId == null) {
             model.addAttribute("components", componentRepository.findAll());
             return "redirect:../devices/";
@@ -71,6 +73,9 @@ public class ComponentController
                 model.addAttribute(new Component());
                 model.addAttribute("device", device);
                 model.addAttribute("names", nameList);
+                if (user.getId() != device.getUser().getId()) {
+                    return "redirect:../";
+                }
                 return "components/add";
             } else {
                 return "redirect:../";
