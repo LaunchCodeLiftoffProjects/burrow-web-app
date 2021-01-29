@@ -12,6 +12,9 @@ import java.time.LocalDate;
 @Entity
 public class Component extends AbstractEntity {
 
+    @ManyToOne
+    private User user;
+
     @Size(max = 250, message = "Description must be less than 250 characters")
     private String description;
 
@@ -29,15 +32,16 @@ public class Component extends AbstractEntity {
     @OneToOne(mappedBy = "component", cascade = CascadeType.ALL, orphanRemoval = true)
     private Notification notification;
 
-    @NotNull
-    @Min(value=1)
+    @NotNull(message = "Please enter number of days")
+    @Min(value=1, message = "Day(s) must be greater than or equal to 1")
     @Max(value=3650)
-    private long daysBetweenReplacements;
+    private Long daysBetweenReplacements;
 
-    public Component(@NotBlank String name, @Size(max = 250, message = "Description must be less than 250 characters") String description,
+    public Component(@NotBlank String name, User user, @Size(max = 250, message = "Description must be less than 250 characters") String description,
                      Device device, @NotNull @Min(value=1) Integer quantity, @NotNull LocalDate installDate,
-                     @NotNull @Min(value=1) @Max(value=3650)long daysBetweenReplacements) {
+                     @NotNull @Min(value=1) @Max(value=3650) Long daysBetweenReplacements) {
         this.setName(name);
+        this.user = user;
         this.description = description;
         this.device = device;
         this.quantity = quantity;
@@ -47,6 +51,14 @@ public class Component extends AbstractEntity {
     }
 
     public Component() {}
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getDescription() {
         return description;
@@ -92,12 +104,12 @@ public class Component extends AbstractEntity {
         this.notification = notification;
     }
 
-    public long getDaysBetweenReplacements()
+    public Long getDaysBetweenReplacements()
     {
         return daysBetweenReplacements;
     }
 
-    public void setDaysBetweenReplacements(long daysBetweenReplacements)
+    public void setDaysBetweenReplacements(Long daysBetweenReplacements)
     {
         this.daysBetweenReplacements = daysBetweenReplacements;
     }

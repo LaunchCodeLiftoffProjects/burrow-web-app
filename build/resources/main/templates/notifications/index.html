@@ -10,14 +10,24 @@
 <h2>Notifications</h2>
 <p th:unless="${notifications} and ${notifications.size()}">No Notifications!</p>
 
-<div class="container body-content">
-    <ul>
-        <li th:each="notification : ${notifications}">
-            <div th:text="${notification.name}"></div>
-            <div></div>
-        </li>
-    </ul>
-</div>
-
+<!--<div class="container body-content">-->
+    <!--<ul>-->
+        <!--<li th:each="notification : ${notifications}">-->
+            <!--<div th:text="${notification.name}"></div>-->
+            <!--<div></div>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->
+<form method="post" th:action="@{/notifications}">
+    <th:block th:each="notification : ${notifications}">
+        <div class="form-group">
+            <label>
+                <label th:for="notificationIds" th:text="${notification.name}"></label>
+                <input type="checkbox" name="notificationIds" th:value="${notification.id}" class="form-control">
+            </label>
+        </div>
+    </th:block>
+    <input type="submit" value="Mark all checked components as replaced" class="btn btn-warning">
+</form>
 </body>
 </html>

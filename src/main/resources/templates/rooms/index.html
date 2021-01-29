@@ -8,11 +8,11 @@
     <span>> Rooms</span>
 </div>
 <h2>Rooms</h2>
-<p th:unless="${rooms} and ${rooms.size()}">No rooms!</p>
+<p th:unless="${user.rooms} and ${user.rooms.size()}">No rooms!</p>
 
 <div class="container body-content">
     <ul>
-        <li th:each="room : ${rooms}">
+        <li th:each="room : ${user.rooms}">
             <a th:href="@{'/rooms/view/' + ${room.id}}" th:text="${room.name + ' in ' + room.property.name}"></a>
         </li>
     </ul>

@@ -13,7 +13,7 @@
 <h2 th:text="${'Device: ' + device.name}">Default Title</h2>
 
 <div>
-    <p th:text="${'Description: ' + device.description}"></p>
+    <p th:if="${device.description != ''}" th:text="${'Description: ' + device.description}"></p>
     <p th:text="${'Room: ' + device.room.name}"></p>
     <p th:text="${'House: ' + device.room.property.name}"></p>
 </div>

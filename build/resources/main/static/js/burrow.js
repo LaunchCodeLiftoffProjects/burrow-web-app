@@ -31,3 +31,8 @@ $(function() {
     $( "#installDate" ).datepicker({
     });
  });
+
+$(function(){
+ $("#sortTable").DataTable(
+ );
+ });

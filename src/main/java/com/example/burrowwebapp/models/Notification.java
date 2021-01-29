@@ -15,13 +15,13 @@ public class Notification extends AbstractEntity
 
     private LocalDate replacedDate;
 
-    private long daysBetweenReplacements;
+    private Long daysBetweenReplacements;
 
     public Notification(){
         this.isActive = false;
     }
 
-    public Notification(String message, LocalDate installDate, long daysBetweenReplacements){
+    public Notification(String message, LocalDate installDate, Long daysBetweenReplacements){
 
         this.setName(message);
         this.replacedDate = installDate;
@@ -59,12 +59,12 @@ public class Notification extends AbstractEntity
         this.replacedDate = replacedDate;
     }
 
-    public long getDaysBetweenReplacements()
+    public Long getDaysBetweenReplacements()
     {
         return daysBetweenReplacements;
     }
 
-    public void setDaysBetweenReplacements(long daysBetweenReplacements)
+    public void setDaysBetweenReplacements(Long daysBetweenReplacements)
     {
         this.daysBetweenReplacements = daysBetweenReplacements;
     }
@@ -85,6 +85,6 @@ public class Notification extends AbstractEntity
     }
 
     public void setMessage(){
-        this.setName("You last replaced" + this.getComponent().getName() + this.getComponent().getDevice().getName() + " on " + this.getReplacedDate() + ". It should be replaced every " + this.getDaysBetweenReplacements() + " days.");
+        this.setName("You last replaced the " + this.getComponent().getName() + " for " + this.getComponent().getDevice().getName() + " on " + this.getReplacedDate() + ". It should be replaced every " + this.getDaysBetweenReplacements() + " days.");
     }
 }

@@ -3,9 +3,11 @@ package com.example.burrowwebapp.controller;
 import com.example.burrowwebapp.data.ComponentRepository;
 import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.NotificationRepository;
+import com.example.burrowwebapp.data.UserRepository;
 import com.example.burrowwebapp.models.Component;
 import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.Notification;
+import com.example.burrowwebapp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -14,15 +16,21 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("components")
 public class ComponentController
 {
+
+    @Autowired
+    private UserRepository userRepository;
+
     @Autowired
     private ComponentRepository componentRepository;
 
@@ -31,6 +39,8 @@ public class ComponentController
 
     @Autowired
     private NotificationRepository notificationRepository;
+
+    private static final String userSessionKey = "user";
 
     private ArrayList<String> nameList = new ArrayList<String>() {
         {
@@ -41,8 +51,11 @@ public class ComponentController
     };
 
     @GetMapping
-    public String displayAllDevices(Model model){
-        model.addAttribute("components", componentRepository.findAll());
+    public String displayAllComponents(Model model, HttpSession session){
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        model.addAttribute("user", user);
+        model.addAttribute("components", componentRepository.findAllById(Collections.singleton(userId)));
         return "components/index";
     }
 
@@ -68,7 +81,7 @@ public class ComponentController
     @PostMapping("add/{deviceId}")
     public String processAddComponentForm(@Valid @ModelAttribute Component newComponent,
                                           Errors errors, Model model, @PathVariable int deviceId,
-                                          RedirectAttributes redirectAttributes){
+                                          HttpSession session, RedirectAttributes redirectAttributes){
         if (errors.hasErrors()) {
             model.addAttribute("device", deviceRepository.findById(deviceId).get());
             model.addAttribute("names", nameList);
@@ -76,7 +89,10 @@ public class ComponentController
         }
         Optional optDevice = deviceRepository.findById(deviceId);
         Device device = deviceRepository.findById(deviceId).get();
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
         redirectAttributes.addAttribute("id", optDevice.get());
+        newComponent.setUser(user);
         newComponent.setDevice(device);
         Notification notification = new Notification("It has been at least " + newComponent.getDaysBetweenReplacements() + " days since you replaced the " + newComponent.getName() + " in the " + newComponent.getDevice().getName(), newComponent.getInstallDate(), newComponent.getDaysBetweenReplacements());
         newComponent.setNotification(notification);
@@ -116,7 +132,7 @@ public class ComponentController
     @PostMapping("edit")
     public String processEditComponentForm(@Valid @ModelAttribute Component editComponent, Errors errors, int componentId,
                                            String name, @DateTimeFormat(pattern = "MM/dd/yyyy") LocalDate installDate,
-                                           @RequestParam int deviceId, String description, Integer quantity, Model model) {
+                                           @RequestParam int deviceId, String description, Integer quantity, Model model, Long daysBetweenReplacements) {
 
         if(errors.hasErrors()){
             model.addAttribute("component", editComponent);
@@ -134,6 +150,10 @@ public class ComponentController
         component.setInstallDate(installDate);
         Device device = deviceRepository.findById(deviceId).get();
         component.setDevice(device);
+        Notification notification = component.getNotification();
+        notification.setDaysBetweenReplacements(daysBetweenReplacements);
+        notification.setMessage();
+        notificationRepository.save(notification);
         componentRepository.save(component);
         return "redirect:view/" + componentId;
     }
