@@ -83,7 +83,7 @@ public class PropertyController {
     }
 
     @GetMapping(path = {"edit/{propertyId}", "edit"})
-    public String displayEditForm(Model model, @PathVariable(required = false) Integer propertyId, HttpSession session) {
+    public String displayEditPropertyForm(Model model, @PathVariable(required = false) Integer propertyId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         if (propertyId == null){
@@ -108,7 +108,7 @@ public class PropertyController {
     }
 
     @PostMapping("edit")
-    public String processEditForm(@Valid @ModelAttribute Property editProperty, Errors errors, Model model,
+    public String processEditPropertyForm(@Valid @ModelAttribute Property editProperty, Errors errors, Model model,
                                   int propertyId, String name, String location, String description) {
 
         if (errors.hasErrors()) {
