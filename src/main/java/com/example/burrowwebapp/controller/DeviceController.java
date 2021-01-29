@@ -87,16 +87,16 @@ public class DeviceController {
         return "redirect:/rooms/view/{id}";
     }
 
-    @GetMapping(path = {"view/{deviceID}", "view"})
-    public String displayViewDevice(Model model, @PathVariable(required = false) Integer deviceID, HttpSession session) {
+    @GetMapping(path = {"view/{deviceId}", "view"})
+    public String displayViewDevice(Model model, @PathVariable(required = false) Integer deviceId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        if (deviceID == null) {
+        if (deviceId == null) {
             model.addAttribute("user", user);
             model.addAttribute("devices", deviceRepository.findAllById(Collections.singleton(userId)));
             return "devices/index";
         } else {
-            Optional<Device> result = deviceRepository.findById(deviceID);
+            Optional<Device> result = deviceRepository.findById(deviceId);
             if (result.isEmpty()) {
                 return "redirect:../";
             } else {
@@ -110,24 +110,30 @@ public class DeviceController {
         return "devices/view";
     }
 
-    @GetMapping("edit/{deviceId}")
-    public String displayEditDeviceForm(Model model, @PathVariable int deviceId, HttpSession session) {
+    @GetMapping(path = {"edit/{deviceId}", "edit"})
+    public String displayEditDeviceForm(Model model, @PathVariable(required = false) Integer deviceId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        Optional optDevice = deviceRepository.findById(deviceId);
-        if (optDevice.isPresent()) {
-            Device device = deviceRepository.findById(deviceId).get();
-            if (user.getId() != device.getUser().getId()) {
-                return "redirect:../";
-            }
-            model.addAttribute("device", device);
-            model.addAttribute("uneditedDevice", device);
-            model.addAttribute("rooms", roomRepository.findAll());
-            model.addAttribute("properties", propertyRepository.findAll());
-            return "devices/edit";
+        if (deviceId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("devices", deviceRepository.findAllById(Collections.singleton(userId)));
+            return "devices/index";
         } else {
-            return "redirect:../";
+            Optional<Device> result = deviceRepository.findById(deviceId);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Device device = result.get();
+                if (user.getId() != device.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("device", device);
+                model.addAttribute("uneditedDevice", device);
+                model.addAttribute("rooms", roomRepository.findAll());
+                model.addAttribute("properties", propertyRepository.findAll());
+            }
         }
+        return "devices/edit";
     }
 
     @PostMapping("edit")
