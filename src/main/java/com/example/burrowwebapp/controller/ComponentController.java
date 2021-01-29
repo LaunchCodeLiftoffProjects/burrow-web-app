@@ -130,24 +130,30 @@ public class ComponentController
         return "components/view";
     }
 
-    @GetMapping("edit/{componentId}")
-    public String displayEditComponentForm(Model model, @PathVariable int componentId, HttpSession session) {
+    @GetMapping(path = {"edit/{componentId}", "edit"})
+    public String displayEditComponentForm(Model model, @PathVariable(required = false) Integer componentId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
-        Optional optComponent = componentRepository.findById(componentId);
-        if (optComponent.isPresent()) {
-            Component component = componentRepository.findById(componentId).get();
-            if (user.getId() != component.getUser().getId()) {
-                return "redirect:../";
-            }
-            model.addAttribute("component", component);
-            model.addAttribute("uneditedComponent", component);
-            model.addAttribute("devices", deviceRepository.findAll());
-            model.addAttribute("names", nameList);
-            return "components/edit";
+        if (componentId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("components", componentRepository.findAllById(Collections.singleton(userId)));
+            return "components/index";
         } else {
-            return "redirect:../";
+            Optional<Component> result = componentRepository.findById(componentId);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Component component = result.get();
+                if (user.getId() != component.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("component", component);
+                model.addAttribute("uneditedComponent", component);
+                model.addAttribute("devices", deviceRepository.findAll());
+                model.addAttribute("names", nameList);
+            }
         }
+        return "components/edit";
     }
 
     @PostMapping("edit")
