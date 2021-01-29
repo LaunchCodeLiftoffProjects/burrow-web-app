@@ -145,11 +145,10 @@ public class PropertyController {
                 return "redirect:../";
             } else {
                 Property property = result.get();
-                model.addAttribute(new Room("", property));
-                model.addAttribute("property", property);
                 if (user.getId() != property.getUser().getId()) {
                     return "redirect:../";
                 }
+                model.addAttribute(new Room("", property));
                 model.addAttribute("property", property);
             }
         }
