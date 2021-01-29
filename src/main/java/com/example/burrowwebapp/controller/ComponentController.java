@@ -60,27 +60,28 @@ public class ComponentController
     }
 
     @GetMapping(path = {"add/{deviceId}", "add"})
-    public String displayAddComponent(Model model, @PathVariable(required = false) Integer deviceId, HttpSession session) {
+    public String displayAddComponentForm(Model model, @PathVariable(required = false) Integer deviceId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         if (deviceId == null) {
-            model.addAttribute("components", componentRepository.findAll());
-            return "redirect:../devices/";
+            model.addAttribute("user", user);
+            model.addAttribute("components", componentRepository.findAllById(Collections.singleton(userId)));
+            return "components/index";
         } else {
-            Optional optDevice = deviceRepository.findById(deviceId);
-            if (optDevice.isPresent()) {
-                Device device = (Device) optDevice.get();
-                model.addAttribute(new Component());
-                model.addAttribute("device", device);
-                model.addAttribute("names", nameList);
+            Optional<Device> result = deviceRepository.findById(deviceId);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Device device = result.get();
                 if (user.getId() != device.getUser().getId()) {
                     return "redirect:../";
                 }
-                return "components/add";
-            } else {
-                return "redirect:../";
+                model.addAttribute(new Component());
+                model.addAttribute("device", device);
+                model.addAttribute("names", nameList);
             }
         }
+        return "components/add";
     }
 
     @PostMapping("add/{deviceId}")
