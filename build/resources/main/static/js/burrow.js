@@ -36,3 +36,8 @@ $(function(){
  $("#sortTable").DataTable(
  );
  });
+
+
+ $(function () {
+   $('[data-toggle="tooltip"]').tooltip()
+ })
