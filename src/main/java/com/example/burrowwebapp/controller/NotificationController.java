@@ -1,7 +1,9 @@
 package com.example.burrowwebapp.controller;
 
 import com.example.burrowwebapp.data.NotificationRepository;
+import com.example.burrowwebapp.data.UserRepository;
 import com.example.burrowwebapp.models.Notification;
+import com.example.burrowwebapp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 @Controller
@@ -19,8 +22,15 @@ public class NotificationController
     @Autowired
     private NotificationRepository notificationRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    private static final String userSessionKey = "user";
+
     @GetMapping
-    public String displayNotifications(Model model){
+    public String displayNotifications(Model model, HttpSession session){
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
         Iterable<Notification> allNotifications = notificationRepository.findAll();
         ArrayList<Notification> activeNotifications = new ArrayList<>();
         for(Notification notification: allNotifications){

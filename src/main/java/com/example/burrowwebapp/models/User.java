@@ -24,6 +24,9 @@ public class User extends AbstractEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Component> components = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Notification> notifications = new ArrayList<>();
+
     @NotNull
     private String pwHash;
 
@@ -50,6 +53,10 @@ public class User extends AbstractEntity {
 
     public List<Component> getComponents() {
         return components;
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
     }
 
     public boolean isMatchingPassword(String password) {
