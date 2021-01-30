@@ -9,6 +9,8 @@
 </div>
 <h2>Devices</h2>
 <p th:unless="${user.devices} and ${user.devices.size()}">No devices!</p>
+
+<p th:text="${message}"></p>
 <div>
     <table class="table table-bordered" id="sortTable">
         <thead>
@@ -35,10 +37,11 @@
         </tbody>
     </table>
 
-    <a th:href="@{'/devices/add'}">
-        <input type="submit" value="Add Devices" class="btn btn-secondary">
+    <a th:href="@{'/rooms'}">
+        <input type="submit" value="Add Devices" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Click to select a room and add a device">
     </a>
 </div>
+<p></p>
 
 </body>
 </html>
