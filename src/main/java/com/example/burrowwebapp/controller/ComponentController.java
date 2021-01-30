@@ -104,6 +104,7 @@ public class ComponentController
         newComponent.setNotification(notification);
         notification.setComponent(newComponent);
         notification.setUser(user);
+        notification.setMessage();
         componentRepository.save(newComponent);
         notificationRepository.save(notification);
         return "redirect:/devices/view/{id}";
