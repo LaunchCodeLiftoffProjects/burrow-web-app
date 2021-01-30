@@ -1,22 +1,19 @@
 package com.example.burrowwebapp.controller;
 
 import com.example.burrowwebapp.data.ComponentRepository;
-        import com.example.burrowwebapp.data.NotificationRepository;
-import com.example.burrowwebapp.data.UserRepository;
+import com.example.burrowwebapp.data.NotificationRepository;
 import com.example.burrowwebapp.models.Component;
-        import com.example.burrowwebapp.models.Notification;
-import com.example.burrowwebapp.models.User;
+import com.example.burrowwebapp.models.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.stereotype.Controller;
-        import org.springframework.ui.Model;
-        import org.springframework.web.bind.annotation.GetMapping;
-        import org.springframework.web.bind.annotation.PostMapping;
-        import org.springframework.web.bind.annotation.RequestMapping;
-        import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
-        import java.util.ArrayList;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("notifications")
@@ -28,15 +25,11 @@ public class NotificationController
     @Autowired
     private ComponentRepository componentRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
     private static final String userSessionKey = "user";
 
     @GetMapping
     public String displayNotifications(Model model, HttpSession session){
         Integer userId = (Integer) session.getAttribute(userSessionKey);
-        User user = userRepository.findById(userId).get();
 
         Iterable<Notification> allNotifications = notificationRepository.findAll();
         ArrayList<Notification> activeNotifications = new ArrayList<>();
