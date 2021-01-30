@@ -9,9 +9,6 @@ import java.time.LocalDate;
 public class Notification extends AbstractEntity
 {
 
-    @ManyToOne
-    private User user;
-
     @OneToOne
     private Component component;
 
@@ -25,25 +22,12 @@ public class Notification extends AbstractEntity
         this.isActive = false;
     }
 
-    public Notification(String message, User user, LocalDate installDate, Long daysBetweenReplacements){
+    public Notification(String message, LocalDate installDate, Long daysBetweenReplacements){
 
         this.setName(message);
-        this.user = user;
         this.replacedDate = installDate;
         this.daysBetweenReplacements = daysBetweenReplacements;
         this.isActive = false;
-    }
-
-    public Notification(String s, LocalDate installDate, Long daysBetweenReplacements) {
-
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Component getComponent()

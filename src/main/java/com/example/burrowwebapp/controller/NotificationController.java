@@ -22,15 +22,10 @@ public class NotificationController
     @Autowired
     private NotificationRepository notificationRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
     private static final String userSessionKey = "user";
 
     @GetMapping
-    public String displayNotifications(Model model, HttpSession session){
-        Integer userId = (Integer) session.getAttribute(userSessionKey);
-        User user = userRepository.findById(userId).get();
+    public String displayNotifications(Model model){
         Iterable<Notification> allNotifications = notificationRepository.findAll();
         ArrayList<Notification> activeNotifications = new ArrayList<>();
         for(Notification notification: allNotifications){
