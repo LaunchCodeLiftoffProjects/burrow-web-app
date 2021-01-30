@@ -100,9 +100,11 @@ public class ComponentController
         redirectAttributes.addAttribute("id", optDevice.get());
         newComponent.setUser(user);
         newComponent.setDevice(device);
-        Notification notification = new Notification("It has been at least " + newComponent.getDaysBetweenReplacements() + " days since you replaced the " + newComponent.getName() + " in the " + newComponent.getDevice().getName(), newComponent.getInstallDate(), newComponent.getDaysBetweenReplacements());
+        Notification notification = new Notification("", newComponent.getInstallDate(), newComponent.getDaysBetweenReplacements());
         newComponent.setNotification(notification);
         notification.setComponent(newComponent);
+        notification.setUser(user);
+        notification.setMessage();
         componentRepository.save(newComponent);
         notificationRepository.save(notification);
         return "redirect:/devices/view/{id}";
@@ -178,6 +180,7 @@ public class ComponentController
         component.setInstallDate(installDate);
         Device device = deviceRepository.findById(deviceId).get();
         component.setDevice(device);
+        component.setDaysBetweenReplacements(daysBetweenReplacements);
         Notification notification = component.getNotification();
         notification.setDaysBetweenReplacements(daysBetweenReplacements);
         notification.setMessage();

@@ -1,12 +1,15 @@
 package com.example.burrowwebapp.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 @Entity
 public class Notification extends AbstractEntity
 {
+    @ManyToOne
+    private User user;
 
     @OneToOne
     private Component component;
@@ -24,9 +27,20 @@ public class Notification extends AbstractEntity
     public Notification(String message, LocalDate installDate, Long daysBetweenReplacements){
 
         this.setName(message);
+        this.user = user;
         this.replacedDate = installDate;
         this.daysBetweenReplacements = daysBetweenReplacements;
         this.isActive = false;
+    }
+
+    public User getUser()
+    {
+        return user;
+    }
+
+    public void setUser(User user)
+    {
+        this.user = user;
     }
 
     public Component getComponent()

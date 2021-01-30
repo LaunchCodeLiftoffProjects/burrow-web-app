@@ -10264,10 +10264,10 @@ a.text-dark:hover, a.text-dark:focus {
 body{
    font-family: 'Lato', sans-serif;
 }
-h2{
+h3{
    position: relative;
 }
-h2::after{
+h3::after{
    content: "";
    width: 130px;
    position: absolute;
