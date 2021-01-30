@@ -48,9 +48,12 @@ public class RoomController {
     }
 
     @GetMapping(path = {"view/{roomId}", "view"})
-    public String displayViewRoom(Model model, @PathVariable (required = false) Integer roomId) {
+    public String displayViewRoom(Model model, @PathVariable(required = false) Integer roomId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
         if (roomId == null){
-            model.addAttribute("rooms", roomRepository.findAll());
+            model.addAttribute("user", user);
+            model.addAttribute("rooms", roomRepository.findAllById(Collections.singleton(userId)));
             return "rooms/index";
         } else {
             Optional<Room> result = roomRepository.findById(roomId);
@@ -58,24 +61,43 @@ public class RoomController {
                 return "redirect:../";
             } else {
                 Room room = result.get();
+                if (user.getId() != room.getUser().getId()) {
+                    return "redirect:../";
+                }
                 model.addAttribute("room", room);
             }
         }
         return "rooms/view";
     }
 
-    @GetMapping("edit/{roomId}")
-    public String displayEditForm(Model model, @PathVariable int roomId) {
-        Room room = roomRepository.findById(roomId).get();
-        model.addAttribute("room", room);
-        model.addAttribute("uneditedRoom", room);
-        model.addAttribute("roomId", roomId);
-        model.addAttribute("properties", propertyRepository.findAll());
+    @GetMapping(path = {"edit/{roomId}", "edit"})
+    public String displayEditRoomForm(Model model, @PathVariable(required = false) Integer roomId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (roomId == null){
+            model.addAttribute("user", user);
+            model.addAttribute("rooms", roomRepository.findAllById(Collections.singleton(userId)));
+            return "rooms/index";
+        } else {
+            Optional<Room> result = roomRepository.findById(roomId);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Room room = result.get();
+                if (user.getId() != room.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("room", room);
+                model.addAttribute("uneditedRoom", room);
+                model.addAttribute("roomId", roomId);
+                model.addAttribute("properties", propertyRepository.findAll());
+            }
+        }
         return "rooms/edit";
     }
 
     @PostMapping("edit")
-    public String processEditForm(@Valid @ModelAttribute Room editRoom, Errors errors, int roomId, String name,
+    public String processEditRoomForm(@Valid @ModelAttribute Room editRoom, Errors errors, int roomId, String name,
                                   @RequestParam int propertyId, Model model) {
 
         if (errors.hasErrors()) {
