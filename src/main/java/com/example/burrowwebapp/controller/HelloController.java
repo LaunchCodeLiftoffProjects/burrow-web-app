@@ -4,6 +4,7 @@ package com.example.burrowwebapp.controller;
  *Hello World Page Created by Kaitlyn Forks
  */
 
+import com.example.burrowwebapp.data.NotificationRepository;
 import com.example.burrowwebapp.data.PropertyRepository;
 import com.example.burrowwebapp.data.UserRepository;
 import com.example.burrowwebapp.models.User;
@@ -33,6 +34,9 @@ public class HelloController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
 
     private static final String userSessionKey = "user";
 
