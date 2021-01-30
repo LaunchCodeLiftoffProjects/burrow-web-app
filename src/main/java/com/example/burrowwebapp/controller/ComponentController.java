@@ -103,6 +103,7 @@ public class ComponentController
         Notification notification = new Notification("It has been at least " + newComponent.getDaysBetweenReplacements() + " days since you replaced the " + newComponent.getName() + " in the " + newComponent.getDevice().getName(), newComponent.getInstallDate(), newComponent.getDaysBetweenReplacements());
         newComponent.setNotification(notification);
         notification.setComponent(newComponent);
+        notification.setUser(user);
         componentRepository.save(newComponent);
         notificationRepository.save(notification);
         return "redirect:/devices/view/{id}";

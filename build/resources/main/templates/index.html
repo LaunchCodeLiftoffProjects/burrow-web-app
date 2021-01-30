@@ -14,10 +14,15 @@
         <input type="submit" value="View Properties" class="btn btn-light">
     </a>
 </div>
-<div>
+<div th:if="${notifications} and ${notifications.size()}">
     <a th:href="@{'/notifications'}">
-        <input type="submit" value="You have Notifications" class="btn btn-light">
+        <input type="submit" th:value="${'You have ' + notifications.size() + ' notifications.'}" class="btn btn-light">
     </a>
+</div>
+<div th:unless="${notifications} and ${notifications.size()}">
+    <p>
+        <input type="submit" value="You have no notifications." class="btn btn-light">
+    </p>
 </div>
 
 </body>
