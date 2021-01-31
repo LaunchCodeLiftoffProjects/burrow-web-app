@@ -16,3 +16,8 @@ table {
     text-decoration: none;
 }
 
+.custom-checkbox {
+    width: 15px;
+    height: 15px;
+}
+
