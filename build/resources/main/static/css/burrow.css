@@ -6,6 +6,7 @@
     background: #e6e6e6;
     padding-top: 4px;
     padding-bottom: 4px;
+    margin-bottom: 10px;
 }
 
 table {
@@ -14,5 +15,10 @@ table {
 
 .mailbox:hover {
     text-decoration: none;
+}
+
+.custom-checkbox {
+    width: 15px;
+    height: 15px;
 }
 
