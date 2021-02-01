@@ -19,14 +19,22 @@
     <!--</ul>-->
 <!--</div>-->
 <form method="post" th:action="@{/notifications}">
-    <th:block th:each="notification : ${notifications}">
-        <div class="form-group">
-            <label>
-                <label th:for="notificationIds" th:text="${notification.name}"></label>
-                <input type="checkbox" name="notificationIds" th:value="${notification.id}" class="custom-checkbox">
-            </label>
-        </div>
-    </th:block>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th width="40px"></th>
+                <th>View Info</th>
+                <th>Notifications</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="notification : ${notifications}">
+                <td><input type="checkbox" name="notificationIds" th:value="${notification.id}" class="form-control"></td>
+                <td><a th:href="@{'/components/view/' + ${notification.component.id}}" th:text="${'Details'}"></a></td>
+                <td th:for="notificationIds" th:text="${notification.name}"></td>
+            </tr>
+            </tbody>
+        </table>
     <input type="submit" value="Mark all checked components as replaced" class="btn btn-warning">
 </form>
 </body>
