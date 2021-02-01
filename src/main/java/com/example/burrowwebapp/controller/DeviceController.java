@@ -45,22 +45,28 @@ public class DeviceController {
         return "devices/index";
     }
 
-    @GetMapping(path={"add/{roomId}", "add"})
-    public String displayAddDeviceForm(Model model, @PathVariable(required = false) Integer roomId) {
-       if (roomId == null) {
-           model.addAttribute("devices", deviceRepository.findAll());
-           return "redirect:../rooms/";
-       } else {
-           Optional optRoom = roomRepository.findById(roomId);
-           if (optRoom.isPresent()) {
-               Room room = (Room) optRoom.get();
-               model.addAttribute(new Device());
-               model.addAttribute("room", room);
-               return "devices/add";
-           } else {
-               return "redirect:../";
-           }
-       }
+    @GetMapping(path = {"add/{roomId}", "add"})
+    public String displayAddDeviceForm(Model model, @PathVariable(required = false) Integer roomId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (roomId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("devices", deviceRepository.findAllById(Collections.singleton(userId)));
+            return "devices/index";
+        } else {
+            Optional<Room> result = roomRepository.findById(roomId);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Room room = result.get();
+                if (user.getId() != room.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute(new Device());
+                model.addAttribute("room", room);
+            }
+        }
+        return "devices/add";
     }
 
     @PostMapping("add/{roomId}")
@@ -82,32 +88,55 @@ public class DeviceController {
         return "redirect:/rooms/view/{id}";
     }
 
-    @GetMapping(path = {"view/{deviceID}", "view"})
-    public String displayViewDevice(Model model, @PathVariable (required = false) Integer deviceID) {
-        if (deviceID == null) {
-            model.addAttribute("devices", deviceRepository.findAll());
+    @GetMapping(path = {"view/{deviceId}", "view"})
+    public String displayViewDevice(Model model, @PathVariable(required = false) Integer deviceId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (deviceId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("devices", deviceRepository.findAllById(Collections.singleton(userId)));
             return "devices/index";
         } else {
-            Optional<Device> result = deviceRepository.findById(deviceID);
+            Optional<Device> result = deviceRepository.findById(deviceId);
             if (result.isEmpty()) {
                 return "redirect:../";
             } else {
                 Device device = result.get();
+                if (user.getId() != device.getUser().getId()) {
+                    return "redirect:../";
+                }
                 model.addAttribute("device", device);
             }
         }
         return "devices/view";
     }
 
-    @GetMapping("edit/{deviceId}")
-    public String displayEditDeviceForm(Model model, @PathVariable int deviceId) {
-        Device device = deviceRepository.findById(deviceId).get();
-        model.addAttribute("device", device);
-        model.addAttribute("uneditedDevice", device);
-        model.addAttribute("rooms", roomRepository.findAll());
-        model.addAttribute("properties", propertyRepository.findAll());
+    @GetMapping(path = {"edit/{deviceId}", "edit"})
+    public String displayEditDeviceForm(Model model, @PathVariable(required = false) Integer deviceId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (deviceId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("devices", deviceRepository.findAllById(Collections.singleton(userId)));
+            return "devices/index";
+        } else {
+            Optional<Device> result = deviceRepository.findById(deviceId);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Device device = result.get();
+                if (user.getId() != device.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("device", device);
+                model.addAttribute("uneditedDevice", device);
+                model.addAttribute("rooms", roomRepository.findAll());
+                model.addAttribute("properties", propertyRepository.findAll());
+            }
+        }
         return "devices/edit";
     }
+
     @PostMapping("edit")
     public String processEditDeviceForm(@Valid @ModelAttribute Device editDevice, Errors errors, int deviceId,
                                         String name, @RequestParam int roomId, String description, Model model) {

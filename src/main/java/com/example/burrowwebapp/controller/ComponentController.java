@@ -60,22 +60,28 @@ public class ComponentController
     }
 
     @GetMapping(path = {"add/{deviceId}", "add"})
-    public String displayAddComponent(Model model, @PathVariable (required = false) Integer deviceId){
+    public String displayAddComponentForm(Model model, @PathVariable(required = false) Integer deviceId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
         if (deviceId == null) {
-            model.addAttribute("components", componentRepository.findAll());
-            return "redirect:../devices/";
+            model.addAttribute("user", user);
+            model.addAttribute("components", componentRepository.findAllById(Collections.singleton(userId)));
+            return "components/index";
         } else {
-            Optional optDevice = deviceRepository.findById(deviceId);
-            if (optDevice.isPresent()) {
-                Device device = (Device) optDevice.get();
+            Optional<Device> result = deviceRepository.findById(deviceId);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Device device = result.get();
+                if (user.getId() != device.getUser().getId()) {
+                    return "redirect:../";
+                }
                 model.addAttribute(new Component());
                 model.addAttribute("device", device);
                 model.addAttribute("names", nameList);
-                return "components/add";
-            } else {
-                return "redirect:../";
             }
         }
+        return "components/add";
     }
 
     @PostMapping("add/{deviceId}")
@@ -94,18 +100,23 @@ public class ComponentController
         redirectAttributes.addAttribute("id", optDevice.get());
         newComponent.setUser(user);
         newComponent.setDevice(device);
-        Notification notification = new Notification("It has been at least " + newComponent.getDaysBetweenReplacements() + " days since you replaced the " + newComponent.getName() + " in the " + newComponent.getDevice().getName(), newComponent.getInstallDate(), newComponent.getDaysBetweenReplacements());
+        Notification notification = new Notification("", newComponent.getInstallDate(), newComponent.getDaysBetweenReplacements());
         newComponent.setNotification(notification);
         notification.setComponent(newComponent);
+        notification.setUser(user);
+        notification.setMessage();
         componentRepository.save(newComponent);
         notificationRepository.save(notification);
         return "redirect:/devices/view/{id}";
     }
 
     @GetMapping(path = {"view/{componentId}", "view"})
-    public String displayViewComponent(Model model, @PathVariable (required = false) Integer componentId) {
+    public String displayViewComponent(Model model, @PathVariable(required = false) Integer componentId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
         if (componentId == null) {
-            model.addAttribute("components", componentRepository.findAll());
+            model.addAttribute("user", user);
+            model.addAttribute("components", componentRepository.findAllById(Collections.singleton(userId)));
             return "components/index";
         } else {
             Optional<Component> result = componentRepository.findById(componentId);
@@ -113,19 +124,38 @@ public class ComponentController
                 return "redirect:../";
             } else {
                 Component component = result.get();
+                if (user.getId() != component.getUser().getId()) {
+                    return "redirect:../";
+                }
                 model.addAttribute("component", component);
             }
         }
         return "components/view";
     }
 
-    @GetMapping("edit/{componentId}")
-    public String displayEditComponentForm(Model model, @PathVariable int componentId) {
-        Component component = componentRepository.findById(componentId).get();
-        model.addAttribute("component", component);
-        model.addAttribute("uneditedComponent", component);
-        model.addAttribute("devices", deviceRepository.findAll());
-        model.addAttribute("names", nameList);
+    @GetMapping(path = {"edit/{componentId}", "edit"})
+    public String displayEditComponentForm(Model model, @PathVariable(required = false) Integer componentId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        User user = userRepository.findById(userId).get();
+        if (componentId == null) {
+            model.addAttribute("user", user);
+            model.addAttribute("components", componentRepository.findAllById(Collections.singleton(userId)));
+            return "components/index";
+        } else {
+            Optional<Component> result = componentRepository.findById(componentId);
+            if (result.isEmpty()) {
+                return "redirect:../";
+            } else {
+                Component component = result.get();
+                if (user.getId() != component.getUser().getId()) {
+                    return "redirect:../";
+                }
+                model.addAttribute("component", component);
+                model.addAttribute("uneditedComponent", component);
+                model.addAttribute("devices", deviceRepository.findAll());
+                model.addAttribute("names", nameList);
+            }
+        }
         return "components/edit";
     }
 
@@ -150,6 +180,7 @@ public class ComponentController
         component.setInstallDate(installDate);
         Device device = deviceRepository.findById(deviceId).get();
         component.setDevice(device);
+        component.setDaysBetweenReplacements(daysBetweenReplacements);
         Notification notification = component.getNotification();
         notification.setDaysBetweenReplacements(daysBetweenReplacements);
         notification.setMessage();
