@@ -20,7 +20,7 @@
         <input type="submit" th:value="${'You have ' + notifications.size() + ' notifications.'}" class="btn btn-light">
     </a>
 </div>
-<div th:unless="${notifications} and ${notifications.size()}">
+<div th:unless="${notifications} and ${notifications.size()}" class="container body-content">
     <p>
         <input type="submit" value="You have no notifications." class="btn btn-light">
     </p>
