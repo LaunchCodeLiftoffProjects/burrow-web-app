@@ -1,6 +1,5 @@
 package com.example.burrowwebapp.controller;
 
-import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.UserRepository;
 import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.HomeData;
@@ -19,9 +18,6 @@ import static com.example.burrowwebapp.controller.ViewController.columnChoices;
 @Controller
 @RequestMapping("search")
 public class SearchController {
-
-    @Autowired
-    private DeviceRepository deviceRepository;
 
     @Autowired
     private UserRepository userRepository;
