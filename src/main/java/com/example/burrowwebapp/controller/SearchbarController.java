@@ -38,7 +38,7 @@ public class SearchbarController {
 
     @PostMapping("")
     public String displaySearchResults(Model model, @RequestParam String searchTerm, HttpSession session){
-        List<? extends AbstractEntity> devices;
+        Iterable<Device> devices;
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         model.addAttribute("user", user);
