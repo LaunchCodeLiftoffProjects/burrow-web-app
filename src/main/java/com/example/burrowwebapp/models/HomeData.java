@@ -28,28 +28,30 @@ public class HomeData {
             results = findByValue(value, allDevices, allComponents);
             return results;
         }
-        for (Device device : allDevices) {
+        for (Component component : allComponents) {
 
-            String aValue = getFieldValue(device, column);
+            String aValue = getFieldValue(component, column);
 
-            if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
-                results.add(device);
+            if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase()) && !results.contains(component.getDevice())) {
+                results.add(component.getDevice());
             }
         }
 
         return results;
     }
 
-    public static String getFieldValue(Device device, String fieldName){
+    public static String getFieldValue(Component component, String fieldName){
         String theValue;
         if (fieldName.equals("device")){
-            theValue = device.getName();
+            theValue = component.getDevice().getName();
         } else if (fieldName.equals("room")){
-            theValue = device.getRoom().toString();
+            theValue = component.getDevice().getRoom().toString();
         } else if (fieldName.equals("property")){
-            theValue = device.getRoom().getProperty().toString();
+            theValue = component.getDevice().getRoom().getProperty().toString();
+        } else if (fieldName.equals("component description")){
+            theValue = component.getDescription();
         } else {
-            theValue = device.getComponents().toString();
+            theValue = component.getDevice().getComponents().toString();
         }
 
         return theValue;
