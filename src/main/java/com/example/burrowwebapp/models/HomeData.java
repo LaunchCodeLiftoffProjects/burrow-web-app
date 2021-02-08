@@ -16,7 +16,7 @@ public class HomeData {
      * @param allDevices The list of user devices to search.
      * @return List of all devices matching the criteria.
      */
-    public static ArrayList<Device> findByColumnAndValue(String column, String value, Iterable<Device> allDevices) {
+    public static ArrayList<Device> findByColumnAndValue(String column, String value, Iterable<Device> allDevices, Iterable<Component> allComponents) {
 
         ArrayList<Device> results = new ArrayList<>();
 
@@ -25,7 +25,7 @@ public class HomeData {
         }
 
         if (column.equals("all")){
-            results = findByValue(value, allDevices);
+            results = findByValue(value, allDevices, allComponents);
             return results;
         }
         for (Device device : allDevices) {
@@ -62,7 +62,7 @@ public class HomeData {
      * @param allDevices The list of user devices to search.
      * @return List of all devices with at least one field containing the value.
      */
-    public static ArrayList<Device> findByValue(String value, Iterable<Device> allDevices) {
+    public static ArrayList<Device> findByValue(String value, Iterable<Device> allDevices, Iterable<Component> allComponents) {
         String lower_val = value.toLowerCase();
 
         ArrayList<Device> results = new ArrayList<>();
@@ -81,6 +81,15 @@ public class HomeData {
                 results.add(device);
             }
 
+        }
+
+        for (Component component : allComponents) {
+
+            if (component.getDescription().toLowerCase().contains(lower_val)) {
+                if (!results.contains(component.getDevice())) {
+                    results.add(component.getDevice());
+                }
+            }
         }
 
         return results;

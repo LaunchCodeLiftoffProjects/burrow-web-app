@@ -2,6 +2,7 @@ package com.example.burrowwebapp.controller;
 
 import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.UserRepository;
+import com.example.burrowwebapp.models.AbstractEntity;
 import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.HomeData;
 import com.example.burrowwebapp.models.User;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 
 import java.util.Collections;
+import java.util.List;
 
 import static com.example.burrowwebapp.controller.ViewController.columnChoices;
 
@@ -39,14 +41,14 @@ public class SearchbarController {
 
     @PostMapping("")
     public String displaySearchResults(Model model, @RequestParam String searchTerm, HttpSession session){
-        Iterable<Device> devices;
+        List<? extends AbstractEntity> devices;
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         User user = userRepository.findById(userId).get();
         model.addAttribute("user", user);
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
             devices = user.getDevices();
         } else {
-            devices = HomeData.findByValue(searchTerm, user.getDevices());
+            devices = HomeData.findByValue(searchTerm, user.getDevices(), user.getComponents());
         }
         model.addAttribute("columns", columnChoices);
         model.addAttribute("title", "Search Results: " + searchTerm);

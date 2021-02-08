@@ -43,7 +43,7 @@ public class SearchController {
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
             devices = user.getDevices();
         } else {
-            devices = HomeData.findByColumnAndValue(searchType, searchTerm, user.getDevices());
+            devices = HomeData.findByColumnAndValue(searchType, searchTerm, user.getDevices(), user.getComponents());
         }
         model.addAttribute("columns", columnChoices);
         model.addAttribute("title", "Gophers found " + columnChoices.get(searchType) + ": " + searchTerm);
