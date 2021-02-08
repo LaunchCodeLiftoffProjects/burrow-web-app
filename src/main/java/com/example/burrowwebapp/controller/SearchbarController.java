@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 
-import java.util.Collections;
-import java.util.List;
-
 import static com.example.burrowwebapp.controller.ViewController.columnChoices;
 
 @Controller

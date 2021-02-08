@@ -5252,13 +5252,13 @@ a.badge-dark:focus, a.badge-dark.focus {
 .jumbotron {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
-  background-color: #e9ecef;
+  background-color: #ffffff;
   border-radius: 0.3rem;
 }
 
 @media (min-width: 576px) {
   .jumbotron {
-    padding: 4rem 2rem;
+    padding: 2rem 2rem;
   }
 }
 
@@ -10260,4 +10260,50 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+
+body{
+   font-family: 'Lato', sans-serif;
+}
+#testimonials{
+   position: relative;
+}
+#testimonials::after{
+   content: "";
+   width: 130px;
+   position: absolute;
+   margin: 0 auto;
+   height: 3px;
+   background: #808080;
+   left: 0;
+   right: 0;
+   bottom: -10px;
+}
+.carousel-inner .carousel-item .img-box{
+   width: 135px;
+   height: 135px;
+}
+.carousel-control-prev{
+   left: -100px;
+}
+.carousel-control-next{
+   right: -100px;
+}
+.carousel-indicators{
+   top: 320px;
+}
+@media (min-width: 320px) and (max-width: 640px) {
+   .carousel-inner .carousel-item p{
+      font-size: 14px;
+   }
+   .carousel-control-prev{
+      left: -40px;
+   }
+   .carousel-control-next{
+      right: -40px;
+   }
+    .carousel-indicators{
+      top: 400px;
+   }
+}
+
 /*# sourceMappingURL=bootstrap.css.map */
