@@ -9,10 +9,21 @@
 <h1>Burrow</h1>
 <h2 th:text="${'Hello ' + user.name + '!'}"></h2>
 <p></p>
+
+<p th:unless="${user.properties} and ${user.properties.size()}">
 <div class="container body-content">
-    <a th:href="@{'/properties'}">
-        <input type="submit" value="View Properties" class="btn btn-light">
+    <a th:href="@{'/properties/add'}">
+        <input type="submit" value="Add Properties" class="btn btn-secondary">
     </a>
+</div>
+</p>
+
+<div class="container body-content">
+    <ul>
+        <li th:each="property : ${user.properties}">
+            <a th:href="@{'/properties/view/' + ${property.id}}" th:text="${property.name}"></a>
+        </li>
+    </ul>
 </div>
 <p></p>
 <div th:if="${notifications} and ${notifications.size()}" class="container body-content">
