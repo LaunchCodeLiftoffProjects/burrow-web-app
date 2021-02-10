@@ -1,6 +1,5 @@
 package com.example.burrowwebapp.controller;
 
-import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.UserRepository;
 import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.HomeData;
@@ -22,9 +21,6 @@ import static com.example.burrowwebapp.controller.ViewController.columnChoices;
 public class SearchbarController {
 
     @Autowired
-    private DeviceRepository deviceRepository;
-
-    @Autowired
     private UserRepository userRepository;
 
     private static final String userSessionKey = "user";
@@ -44,7 +40,7 @@ public class SearchbarController {
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
             devices = user.getDevices();
         } else {
-            devices = HomeData.findByValue(searchTerm, user.getDevices());
+            devices = HomeData.findByValue(searchTerm, user.getDevices(), user.getComponents());
         }
         model.addAttribute("columns", columnChoices);
         model.addAttribute("title", "Search Results: " + searchTerm);

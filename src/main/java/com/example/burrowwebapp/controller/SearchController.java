@@ -1,6 +1,5 @@
 package com.example.burrowwebapp.controller;
 
-import com.example.burrowwebapp.data.DeviceRepository;
 import com.example.burrowwebapp.data.UserRepository;
 import com.example.burrowwebapp.models.Device;
 import com.example.burrowwebapp.models.HomeData;
@@ -19,9 +18,6 @@ import static com.example.burrowwebapp.controller.ViewController.columnChoices;
 @Controller
 @RequestMapping("search")
 public class SearchController {
-
-    @Autowired
-    private DeviceRepository deviceRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -43,7 +39,7 @@ public class SearchController {
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
             devices = user.getDevices();
         } else {
-            devices = HomeData.findByColumnAndValue(searchType, searchTerm, user.getDevices());
+            devices = HomeData.findByColumnAndValue(searchType, searchTerm, user.getDevices(), user.getComponents());
         }
         model.addAttribute("columns", columnChoices);
         model.addAttribute("title", "Gophers found " + columnChoices.get(searchType) + ": " + searchTerm);

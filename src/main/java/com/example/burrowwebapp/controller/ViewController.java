@@ -39,6 +39,7 @@ public class ViewController {
         columnChoices.put("room", "Room");
         columnChoices.put("device", "Device");
         columnChoices.put("component", "Component");
+        columnChoices.put("component description", "Component Description");
     }
 
     @RequestMapping("")
