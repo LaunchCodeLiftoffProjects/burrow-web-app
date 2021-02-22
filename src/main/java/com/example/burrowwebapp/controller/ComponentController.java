@@ -182,6 +182,7 @@ public class ComponentController
         component.setDevice(device);
         component.setDaysBetweenReplacements(daysBetweenReplacements);
         Notification notification = component.getNotification();
+        notification.setReplacedDate(installDate);
         notification.setDaysBetweenReplacements(daysBetweenReplacements);
         notification.setMessage();
         notificationRepository.save(notification);
